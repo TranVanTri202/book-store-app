@@ -29,7 +29,7 @@ const Navbar = () => {
         </div>
         <div className="choose">
           <ul>
-            <NavLink to="/home" className="nav-link">
+            <NavLink to="/" className="nav-link">
               {" "}
               <li>Trang chủ</li>{" "}
             </NavLink>

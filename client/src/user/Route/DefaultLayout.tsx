@@ -1,3 +1,4 @@
+import ContactBottom from "../components/Footer/ContactBottom";
 import HeaderMiddle from "../components/HeadderMiddle/HeaderMiddle";
 import HeaderTop from "../components/HeaderTop/HeaderTop";
 import Navbar from "../components/Navbar/Navbar";
@@ -13,6 +14,7 @@ const DefaultLayout: React.FC<children> = ({ children }) => {
       <HeaderMiddle />
       <Navbar />
       <div className="">{children}</div>
+      <ContactBottom />
     </div>
   );
 };

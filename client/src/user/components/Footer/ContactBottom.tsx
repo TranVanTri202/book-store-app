@@ -1,29 +1,52 @@
-import { MailOutlined } from "@ant-design/icons";
+import {
+  MailOutlined,
+  WhatsAppOutlined,
+  HomeOutlined,
+} from "@ant-design/icons";
 import "./ContactBottom.css";
+import { Row, Col } from "antd";
 const ContactBottom = () => {
   return (
     <>
       <div className="footer">
-        <div className="information-footer">
-          <div className="address">
-            <div className="icon-address"></div>
-            <div className="text-address">
-              <p>Địa chỉ</p>
-              <span>20/4 Đường Nguyễn Kim Cương ấp 2a Củ Chi</span>
-            </div>
-          </div>
-          <div className="phone">
-            <div className="icon-phone"></div>
-            <div className="text-phone">
-              <p>Số điện thoại</p>
-              <span>0387653312</span>
-            </div>
-          </div>
-          <div className="mail">
-            <div className="icon-mail"></div>
-            <div className="text-mail"></div>
-          </div>
-        </div>
+        <Row justify="space-between">
+          <Col span={8}>
+            <Row align="middle">
+              <Col span={2} className="icon-footer">
+                {" "}
+                <HomeOutlined />
+              </Col>
+              <Col>
+                <h2>Địa chỉ</h2>
+                <p>20 Đường Bầu Trâm xã Trung An H.Củ Chi</p>
+              </Col>
+            </Row>
+          </Col>
+          <Col span={8}>
+            <Row align="middle">
+              <Col span={2} className="icon-footer">
+                {" "}
+                <WhatsAppOutlined />
+              </Col>
+              <Col>
+                <h2>Địa chỉ</h2>
+                <p>20 Đường Bầu Trâm xã Trung An H.Củ Chi</p>
+              </Col>
+            </Row>
+          </Col>
+          <Col span={8}>
+            <Row align="middle">
+              <Col span={2} className="icon-footer">
+                {" "}
+                <MailOutlined />
+              </Col>
+              <Col>
+                <h2>Địa chỉ</h2>
+                <p>20 Đường Bầu Trâm xã Trung An H.Củ Chi</p>
+              </Col>
+            </Row>
+          </Col>
+        </Row>
       </div>
     </>
   );

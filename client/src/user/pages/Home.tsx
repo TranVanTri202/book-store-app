@@ -12,7 +12,6 @@ const Home = () => {
       <Seller />
       <NewBook />
       <Blog />
-      <ContactBottom />
     </>
   );
 };

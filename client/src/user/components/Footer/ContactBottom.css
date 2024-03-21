@@ -6,3 +6,16 @@
   right: 0;
   padding: 0 60px;
 }
+
+.icon-footer {
+  color: var(--color-main) !important;
+  font-size: 30px;
+}
+
+.footer h2 {
+  color: #fff;
+}
+
+.footer p {
+  color: rgb(203, 203, 203);
+}

@@ -1,0 +1,11 @@
+.checkbox-container {
+  display: flex;
+  align-items: center;
+}
+
+.checkbox-container .ant-checkbox-wrapper {
+  margin-right: 10px; /* Tạo khoảng cách giữa checkbox và label */
+}
+
+.list-menu h4 {
+}
