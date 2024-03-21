@@ -1,0 +1,43 @@
+.blog-home {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.blogs {
+  width: 25%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.4);
+}
+
+.blogs img {
+  width: 100%;
+  object-fit: contain;
+}
+
+.information-blog {
+  padding: 5px 12px;
+}
+
+.information-blog .date {
+  color: #ccc;
+  font-size: 15px;
+}
+
+.information-blog .heading-blog {
+  font-weight: 600;
+  margin: 5px 0;
+}
+
+.information-blog .text-blog {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.information-blog .continue {
+  color: var(--color-main);
+  cursor: pointer;
+  transition: 0.2s linear;
+}
