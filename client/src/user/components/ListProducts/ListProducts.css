@@ -1,0 +1,35 @@
+.card-products:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.card-products {
+  border: 1px solid rgb(245, 240, 240);
+  font-size: 16px;
+  font-weight: 400;
+  opacity: 0;
+  animation: fadeInUp 0.5s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.card-products span {
+  font-size: 15px;
+  font-weight: 400;
+  margin-right: 5px;
+  color: rgb(130, 127, 127);
+}
+
+.card-products .information-book {
+  padding: 0px 30px;
+}
+
+.card-products .price {
+  color: var(--color-main);
+}

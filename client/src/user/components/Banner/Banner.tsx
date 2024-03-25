@@ -14,6 +14,34 @@ const Banner = () => {
             src="https://prestashop17.joommasters.com/molla/themes/jms_molla/assets/images/demos/demo-20/banners/banner-1.jpg"
             alt=""
           />
+          <div className="typing-effect">
+            <span>C</span>
+            <span>h</span>
+            <span>à</span>
+            <span>o</span>
+            <span>m</span>
+            <span>ừ</span>
+            <span>n</span>
+            <span>g </span>
+            <br />
+            <span>b</span>
+            <span>ạ</span>
+            <span>n</span>
+            <span></span>
+            <span>đ</span>
+            <span>ế</span>
+            <span>n </span>
+            <span></span>
+            <span>v</span>
+            <span>ớ</span>
+            <span>i </span>
+            <br />
+            <span>TVT </span>
+            <span>S</span>
+            <span>h</span>
+            <span>o</span>
+            <span>p</span>
+          </div>
         </div>
         <div className="banner2">
           <img

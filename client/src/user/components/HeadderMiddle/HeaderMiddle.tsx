@@ -4,17 +4,14 @@ import {
   UserOutlined,
   SearchOutlined,
 } from "@ant-design/icons";
-
+import logo from "../../../asset/img/logo.png.png";
 import "../HeadderMiddle/HeaderMiddle.css";
 const HeaderMiddle = () => {
   return (
     <>
       <div className="header-middle">
         <div className="logo">
-          <img
-            src="https://prestashop17.joommasters.com/molla/themes/jms_molla/assets/images/logos/logo-20.png"
-            alt=""
-          />
+          <img src={logo} alt="" width={150} />
         </div>
         <div className="search">
           <div className="input-search">

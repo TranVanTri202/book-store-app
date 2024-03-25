@@ -1,12 +1,14 @@
 import { Row, Col } from "antd/";
 import ListMenu from "../components/ListMenu/ListMenu";
+import ListProducts from "../components/ListProducts/ListProducts";
 const Product = () => {
   return (
     <>
-      <div className="directional">
-        <Row>
+      <div style={{ margin: "10px 0" }} className="directional">
+        <Row style={{ backgroundColor: "#E7E7E7", padding: "10px" }}>
           <Col>
-            Trang Chủ &#62; <b>Sản phẩm</b>
+            <span style={{ color: "grey" }}>Trang Chủ</span> &#62;{" "}
+            <b style={{ fontWeight: "600" }}>Sản phẩm</b>
           </Col>
         </Row>
       </div>
@@ -16,7 +18,9 @@ const Product = () => {
             {" "}
             <ListMenu />
           </Col>
-          <Col span={19}>assad</Col>
+          <Col span={19}>
+            <ListProducts />
+          </Col>
         </Row>
       </div>
     </>
