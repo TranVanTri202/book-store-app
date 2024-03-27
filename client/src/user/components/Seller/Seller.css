@@ -1,21 +1,18 @@
 .seller {
   margin-top: 40px;
+  background-color: #fff;
+}
+
+.seller .heading {
+  background-color: #b1f1e4;
 }
 
 .text-heading {
-  font-size: 23px;
+  padding: 10px;
+  font-size: 20px;
   font-weight: 600;
   margin: 40px 0;
   position: relative;
-}
-
-.text-heading::before {
-  content: "";
-  position: absolute;
-  width: 100px;
-  height: 4px;
-  background-color: var(--color-main);
-  bottom: 0;
 }
 
 .product-home {

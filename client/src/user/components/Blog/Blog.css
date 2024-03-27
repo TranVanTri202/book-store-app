@@ -41,3 +41,19 @@
   cursor: pointer;
   transition: 0.2s linear;
 }
+
+/* blog-page */
+.card-blog {
+  display: flex;
+}
+.card-blog h2 {
+  margin-bottom: 10px;
+}
+
+.card-blog p {
+  color: #777;
+}
+
+.card-blog .content-blog {
+  padding: 0 20px;
+}

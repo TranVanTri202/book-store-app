@@ -1,139 +1,181 @@
 import "../Seller/Seller.css";
-import { ShoppingCartOutlined } from "@ant-design/icons";
+import { RiseOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { Row, Col } from "antd";
 const Seller = () => {
   return (
     <>
       <div className="seller">
         <div className="heading">
-          <p className="text-heading">Đang Giảm Giá</p>
+          <p className="text-heading">
+            Xu hướng mua sắm <RiseOutlined />
+          </p>
         </div>
         <div className="product-home">
-          <div className="products">
-            <div className="img-book">
-              <img src="https://i.imgur.com/7G5shSh.png" alt="" />
-            </div>
-            <div className="information-book">
-              <div className="author">
-                <span>Tác giá: </span>Tran Van Tri
-              </div>
-              <div className="name-book">
-                {" "}
-                <span>Tên sách: </span>Dac nhan Tam
-              </div>
-              <div className="price">
-                {" "}
-                <span>Giá: </span>50.000 VND
-              </div>
-            </div>
-            <div className="btn-buy">
-              Mua ngay <ShoppingCartOutlined />
-            </div>
-          </div>
-          <div className="products">
-            <div className="img-book">
-              <img src="https://i.imgur.com/7G5shSh.png" alt="" />
-            </div>
-            <div className="information-book">
-              <div className="author">
-                <span>Tác giá: </span>Tran Van Tri
-              </div>
-              <div className="name-book">
-                {" "}
-                <span>Tên sách: </span>Dac nhan Tam
-              </div>
-              <div className="price">
-                {" "}
-                <span>Giá: </span>50.000 VND
-              </div>
-            </div>
-            <div className="btn-buy">
-              Mua ngay <ShoppingCartOutlined />
-            </div>
-          </div>{" "}
-          <div className="products">
-            <div className="img-book">
-              <img src="https://i.imgur.com/7G5shSh.png" alt="" />
-            </div>
-            <div className="information-book">
-              <div className="author">
-                <span>Tác giá: </span>Tran Van Tri
-              </div>
-              <div className="name-book">
-                {" "}
-                <span>Tên sách: </span>Dac nhan Tam
-              </div>
-              <div className="price">
-                {" "}
-                <span>Giá: </span>50.000 VND
-              </div>
-            </div>
-            <div className="btn-buy">
-              Mua ngay <ShoppingCartOutlined />
-            </div>
-          </div>{" "}
-          <div className="products">
-            <div className="img-book">
-              <img src="https://i.imgur.com/7G5shSh.png" alt="" />
-            </div>
-            <div className="information-book">
-              <div className="author">
-                <span>Tác giá: </span>Tran Van Tri
-              </div>
-              <div className="name-book">
-                {" "}
-                <span>Tên sách: </span>Dac nhan Tam
-              </div>
-              <div className="price">
-                {" "}
-                <span>Giá: </span>50.000 VND
-              </div>
-            </div>
-            <div className="btn-buy">
-              Mua ngay <ShoppingCartOutlined />
-            </div>
-          </div>{" "}
-          <div className="products">
-            <div className="img-book">
-              <img src="https://i.imgur.com/7G5shSh.png" alt="" />
-            </div>
-            <div className="information-book">
-              <div className="author">
-                <span>Tác giá: </span>Tran Van Tri
-              </div>
-              <div className="name-book">
-                {" "}
-                <span>Tên sách: </span>Dac nhan Tam
-              </div>
-              <div className="price">
-                {" "}
-                <span>Giá: </span>50.000 VND
-              </div>
-            </div>
-            <div className="btn-buy">
-              Mua ngay <ShoppingCartOutlined />
-            </div>
-          </div>
-          <div className="products">
-            <div className="img-book">
-              <img src="https://i.imgur.com/7G5shSh.png" alt="" />
-            </div>
-            <div className="information-book">
-              <div className="author">
-                <span>Tác giá: </span>Tran Van Tri
-              </div>
-              <div className="name-book">
-                {" "}
-                <span>Tên sách: </span>Dac nhan Tam
-              </div>
-              <div className="price">
-                {" "}
-                <span>Giá: </span>50.000 VND
-              </div>
-            </div>
-            <div className="btn-buy">
-              Mua ngay <ShoppingCartOutlined />
-            </div>
-          </div>
+          <Row>
+            <>
+              <Col className="card-products" style={{ width: "20%" }}>
+                <img
+                  style={{ width: "100%" }}
+                  src="https://cdn.chanhtuoi.com/uploads/2018/05/nhung-cuon-sach-hay-6.jpg"
+                  alt=""
+                />
+                <div className="information-book">
+                  <div className="author">
+                    <span>Tác giá: </span>Tran Van Tri
+                  </div>
+                  <div className="name-book">
+                    {" "}
+                    <span>Tên sách: </span>Dac nhan Tam
+                  </div>
+                  <div className="price">
+                    {" "}
+                    50.000 VND
+                    <span className="old-price">60.000 đ</span>
+                  </div>
+                </div>
+              </Col>
+              <Col className="card-products" style={{ width: "20%" }}>
+                <img
+                  style={{ width: "100%" }}
+                  src="https://cdn.chanhtuoi.com/uploads/2018/05/nhung-cuon-sach-hay-6.jpg"
+                  alt=""
+                />
+                <div className="information-book">
+                  <div className="author">
+                    <span>Tác giá: </span>Tran Van Tri
+                  </div>
+                  <div className="name-book">
+                    {" "}
+                    <span>Tên sách: </span>Dac nhan Tam
+                  </div>
+                  <div className="price">
+                    {" "}
+                    <span>Giá: </span>50.000 VND
+                  </div>
+                </div>
+              </Col>
+              <Col className="card-products" style={{ width: "20%" }}>
+                <img
+                  style={{ width: "100%" }}
+                  src="https://cdn.chanhtuoi.com/uploads/2018/05/nhung-cuon-sach-hay-6.jpg"
+                  alt=""
+                />
+                <div className="information-book">
+                  <div className="author">
+                    <span>Tác giá: </span>Tran Van Tri
+                  </div>
+                  <div className="name-book">
+                    {" "}
+                    <span>Tên sách: </span>Dac nhan Tam
+                  </div>
+                  <div className="price">
+                    {" "}
+                    <span>Giá: </span>50.000 VND
+                  </div>
+                </div>
+              </Col>
+              <Col className="card-products" style={{ width: "20%" }}>
+                <img
+                  style={{ width: "100%" }}
+                  src="https://cdn.chanhtuoi.com/uploads/2018/05/nhung-cuon-sach-hay-6.jpg"
+                  alt=""
+                />
+                <div className="information-book">
+                  <div className="author">
+                    <span>Tác giá: </span>Tran Van Tri
+                  </div>
+                  <div className="name-book">
+                    {" "}
+                    <span>Tên sách: </span>Dac nhan Tam
+                  </div>
+                  <div className="price">
+                    {" "}
+                    <span>Giá: </span>50.000 VND
+                  </div>
+                </div>
+              </Col>
+              <Col className="card-products" style={{ width: "20%" }}>
+                <img
+                  style={{ width: "100%" }}
+                  src="https://cdn.chanhtuoi.com/uploads/2018/05/nhung-cuon-sach-hay-6.jpg"
+                  alt=""
+                />
+                <div className="information-book">
+                  <div className="author">
+                    <span>Tác giá: </span>Tran Van Tri
+                  </div>
+                  <div className="name-book">
+                    {" "}
+                    <span>Tên sách: </span>Dac nhan Tam
+                  </div>
+                  <div className="price">
+                    {" "}
+                    <span>Giá: </span>50.000 VND
+                  </div>
+                </div>
+              </Col>
+              <Col className="card-products" style={{ width: "20%" }}>
+                <img
+                  style={{ width: "100%" }}
+                  src="https://cdn.chanhtuoi.com/uploads/2018/05/nhung-cuon-sach-hay-6.jpg"
+                  alt=""
+                />
+                <div className="information-book">
+                  <div className="author">
+                    <span>Tác giá: </span>Tran Van Tri
+                  </div>
+                  <div className="name-book">
+                    {" "}
+                    <span>Tên sách: </span>Dac nhan Tam
+                  </div>
+                  <div className="price">
+                    {" "}
+                    <span>Giá: </span>50.000 VND
+                  </div>
+                </div>
+              </Col>
+              <Col className="card-products" style={{ width: "20%" }}>
+                <img
+                  style={{ width: "100%" }}
+                  src="https://cdn.chanhtuoi.com/uploads/2018/05/nhung-cuon-sach-hay-6.jpg"
+                  alt=""
+                />
+                <div className="information-book">
+                  <div className="author">
+                    <span>Tác giá: </span>Tran Van Tri
+                  </div>
+                  <div className="name-book">
+                    {" "}
+                    <span>Tên sách: </span>Dac nhan Tam
+                  </div>
+                  <div className="price">
+                    {" "}
+                    <span>Giá: </span>50.000 VND
+                  </div>
+                </div>
+              </Col>
+              <Col className="card-products" style={{ width: "20%" }}>
+                <img
+                  style={{ width: "100%" }}
+                  src="https://cdn.chanhtuoi.com/uploads/2018/05/nhung-cuon-sach-hay-6.jpg"
+                  alt=""
+                />
+                <div className="information-book">
+                  <div className="author">
+                    <span>Tác giá: </span>Tran Van Tri
+                  </div>
+                  <div className="name-book">
+                    {" "}
+                    <span>Tên sách: </span>Dac nhan Tam
+                  </div>
+                  <div className="price">
+                    {" "}
+                    <span>Giá: </span>50.000 VND
+                  </div>
+                </div>
+              </Col>
+            </>
+          </Row>
         </div>
       </div>
     </>

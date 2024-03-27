@@ -7,13 +7,15 @@ function App() {
   return (
     <Router>
       <Routes>
-        {RoutePages.map((item, index) => (
-          <Route
-            key={item.path}
-            path={item.path}
-            element={<DefaultLayout>{<item.component />}</DefaultLayout>}
-          />
-        ))}
+        {RoutePages.map((item, index) => {
+          return (
+            <Route
+              key={item.path}
+              path={item.path}
+              element={<DefaultLayout>{<item.component />}</DefaultLayout>}
+            />
+          );
+        })}
       </Routes>
     </Router>
   );

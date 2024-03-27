@@ -1,8 +1,8 @@
 import {
   HeartOutlined,
-  ShoppingCartOutlined,
   UserOutlined,
   SearchOutlined,
+  ShoppingOutlined,
 } from "@ant-design/icons";
 import logo from "../../../asset/img/logo.png.png";
 import "../HeadderMiddle/HeaderMiddle.css";
@@ -31,7 +31,7 @@ const HeaderMiddle = () => {
             <p>Yêu thích</p>
           </div>
           <div className="icon-cart icon">
-            <ShoppingCartOutlined />
+            <ShoppingOutlined />
             <p>Giỏ hàng</p>
           </div>
         </div>
