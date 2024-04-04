@@ -30,12 +30,6 @@
   margin: 5px 0;
 }
 
-.information-blog .text-blog {
-  font-size: 14px;
-  color: #777;
-  margin-bottom: 12px;
-}
-
 .information-blog .continue {
   color: var(--color-main);
   cursor: pointer;
@@ -45,6 +39,9 @@
 /* blog-page */
 .card-blog {
   display: flex;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border: 0.1px solid #ebebeb;
 }
 .card-blog h2 {
   margin-bottom: 10px;
@@ -52,8 +49,35 @@
 
 .card-blog p {
   color: #777;
+  font-size: 16px;
 }
 
 .card-blog .content-blog {
   padding: 0 20px;
+}
+
+.card-blog .date {
+  color: var(--color-main);
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  font-size: 15px;
+}
+
+.blog-page {
+  margin-top: 15px;
+}
+.text-container {
+  max-height: calc(1.3em * 6); /* Chiều cao tối đa tương đương với 5 hàng */
+  overflow: hidden; /* Ẩn phần văn bản vượt quá chiều cao */
+}
+
+.information-blog .text-blog {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 12px;
+  display: -webkit-box;
+  -webkit-line-clamp: 6; /* Số hàng tối đa */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }

@@ -1,9 +1,11 @@
-import { NavLink, Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { NavLink } from "react-router-dom";
 import { UnorderedListOutlined, BulbOutlined } from "@ant-design/icons";
-import { useState, useEffect } from "react";
 import "../Navbar/Navbar.css";
+
 const Navbar = () => {
   const [isSticky, setIsSticky] = useState(false);
+
   useEffect(() => {
     const handleScroll = () => {
       const offset = window.scrollY;
@@ -20,6 +22,14 @@ const Navbar = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Scroll mượt hơn
+    });
+  };
+
   return (
     <>
       <div className={`navbar ${isSticky ? "fixed" : ""}`}>
@@ -29,24 +39,22 @@ const Navbar = () => {
         </div>
         <div className="choose">
           <ul>
-            <NavLink to="/" className="nav-link">
-              {" "}
-              <li>Trang chủ</li>{" "}
+            <NavLink onClick={scrollToTop} to="/" className="nav-link">
+              <li>Trang chủ</li>
             </NavLink>
 
-            <NavLink to="/products" className="nav-link">
+            <NavLink onClick={scrollToTop} to="/products" className="nav-link">
               <li>Sản Phẩm</li>
             </NavLink>
 
-            <NavLink to="/contact" className="nav-link">
+            <NavLink onClick={scrollToTop} to="/contact" className="nav-link">
               <li>Liên Hệ</li>
             </NavLink>
-            <NavLink to="/blog" className="nav-link">
-              {" "}
+            <NavLink onClick={scrollToTop} to="/blog" className="nav-link">
               <li>Blog</li>
             </NavLink>
 
-            <li>Page</li>
+            <li onClick={scrollToTop}>Page</li>
           </ul>
         </div>
         <div className="notify">

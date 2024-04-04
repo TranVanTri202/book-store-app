@@ -1,5 +1,5 @@
 import "../Seller/Seller.css";
-import { RiseOutlined, ShoppingCartOutlined } from "@ant-design/icons";
+import { RiseOutlined } from "@ant-design/icons";
 import { Row, Col } from "antd";
 const Seller = () => {
   return (

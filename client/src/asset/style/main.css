@@ -5,6 +5,7 @@
   margin: 0;
   box-sizing: border-box;
   scrollbar-color: #1cc0a0 #e0e0e0;
+  scroll-behavior: smooth;
 }
 
 .App {
@@ -25,4 +26,9 @@
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* background-admin */
+.content-admin {
+  background-color: #e8e8e8;
 }

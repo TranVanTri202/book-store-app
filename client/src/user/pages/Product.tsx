@@ -13,7 +13,7 @@ const Product = () => {
         </Row>
       </div>
       <div className="content-product">
-        <Row gutter={40}>
+        <Row gutter={20}>
           <Col span={5}>
             {" "}
             <ListMenu />

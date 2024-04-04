@@ -1,21 +1,30 @@
-import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { RoutePages } from "./user/Route/Route";
-import DefaultLayout from "./user/Route/DefaultLayout";
+import { RouteUser, RouteAdmin } from "./Routes/Route";
+import LayoutUser from "./Routes/LayoutUser";
+import LayoutAdmin from "./Routes/LayoutAdmin";
+import ScrollToTop from "react-scroll-to-top";
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Routes>
-        {RoutePages.map((item, index) => {
-          return (
-            <Route
-              key={item.path}
-              path={item.path}
-              element={<DefaultLayout>{<item.component />}</DefaultLayout>}
-            />
-          );
-        })}
+        {/* Routes for User */}
+        {RouteUser.map((item, index) => (
+          <Route
+            key={index}
+            path={item.path}
+            element={<LayoutUser>{<item.component />}</LayoutUser>}
+          />
+        ))}
+        {/* Routes for Admin */}
+        {RouteAdmin.map((item, index) => (
+          <Route
+            key={index}
+            path={item.path}
+            element={<LayoutAdmin>{<item.component />}</LayoutAdmin>}
+          />
+        ))}
       </Routes>
     </Router>
   );

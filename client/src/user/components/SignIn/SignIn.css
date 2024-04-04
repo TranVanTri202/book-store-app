@@ -1,7 +1,60 @@
 .form-login {
-  display: flex;
-  justify-content: center;
+  margin: 10px auto;
+  width: 400px;
+  background-color: #ebebeb;
+  padding: 10px 10px;
+}
+
+.heading-form-login span {
+  font-size: 15px;
+  padding: 5px 59px;
+  color: var(--color-main);
+  border-bottom: 0;
+  transition: 2s linear;
+}
+
+.heading-form-login span:hover {
+  border-bottom: 2px solid var(--color-main);
 }
 
 .form-login input {
+  width: 100%;
+  font-size: 15px;
+  padding: 8px 10px;
+  margin-top: 5px;
+  border: 1px solid rgb(97, 96, 96);
+  outline: none;
+}
+
+.form-login .form-email input:focus {
+  border: 1px solid var(--color-main);
+}
+
+.form-login label {
+  font-size: 15px;
+  color: rgb(100, 100, 100);
+}
+.form-email {
+  margin-top: 30px;
+}
+.form-email,
+.form-password {
+  margin-top: 20px;
+}
+
+.form-login .btn-login {
+  border: none;
+  background-color: var(--color-main);
+  padding: 5px 15px;
+  text-align: center;
+  margin-top: 20px;
+  color: white;
+  cursor: pointer;
+}
+
+.form-login p {
+  color: #c92127;
+  font-size: 13px;
+  float: right;
+  margin-top: 5px;
 }

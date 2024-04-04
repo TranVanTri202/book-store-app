@@ -17,7 +17,7 @@
 }
 .card-products {
   border: 1px solid rgb(245, 240, 240);
-  font-size: 16px;
+  font-size: 18px;
   font-weight: 400;
 
   position: relative;
@@ -33,6 +33,7 @@
 
 .card-products .information-book {
   padding: 0px 30px 20px 30px;
+  text-align: center;
 }
 
 .card-products .price {
@@ -58,4 +59,10 @@
 .choose-btn-product button:hover {
   background-color: var(--color-main) !important;
   color: white !important;
+}
+
+.card-products .information-book .rate-product ul li {
+  font-size: 15px !important;
+  margin: 0;
+  padding: 0;
 }

@@ -52,3 +52,27 @@
 .icon-group p {
   font-size: 12px;
 }
+
+.icon-cart {
+  position: relative;
+}
+
+.icon-cart::after {
+  content: "";
+  background-color: red;
+  position: absolute;
+  height: 22px;
+  width: 22px;
+  top: 0;
+  right: 5%;
+  border-radius: 50%;
+  z-index: 0;
+}
+
+.icon-cart .count-shopping {
+  position: absolute;
+  top: 0;
+  right: 13%;
+  color: white;
+  z-index: 1;
+}
