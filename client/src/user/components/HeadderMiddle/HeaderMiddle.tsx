@@ -8,6 +8,7 @@ import logo from "../../../asset/img/logo.png.png";
 import "../HeadderMiddle/HeaderMiddle.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Redux/store";
+import { Link } from "react-router-dom";
 const HeaderMiddle = () => {
   const products = useSelector((state: RootState) => state.cart.dataProduct);
   return (
@@ -34,9 +35,12 @@ const HeaderMiddle = () => {
             <p>Yêu thích</p>
           </div>
           <div className="icon-cart icon">
-            <ShoppingOutlined shape="square" />
-            <p className="count-shopping">{products.length}</p>
-            <p>Giỏ hàng</p>
+            <Link to="/cart">
+              {" "}
+              <ShoppingOutlined shape="square" />
+              <p className="count-shopping">{products.length}</p>
+              <p>Giỏ hàng</p>
+            </Link>
           </div>
         </div>
       </div>

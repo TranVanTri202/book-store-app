@@ -1,6 +1,7 @@
 import Dashboard from "../admin/Page/Dashboard";
 import ProductManagement from "../admin/Page/ProductManagement";
 import BlogPage from "../user/components/BlogPage/BlogPage";
+import Cart from "../user/pages/Cart";
 import Contact from "../user/pages/Contact";
 import Home from "../user/pages/Home";
 import Product from "../user/pages/Product";
@@ -29,6 +30,11 @@ export const RouteUser = [
   {
     path: "/login",
     component: SignIn,
+    role: "user",
+  },
+  {
+    path: "/cart",
+    component: Cart,
     role: "user",
   },
 ];

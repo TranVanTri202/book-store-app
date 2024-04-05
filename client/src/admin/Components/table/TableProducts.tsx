@@ -9,16 +9,23 @@ import {
 } from "../../../Redux/Slice/ProductSlice";
 import ModalAddProduct from "../Modal/ModalAddProduct";
 import { useState } from "react";
+import ModalEditProduct from "../Modal/ModalEditProduct";
 const TableProducts = () => {
   const dispatch: AppDispatch = useDispatch();
   const data = useSelector((state: RootState) => state.products.dataProduct);
+  const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(
+    null
+  );
+  const [visibleModalEdit, setVisibleModalEdit] = useState<boolean>(false);
+  const [visibleModalAdd, setVisibleModalAdd] = useState<boolean>(false);
 
-  const [visible, setVisible] = useState<boolean>(false);
   const closeModal = () => {
-    setVisible(false);
+    setVisibleModalAdd(false);
+    setVisibleModalEdit(false);
   };
-  const openModal = () => {
-    setVisible(true);
+  const openModal = (cate: string, product: ProductType | null) => {
+    cate === "ModalEdit" ? setVisibleModalEdit(true) : setVisibleModalAdd(true);
+    setSelectedProduct(product);
   };
 
   const handleDeleteProduct = async (id: string) => {
@@ -78,7 +85,7 @@ const TableProducts = () => {
       render: (text: string, record: ProductType) => (
         <>
           <button onClick={() => handleDeleteProduct(record._id)}>xoa</button>
-          <button onClick={openModal}>Sua</button>
+          <button onClick={() => openModal("ModalEdit", record)}>Sua</button>
         </>
       ),
     },
@@ -86,14 +93,21 @@ const TableProducts = () => {
   return (
     <>
       <div className="">
-        <button onClick={openModal}>Thêm sản phẩm</button>
+        <button onClick={() => openModal("ModalAdd", null)}>
+          Thêm sản phẩm
+        </button>
         <Table
           rowKey={(record) => record._id}
           dataSource={data}
           columns={column}
         />
       </div>
-      <ModalAddProduct visible={visible} onClose={closeModal} />
+      <ModalAddProduct visible={visibleModalAdd} onClose={closeModal} />
+      <ModalEditProduct
+        visible={visibleModalEdit}
+        onClose={closeModal}
+        product={selectedProduct}
+      />
     </>
   );
 };

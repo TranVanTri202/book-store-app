@@ -56,8 +56,8 @@ const ListProducts = () => {
                 </div>
               </div>
               <div className="choose-btn-product">
-                <Button>
-                  <ShoppingOutlined onClick={() => handleAddToCart(product)} />
+                <Button onClick={() => handleAddToCart(product)}>
+                  <ShoppingOutlined />
                 </Button>
                 <Button>
                   <EyeOutlined />

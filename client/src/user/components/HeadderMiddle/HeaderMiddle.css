@@ -23,7 +23,7 @@
 }
 
 .input-search input {
-  width: 100%; /* Đặt chiều rộng của input là 100% */
+  width: 100%;
   border: 1px solid #ebebeb;
   background-color: #f8f8f8;
   padding: 15px 60px 11px 10px;
@@ -59,7 +59,7 @@
 
 .icon-cart::after {
   content: "";
-  background-color: red;
+  background-color: var(--color-main);
   position: absolute;
   height: 22px;
   width: 22px;
