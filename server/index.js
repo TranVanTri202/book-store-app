@@ -6,7 +6,7 @@ import bodyParser from "body-parser";
 const app = express();
 app.use(cors());
 const URI =
-  "mongodb+srv://admin:admin123456@bookstore.0mupkt4.mongodb.net/?retryWrites=true&w=majority&appName=bookstore";
+  "mongodb+srv://admin:admin111@bookstore.0mupkt4.mongodb.net/?retryWrites=true&w=majority&appName=bookstore";
 
 app.use(bodyParser.json({ limit: "30mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "30mb" }));
@@ -18,7 +18,7 @@ mongoose
     console.log("connect success");
   })
   .catch((err) => {
-    console.log("connect fail");
+    console.log("connect fail ", err);
   });
 
 app.listen(5000, () => {

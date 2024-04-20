@@ -2,12 +2,20 @@ import { BankOutlined, ProductOutlined } from "@ant-design/icons";
 import logo from "../../../asset/img/logo.png.png";
 import "../NavbarLeft/NavbarLeft.css";
 import { NavLink } from "react-router-dom";
+import { useState } from "react";
 const NavbarLeft = () => {
+  const [btnOpen, setBtnOpen] = useState<boolean>(true);
+
+  const handleOpenNav = () => {
+    setBtnOpen(false);
+  };
+
   return (
     <>
-      <div className="navbar-left">
+      <div className={btnOpen ? "navbar-left" : "navbar-left navbar-left-open"}>
         <div className="img-logo-admin">
           <img src={logo} width={150} alt="" />
+          <button onClick={handleOpenNav}> dong</button>
         </div>
         <div className="sidebar">
           <ul>

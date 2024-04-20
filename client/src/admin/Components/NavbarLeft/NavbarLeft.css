@@ -4,7 +4,12 @@
 
 .navbar-left .img-logo-admin {
   text-align: center;
-  background-color: #f3f6f9;
+  position: relative;
+}
+
+.navbar-left .img-logo-admin button {
+  position: absolute;
+  right: 0%;
 }
 
 .sidebar {
@@ -25,8 +30,8 @@
 }
 
 .navbar-left .sidebar ul .nav-link-sidebar.active li {
-  background-color: #f8fafc;
-  color: var(--color-main);
+  background-color: var(--color-main);
+  color: #f8fafc;
   box-shadow: rgba(17, 17, 26, 0.1) 0px 0px 16px;
 }
 

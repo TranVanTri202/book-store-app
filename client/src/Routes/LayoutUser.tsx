@@ -1,6 +1,5 @@
 import ContactBottom from "../user/components/Footer/ContactBottom";
-import HeaderMiddle from "../user/components/HeadderMiddle/HeaderMiddle";
-import HeaderTop from "../user/components/HeaderTop/HeaderTop";
+import Header from "../user/components/Header/Header";
 import Navbar from "../user/components/Navbar/Navbar";
 
 type children = {
@@ -10,8 +9,7 @@ type children = {
 const LayoutUser: React.FC<children> = ({ children }) => {
   return (
     <div className="App">
-      <HeaderTop />
-      <HeaderMiddle />
+      <Header />
       <Navbar />
       <div className="">{children}</div>
       <ContactBottom />

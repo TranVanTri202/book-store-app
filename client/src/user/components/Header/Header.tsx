@@ -1,3 +1,6 @@
+import { PhoneOutlined } from "@ant-design/icons";
+import "./Header.css";
+import { Link } from "react-router-dom";
 import {
   HeartOutlined,
   UserOutlined,
@@ -5,14 +8,30 @@ import {
   ShoppingOutlined,
 } from "@ant-design/icons";
 import logo from "../../../asset/img/logo.png.png";
-import "../HeadderMiddle/HeaderMiddle.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Redux/store";
-import { Link } from "react-router-dom";
-const HeaderMiddle = () => {
+const HeaderTop: React.FC = () => {
   const products = useSelector((state: RootState) => state.cart.dataProduct);
+
   return (
     <>
+      <div className="header-top">
+        <div className="header-top-phone">
+          <span>
+            <PhoneOutlined />
+          </span>
+          <span>Call: 0387653312</span>
+        </div>
+        <div className="logout-login">
+          <Link to="/login">
+            <span>Đăng nhập</span>
+          </Link>
+          <span>/</span>
+          <Link to="/login">
+            <span>Đăng ký</span>
+          </Link>
+        </div>
+      </div>
       <div className="header-middle">
         <div className="logo">
           <img src={logo} alt="" width={150} />
@@ -48,4 +67,4 @@ const HeaderMiddle = () => {
   );
 };
 
-export default HeaderMiddle;
+export default HeaderTop;

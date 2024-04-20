@@ -7,7 +7,7 @@ const Contact = () => {
   return (
     <>
       <div style={{ margin: "10px 0" }} className="directional">
-        <Row style={{ backgroundColor: "#E7E7E7", padding: "10px" }}>
+        <Row style={{ backgroundColor: "#f5f5f5", padding: "10px" }}>
           <Col>
             <span style={{ color: "grey" }}>Trang Chủ</span> &#62;{" "}
             <b style={{ fontWeight: "600" }}>Liên hệ</b>
