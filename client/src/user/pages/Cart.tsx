@@ -6,7 +6,7 @@ import { CloseOutlined, ShoppingOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import { ProductType } from "../../Redux/Slice/ProductSlice";
 import { removeFromCart } from "../../Redux/Slice/CartSlice";
-
+import "../../asset/style/cart.css";
 const Cart = () => {
   const products: ProductType[] = useSelector(
     (state: RootState) => state.cart.dataProduct
@@ -64,52 +64,58 @@ const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
 
   return (
     <>
-      <div className="cartProducts">
-        <Row
-          justify="center"
-          style={{
-            backgroundColor: "rgb(231, 231, 231)",
-            padding: "10px",
-          }}
-        >
-          <Col span={1}></Col>
-          <Col span={4}>Ảnh</Col>
-          <Col span={5}>Sách</Col>
-          <Col span={5}>Giá</Col>
-          <Col span={4}>Số lượng</Col>
-          <Col span={5}>Tổng tiền</Col>
-        </Row>
-        {products.map((item) => {
-          const [quantity, totalPrice] = calculateQuantityAndTotalPrice(
-            item.name
-          );
-          return (
-            <>
-              <Row key={item._id} align="middle" justify="space-between">
-                <Col span={1}>
-                  <CloseOutlined />
-                </Col>
-                <Col span={4}>
-                  <img src={item.image} width={100} alt="" />
-                </Col>
-                <Col span={5}>{item.name}</Col>
-                <Col span={5}>{item.price}</Col>
-                <Col span={4}>{quantity}</Col>
-                <Col span={5}>{totalPrice}</Col>
-              </Row>
-            </>
-          );
-        })}
-        <Row justify="end">
-          <Link to="/checkout">
-            <Button>Thanh toán</Button>
-          </Link>
+      <Row gutter={2} justify="space-between">
+        <Col span={14}>
+          <table
+            style={{
+              width: "100%",
+              borderCollapse: "collapse",
+            }}
+          >
+            <thead>
+              <tr>
+                <th>Sản phẩm</th>
+                <th>Giá tiền</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+              </tr>
+            </thead>
+            <tbody>
+              {products.map((item) => {
+                return (
+                  <tr>
+                    <td>
+                      <img width="90" src={item.image} alt="" />
+                      {item.name}
+                    </td>
 
-          <Link to="/products">
-            <Button>Quay lại</Button>
-          </Link>
-        </Row>
-      </div>
+                    <td>{item.price}</td>
+                    <td>1</td>
+                    <td>{item.price}</td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </Col>
+        <Col span={8}>
+          <div className="cartTotal" style={{ backgroundColor: "#f7f7f7" }}>
+            <h2>Card Total</h2>
+          </div>
+          <Row>
+            <Col span={12}>Sub total</Col>
+            <Col span={12}>gia tien</Col>
+          </Row>
+          <Row>
+            <Col>Sub total</Col>
+            <Col>gia tien</Col>
+          </Row>
+          <Row>
+            <Col>Sub total</Col>
+            <Col>gia tien</Col>
+          </Row>
+        </Col>
+      </Row>
     </>
   );
 };

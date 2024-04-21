@@ -1,0 +1,15 @@
+.top-products {
+  margin: 30px 0;
+}
+
+.top-products h2 {
+  text-align: center;
+}
+
+.top-products .card-products {
+  width: 20%;
+}
+
+.img-banner-sale img {
+  text-align: center;
+}

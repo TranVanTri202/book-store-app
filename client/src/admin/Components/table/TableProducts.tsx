@@ -100,6 +100,7 @@ const TableProducts = () => {
           rowKey={(record) => record._id}
           dataSource={data}
           columns={column}
+          pagination={{ pageSize: 5 }}
         />
       </div>
       <ModalAddProduct visible={visibleModalAdd} onClose={closeModal} />

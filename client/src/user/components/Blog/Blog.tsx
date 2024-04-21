@@ -3,7 +3,7 @@ const Blog = () => {
   return (
     <>
       <div className="heading">
-        <p className="text-heading"> From Our Blog</p>
+        <h2>Our Blog</h2>
       </div>
       <div className="blog-home">
         <div className="blogs">
