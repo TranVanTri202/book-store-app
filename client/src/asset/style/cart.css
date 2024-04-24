@@ -1,0 +1,37 @@
+.emptyCart {
+  text-align: center;
+}
+.emptyCart img {
+  width: 400px;
+  height: 400px;
+}
+
+.emptyCart span {
+  font-size: 20px;
+  color: #a5a2a2;
+}
+
+.emptyCart .icon-back-pageProduct {
+  font-size: 25px;
+  color: var(--color-main);
+  animation: iconBackPage 2s infinite;
+  cursor: pointer;
+}
+
+@keyframes iconBackPage {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(25deg);
+  }
+  50% {
+    transform: rotate(0deg);
+  }
+  75% {
+    transform: rotate(-25deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}

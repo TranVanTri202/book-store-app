@@ -5,7 +5,6 @@ import Cart from "../user/pages/Cart";
 import Contact from "../user/pages/Contact";
 import Home from "../user/pages/Home";
 import Product from "../user/pages/Product";
-import SignIn from "../user/pages/SignIn";
 import Checkout from "./../user/pages/Checkout";
 
 export const RouteUser = [
@@ -28,11 +27,7 @@ export const RouteUser = [
     path: "/blog",
     component: BlogPage,
   },
-  {
-    path: "/login",
-    component: SignIn,
-    role: "user",
-  },
+
   {
     path: "/cart",
     component: Cart,

@@ -1,0 +1,42 @@
+.ant-modal {
+  width: 900px !important;
+}
+
+.ant-modal-content {
+  padding: 0 !important;
+}
+
+.modal-detail img {
+  width: 350px;
+  height: 380px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.modal-detail h2 {
+  font-weight: 500;
+}
+
+.modal-detail p {
+  margin: 7px 0;
+}
+
+.modal-detail h1 {
+  color: var(--color-main);
+}
+
+.modal-detail .btn-buy-detail {
+  background-color: var(--color-main);
+  color: #fff;
+  margin: 15px 15px 0 0;
+  height: 35px;
+  width: 120px;
+}
+
+.modal-detail .btn-buy-detail:hover {
+  background-color: var(--color-main) !important;
+  color: #fff !important;
+  filter: brightness(110%);
+}

@@ -1,8 +1,7 @@
 /* eslint-disable jsx-a11y/iframe-has-title */
 import { Col, Row } from "antd";
-import React from "react";
-import "../components/Contact/Contact.css";
-import FormContact from "../components/Contact/FormContact";
+import { SendOutlined } from "@ant-design/icons";
+import "../../asset/style/contact.css";
 const Contact = () => {
   return (
     <>
@@ -41,7 +40,29 @@ const Contact = () => {
           />
         </Col>
         <Col span={12}>
-          <FormContact />
+          <div className="contact-form">
+            <Row>
+              <input placeholder="Nhập tên của bạn" type="text" />
+            </Row>
+            <Row>
+              <input placeholder="Nhập email của bạn" type="text" />
+            </Row>
+            <Row>
+              <input placeholder="Nhập số điện thoại của bạn " type="text" />
+            </Row>
+            <Row>
+              <textarea
+                placeholder="Viết phản hồi vào đây"
+                name=""
+                id=""
+                cols={50}
+                rows={5}
+              ></textarea>
+            </Row>
+            <button>
+              Gửi <SendOutlined />
+            </button>
+          </div>
         </Col>
       </Row>
     </>
