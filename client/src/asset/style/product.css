@@ -18,3 +18,72 @@
   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 3px 0px,
     rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
 }
+
+.card-products:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  filter: brightness(95%);
+  z-index: 100;
+}
+
+.card-products:hover img {
+  scale: 1.05;
+}
+
+.card-products:hover .choose-btn-product {
+  visibility: visible;
+}
+
+.card-products img {
+  transition: 0.3s linear;
+}
+.card-products {
+  border: 1px solid rgb(245, 240, 240);
+  font-size: 18px;
+  font-weight: 400;
+
+  position: relative;
+}
+
+.card-products .author span,
+.name-book span {
+  font-size: 15px;
+  font-weight: 400;
+  margin-right: 5px;
+  color: rgb(130, 127, 127);
+}
+
+.card-products .information-book {
+  padding: 0px 30px 20px 30px;
+  text-align: center;
+}
+
+.card-products .price {
+  color: var(--color-main);
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.card-products .old-price {
+  color: rgb(130, 127, 127);
+  text-decoration: line-through;
+  font-size: 15px;
+  margin-left: 5px;
+}
+
+.choose-btn-product {
+  position: absolute;
+  top: 30%;
+  left: 30%;
+  visibility: hidden;
+}
+
+.choose-btn-product button:hover {
+  background-color: var(--color-main) !important;
+  color: white !important;
+}
+
+.card-products .information-book .rate-product ul li {
+  font-size: 15px !important;
+  margin: 0;
+  padding: 0;
+}

@@ -87,7 +87,7 @@ const ModalEditProduct: React.FC<ModalProps> = ({
               <option value="Sách Tâm Lí, Tình Cảm">
                 Sách Tâm Lí, Tình Cảm
               </option>
-              <option value="Sách Truyển Cảm Hứng">Sách Truyển Cảm Hứng</option>
+              <option value="Sách Truyền Cảm Hứng">Sách Truyền Cảm Hứng</option>
             </select>
           </Col>
           <Col span={10}>

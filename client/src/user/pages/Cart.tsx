@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { ProductType } from "../../Redux/Slice/ProductSlice";
 import { removeFromCart } from "../../Redux/Slice/CartSlice";
 import "../../asset/style/cart.css";
+import Directional from "../components/Directional/Directional";
 const Cart = () => {
   const products: ProductType[] = useSelector(
     (state: RootState) => state.cart.dataProduct
@@ -22,14 +23,6 @@ const Cart = () => {
 
   return (
     <>
-      <div style={{ margin: "10px 0" }} className="directional">
-        <Row style={{ backgroundColor: "#E7E7E7", padding: "10px" }}>
-          <Col>
-            <span style={{ color: "grey" }}>Trang Chủ</span> &#62;{" "}
-            <b style={{ fontWeight: "600" }}>Giỏ hàng</b>
-          </Col>
-        </Row>
-      </div>
       {localProducts.length === 0 ? (
         emptyCart()
       ) : (
@@ -64,39 +57,42 @@ const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
 
   return (
     <>
+      <Directional directional="Giỏ hàng" />
       <Row gutter={2} justify="space-between">
         <Col span={14}>
-          <table
-            style={{
-              width: "100%",
-              borderCollapse: "collapse",
-            }}
-          >
-            <thead>
-              <tr>
-                <th>Sản phẩm</th>
-                <th>Giá tiền</th>
-                <th>Số lượng</th>
-                <th>Thành tiền</th>
-              </tr>
-            </thead>
-            <tbody>
-              {products.map((item) => {
-                return (
-                  <tr>
-                    <td>
-                      <img width="90" src={item.image} alt="" />
-                      {item.name}
-                    </td>
-
-                    <td>{item.price}</td>
-                    <td>1</td>
-                    <td>{item.price}</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
+          <div className="header-card-item">
+            <div className="product-header-cart">Sản phẩm</div>
+            <div>Số lượng</div>
+            <div>Thành tiền</div>
+            <div className=""></div>
+          </div>
+          <div className="body-card-item">
+            {products.map((item) => (
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  padding: "10px 20px",
+                  backgroundColor: "#f7f7f7",
+                  borderBottom: "1px solid gray",
+                }}
+                className="item-cart"
+              >
+                <div className="product-body-cart">
+                  <div className="img-cart">
+                    <img src={item.image} alt="" />
+                  </div>
+                  <div className="name--price-cart">
+                    <p>{item.name}</p>
+                    <p>{item.price}</p>
+                  </div>
+                </div>
+                <div> 1</div>
+                <div>{item.price}</div>
+                <div> Xoas</div>
+              </div>
+            ))}
+          </div>
         </Col>
         <Col span={8}>
           <div className="cartTotal" style={{ backgroundColor: "#f7f7f7" }}>

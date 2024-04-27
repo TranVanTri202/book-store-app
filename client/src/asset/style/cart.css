@@ -18,6 +18,31 @@
   cursor: pointer;
 }
 
+.header-card-item {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f7f7f7;
+  padding: 15px 20px;
+  border-radius: 5px;
+}
+
+.product-header-cart,
+.product-body-cart {
+  width: 400px;
+}
+
+.product-body-cart .img-cart img {
+  width: 150px;
+}
+
+.product-body-cart {
+  display: flex;
+}
+.body-card-item {
+  margin-top: 15px;
+}
+.item-cart:nth-last-child() {
+}
 @keyframes iconBackPage {
   0% {
     transform: rotate(0deg);
