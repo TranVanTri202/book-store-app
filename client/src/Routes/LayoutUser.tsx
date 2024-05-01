@@ -11,7 +11,7 @@ const LayoutUser: React.FC<children> = ({ children }) => {
     <div className="App">
       <Header />
       <Navbar />
-      <div className="">{children}</div>
+      <div className="content-app">{children}</div>
       <ContactBottom />
     </div>
   );

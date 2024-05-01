@@ -6,11 +6,13 @@ interface DirectionalProps {
 const Directional: React.FC<DirectionalProps> = ({ directional }) => {
   return (
     <>
-      <div style={{ margin: "10px 0" }} className="directional">
+      <div style={{ margin: "15px 0" }} className="directional">
         <Row>
           <Col>
-            <span style={{ color: "grey" }}>Trang Chủ</span> &#62;{" "}
-            <b style={{ fontWeight: "600" }}>{directional}</b>
+            <span>Trang Chủ</span> &#62;{" "}
+            <b style={{ fontWeight: "600", color: "var(--color-main)" }}>
+              {directional}
+            </b>
           </Col>
         </Row>
       </div>

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
+import { apiConfig } from "../../user/config/apiConfig";
 
 export interface ProductType {
   _id?: any;
@@ -16,7 +17,7 @@ export const fetchDataProducts = createAsyncThunk<ProductType[]>(
   async () => {
     try {
       // Gọi API để lấy dữ liệu sản phẩm
-      const response = await fetch("http://localhost:5000/product");
+      const response = await fetch(apiConfig.product.api);
       if (!response.ok) {
         throw new Error("Failed to fetch products");
       }

@@ -8,6 +8,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
+      //khi lướt xuống thêm class cho navbar thành fixed bên trên
       const offset = window.scrollY;
       if (offset > 100) {
         setIsSticky(true);
@@ -15,9 +16,7 @@ const Navbar = () => {
         setIsSticky(false);
       }
     };
-
     window.addEventListener("scroll", handleScroll);
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -26,7 +25,7 @@ const Navbar = () => {
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth", // Scroll mượt hơn
+      behavior: "smooth",
     });
   };
 

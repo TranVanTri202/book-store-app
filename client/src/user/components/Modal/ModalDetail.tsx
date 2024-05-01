@@ -6,6 +6,7 @@ import { AppDispatch } from "../../../Redux/store";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../../Redux/Slice/CartSlice";
 import { showMessage } from "../../utils/message";
+import { ShoppingCartOutlined } from "@ant-design/icons";
 
 interface ModalProps {
   isModalOpen: boolean;
@@ -51,7 +52,8 @@ const ModelDetail: React.FC<ModalProps> = ({
               onClick={() => handleAddToCart(product)}
               className="btn-buy-detail"
             >
-              Mua
+              <ShoppingCartOutlined />
+              Thêm vào giỏ hàng
             </Button>
           </Col>
         </Row>

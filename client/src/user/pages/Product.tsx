@@ -11,7 +11,7 @@ import { showMessage } from "../utils/message";
 import Directional from "../components/Directional/Directional";
 import ModelDetail from "../components/Modal/ModalDetail";
 import { formatNumber } from "../utils/formatNumber";
-import ListMenu from "../config/ListMenuConfig";
+import listMenu from "../config/listMenuConfig";
 
 const Product = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -59,7 +59,7 @@ const Product = () => {
     // Lọc theo loại sách
     const isProductCategorySelected = Object.entries(selectedFilters).some(
       ([key, value]) => {
-        return value && product.category === ListMenu.category[key];
+        return value && product.category === listMenu.category[key];
       }
     );
 
@@ -78,7 +78,7 @@ const Product = () => {
           <Col span={5}>
             <div className="list-menu">
               <h3>Loại Sách</h3>
-              {Object.entries(ListMenu.category).map(([key, value], index) => (
+              {Object.entries(listMenu.category).map(([key, value], index) => (
                 <div className="checkbox-container" key={index}>
                   <Checkbox
                     className="abc"
@@ -89,7 +89,7 @@ const Product = () => {
                 </div>
               ))}
               <h3>Giá Tiền</h3>
-              {Object.entries(ListMenu.price).map(([key, value], index) => (
+              {Object.entries(listMenu.price).map(([key, value], index) => (
                 <div className="checkbox-container" key={index}>
                   <Checkbox id={key} />
                   <label htmlFor={key}>{value}</label>

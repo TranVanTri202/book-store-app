@@ -2,12 +2,13 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
 import { Button, Col, Popover, Row } from "antd";
-import { CloseOutlined, ShoppingOutlined } from "@ant-design/icons";
-import { Link } from "react-router-dom";
+import { DeleteOutlined, ShoppingOutlined } from "@ant-design/icons";
+import { Link, useNavigate } from "react-router-dom";
 import { ProductType } from "../../Redux/Slice/ProductSlice";
 import { removeFromCart } from "../../Redux/Slice/CartSlice";
 import "../../asset/style/cart.css";
 import Directional from "../components/Directional/Directional";
+import { formatNumber } from "../utils/formatNumber";
 const Cart = () => {
   const products: ProductType[] = useSelector(
     (state: RootState) => state.cart.dataProduct
@@ -62,34 +63,49 @@ const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
         <Col span={14}>
           <div className="header-card-item">
             <div className="product-header-cart">Sản phẩm</div>
+            <div>Giá tiền </div>
             <div>Số lượng</div>
             <div>Thành tiền</div>
             <div className=""></div>
           </div>
           <div className="body-card-item">
             {products.map((item) => (
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  padding: "10px 20px",
-                  backgroundColor: "#f7f7f7",
-                  borderBottom: "1px solid gray",
-                }}
-                className="item-cart"
-              >
+              <div className="item-cart">
                 <div className="product-body-cart">
                   <div className="img-cart">
                     <img src={item.image} alt="" />
                   </div>
-                  <div className="name--price-cart">
-                    <p>{item.name}</p>
-                    <p>{item.price}</p>
+
+                  <div>
+                    <p style={{ marginTop: "30px" }}>{item.name}</p>
                   </div>
                 </div>
+                <div>
+                  <p
+                    style={{
+                      fontWeight: "500",
+                      fontSize: "18px",
+                    }}
+                  >
+                    {formatNumber(item.price)}
+                  </p>
+                </div>
                 <div> 1</div>
-                <div>{item.price}</div>
-                <div> Xoas</div>
+                <div
+                  style={{
+                    fontWeight: "500",
+                    color: "var(--color-main)",
+                    fontSize: "20px",
+                  }}
+                >
+                  {formatNumber(item.price)}
+                </div>
+                <div>
+                  <DeleteOutlined
+                    onClick={() => handleRemoveProduct(item._id)}
+                    className="btn-delete-item-cart"
+                  />
+                </div>
               </div>
             ))}
           </div>
@@ -122,21 +138,14 @@ const emptyCart = () => {
       <div className="emptyCart">
         <div className="">
           <img
-            src="https://i.pinimg.com/originals/bc/bd/99/bcbd99c43aea08b85d3c3a6b80a47b56.png"
+            src="https://cdn0.fahasa.com/skin//frontend/ma_vanese/fahasa/images/checkout_cart/ico_emptycart.svg"
             alt=""
           />
         </div>
-        <span>Ôi không!!! Giỏ hàng của bạn đang trống</span> <br />
-        <span>Hãy mua hàng tại đâyyy nhé </span>
-        <Popover content={<>Đi đến trang mua sắm</>}>
-          <Link to="/products">
-            {" "}
-            <ShoppingOutlined
-              shape="square"
-              className="icon-back-pageProduct"
-            />
-          </Link>
-        </Popover>
+        <span>Chưa có sản phẩm trong giỏ hàng của bạn.</span> <br />
+        <Link to="/products">
+          <Button className="btn-back-product">Mua sắm ngay</Button>
+        </Link>
       </div>
     </>
   );

@@ -3,7 +3,7 @@ interface ListMenuProps {
   price: { [key: string]: string };
 }
 
-const ListMenu: ListMenuProps = {
+const listMenu: ListMenuProps = {
   category: {
     sachthieunhi: "Sách Thiếu Nhi",
     sachtamlitinhcam: "Sách Tâm Lí, Tình Cảm",
@@ -17,4 +17,4 @@ const ListMenu: ListMenuProps = {
   },
 };
 
-export default ListMenu;
+export default listMenu;
