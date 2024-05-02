@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
-import { Button, Col, Popover, Row } from "antd";
-import { DeleteOutlined, ShoppingOutlined } from "@ant-design/icons";
+import { Button, Col, Row } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { ProductType } from "../../Redux/Slice/ProductSlice";
 import { removeFromCart } from "../../Redux/Slice/CartSlice";
@@ -14,20 +14,12 @@ const Cart = () => {
     (state: RootState) => state.cart.dataProduct
   );
 
-  // Tạo một bản sao của mảng sản phẩm
-  const uniqueProducts = getUniqueProducts(products);
-  const [localProducts, setLocalProducts] = useState<ProductType[]>([]);
-
-  useEffect(() => {
-    setLocalProducts(uniqueProducts);
-  }, [uniqueProducts]);
-
   return (
     <>
-      {localProducts.length === 0 ? (
+      {products.length === 0 ? (
         emptyCart()
       ) : (
-        <CartProduct products={localProducts} />
+        <CartProduct products={products} />
       )}
     </>
   );
@@ -35,71 +27,71 @@ const Cart = () => {
 
 const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [quantities, setQuantities] = useState(products.map(() => 1));
 
   const handleRemoveProduct = (productId: string) => {
     dispatch(removeFromCart(productId));
   };
-  const calculateQuantityAndTotalPrice = (
-    productName: string
-  ): [number, number] => {
-    let quantity = 1;
-    let totalPrice = 1;
 
-    // Tính số lượng và tổng tiền dựa trên tên sản phẩm
-    products.forEach((item) => {
-      if (item.name === productName) {
-        quantity += 1;
-        totalPrice += item.price;
-      }
-    });
-
-    return [quantity, totalPrice];
+  const handleIncrease = (index: number) => {
+    const newQuantities = [...quantities];
+    newQuantities[index] += 1;
+    setQuantities(newQuantities);
   };
+
+  const handleDecrease = (index: number) => {
+    const newQuantities = [...quantities];
+    // Kiểm tra nếu quantity > 1 thì mới giảm
+    if (newQuantities[index] > 1) {
+      newQuantities[index] -= 1;
+      setQuantities(newQuantities);
+    }
+  };
+
+  useEffect(() => {
+    // Tính tổng giá trị của tất cả các sản phẩm trong giỏ hàng
+    const newTotalPrice = products.reduce((acc, item, index) => {
+      return acc + item.price * quantities[index];
+    }, 0);
+    setTotalPrice(newTotalPrice);
+  }, [products, quantities]);
 
   return (
     <>
       <Directional directional="Giỏ hàng" />
       <Row gutter={2} justify="space-between">
         <Col span={14}>
-          <div className="header-card-item">
-            <div className="product-header-cart">Sản phẩm</div>
-            <div>Giá tiền </div>
-            <div>Số lượng</div>
-            <div>Thành tiền</div>
-            <div className=""></div>
-          </div>
+          <Row className="header-card-item">
+            <Col span={11}>Sản phẩm</Col>
+            <Col span={4}>Giá tiền</Col>
+            <Col span={4}>Số lượng</Col>
+            <Col span={4}>Thành tiền</Col>
+            <Col span={1}></Col>
+          </Row>
+          {/* </div> */}
           <div className="body-card-item">
-            {products.map((item) => (
+            {products.map((item, index) => (
               <div className="item-cart">
                 <div className="product-body-cart">
                   <div className="img-cart">
                     <img src={item.image} alt="" />
                   </div>
-
                   <div>
-                    <p style={{ marginTop: "30px" }}>{item.name}</p>
+                    <p>{item.name}</p>
                   </div>
                 </div>
                 <div>
-                  <p
-                    style={{
-                      fontWeight: "500",
-                      fontSize: "18px",
-                    }}
-                  >
-                    {formatNumber(item.price)}
-                  </p>
+                  <p>{formatNumber(item.price)}</p>
                 </div>
-                <div> 1</div>
-                <div
-                  style={{
-                    fontWeight: "500",
-                    color: "var(--color-main)",
-                    fontSize: "20px",
-                  }}
-                >
-                  {formatNumber(item.price)}
+                <div>
+                  <button onClick={() => handleDecrease(index)}>-</button>
+                  {quantities[index]}
+                  <button onClick={() => handleIncrease(index)}>+</button>{" "}
                 </div>
+                <div>{formatNumber(item.price * quantities[index])}</div>
                 <div>
                   <DeleteOutlined
                     onClick={() => handleRemoveProduct(item._id)}
@@ -111,21 +103,24 @@ const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
           </div>
         </Col>
         <Col span={8}>
-          <div className="cartTotal" style={{ backgroundColor: "#f7f7f7" }}>
-            <h2>Card Total</h2>
+          <div className="cart-total-right">
+            <div>
+              <span>Thành tiền</span>
+              <span>{formatNumber(totalPrice)}</span>
+            </div>
+            <div>
+              <span>Tổng số tiền (bao gồm VAT)</span>
+              <span>{formatNumber(totalPrice)}</span>
+            </div>
+            <div>
+              <button
+                onClick={() => navigate("/checkout")}
+                className="btn-buy-total-right"
+              >
+                Thanh toán
+              </button>
+            </div>
           </div>
-          <Row>
-            <Col span={12}>Sub total</Col>
-            <Col span={12}>gia tien</Col>
-          </Row>
-          <Row>
-            <Col>Sub total</Col>
-            <Col>gia tien</Col>
-          </Row>
-          <Row>
-            <Col>Sub total</Col>
-            <Col>gia tien</Col>
-          </Row>
         </Col>
       </Row>
     </>
@@ -149,21 +144,6 @@ const emptyCart = () => {
       </div>
     </>
   );
-};
-
-// Hàm để trả về một mảng các sản phẩm duy nhất
-const getUniqueProducts = (products: ProductType[]): ProductType[] => {
-  const uniqueProducts: ProductType[] = [];
-  const names = new Set<string>();
-
-  products.forEach((product) => {
-    if (!names.has(product.name)) {
-      uniqueProducts.push(product);
-      names.add(product.name);
-    }
-  });
-
-  return uniqueProducts;
 };
 
 export default Cart;

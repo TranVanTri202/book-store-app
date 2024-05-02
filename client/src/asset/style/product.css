@@ -58,7 +58,7 @@
 }
 
 .card-products .price {
-  color: var(--color-main);
+  color: #c92127;
   font-size: 18px;
   font-weight: 500;
 }
