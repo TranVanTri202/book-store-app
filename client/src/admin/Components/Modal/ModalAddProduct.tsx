@@ -47,7 +47,7 @@ const ModalAddProduct: React.FC<ModalProps> = ({ visible, onClose }) => {
         <Row>
           <Col span={10}>
             {" "}
-            <label htmlFor="">Tên sách</label>{" "}
+            <label htmlFor="">Tên sách</label>
             <input
               type="text"
               value={productInfo.name}
@@ -96,6 +96,7 @@ const ModalAddProduct: React.FC<ModalProps> = ({ visible, onClose }) => {
             {" "}
             <label htmlFor="">Ảnh</label>{" "}
             <input
+              value={productInfo.image}
               onChange={(e) => handleChangeInput("image", e.target.value)}
               type="text"
             />
@@ -107,6 +108,7 @@ const ModalAddProduct: React.FC<ModalProps> = ({ visible, onClose }) => {
           id=""
           cols={30}
           rows={5}
+          value={productInfo.description}
           onChange={(e) => handleChangeInput("description", e.target.value)}
         ></textarea>
         <button onClick={handleAddProduct}>Thêm</button>

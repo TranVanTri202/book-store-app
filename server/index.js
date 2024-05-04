@@ -1,5 +1,6 @@
 import express from "express";
 import product from "./routers/product.js";
+import blog from "./routers/blog.js";
 import mongoose from "mongoose";
 import cors from "cors";
 import bodyParser from "body-parser";
@@ -12,6 +13,7 @@ app.use(bodyParser.json({ limit: "30mb" }));
 app.use(bodyParser.urlencoded({ extended: true, limit: "30mb" }));
 
 app.use("/product", product);
+app.use("/blog", blog);
 mongoose
   .connect(URI)
   .then(() => {

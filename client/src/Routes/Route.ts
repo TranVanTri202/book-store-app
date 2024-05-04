@@ -1,6 +1,6 @@
+import BlogManagement from "../admin/Page/BlogManagements";
 import Dashboard from "../admin/Page/Dashboard";
 import ProductManagement from "../admin/Page/ProductManagement";
-import BlogPage from "../user/components/BlogPage/BlogPage";
 import Cart from "../user/pages/Cart";
 import Contact from "../user/pages/Contact";
 import Home from "../user/pages/Home";
@@ -23,10 +23,6 @@ export const RouteUser = [
     component: Contact,
     role: "user",
   },
-  {
-    path: "/blog",
-    component: BlogPage,
-  },
 
   {
     path: "/cart",
@@ -48,6 +44,11 @@ export const RouteAdmin = [
   {
     path: "/admin/products",
     component: ProductManagement,
+    role: "admin",
+  },
+  {
+    path: "/admin/blogs",
+    component: BlogManagement,
     role: "admin",
   },
 ];

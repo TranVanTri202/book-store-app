@@ -6,9 +6,7 @@ const NavTop = () => {
   return (
     <>
       <div className="nav-top">
-        <div className="search">
-          <input type="text" />
-        </div>
+        <div className="search"></div>
         <div className="icon-right-nav">
           <span>
             {" "}

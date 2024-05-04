@@ -2,7 +2,6 @@ import { Col, Modal, Row } from "antd";
 import { useEffect, useState } from "react";
 import {
   ProductType,
-  addDataProduct,
   updateDataProduct,
 } from "../../../Redux/Slice/ProductSlice";
 import { AppDispatch } from "../../../Redux/store";

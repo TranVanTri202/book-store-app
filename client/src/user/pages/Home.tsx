@@ -8,16 +8,10 @@ import { ProductType, fetchDataProducts } from "../../Redux/Slice/ProductSlice";
 import { Button, Col, Rate, Row } from "antd";
 import { EyeOutlined, ShoppingOutlined } from "@ant-design/icons";
 import { addToCart } from "../../Redux/Slice/CartSlice";
+import { formatNumber } from "../utils/formatNumber";
 const Home = () => {
   const dispatch: AppDispatch = useDispatch();
   const data = useSelector((state: RootState) => state.products.dataProduct);
-
-  const formatNumber = (price: number) => {
-    return new Intl.NumberFormat("vi-VN", {
-      style: "currency",
-      currency: "VND",
-    }).format(price);
-  };
 
   const handleAddToCart = (product: ProductType) => {
     dispatch(addToCart(product));
@@ -27,13 +21,23 @@ const Home = () => {
     dispatch(fetchDataProducts());
   }, [dispatch]);
 
+  const latestProducts = data // lấy 8 sản phẩm được thêm gần nhất
+    .filter((product) => product.createdAt)
+    .slice() // Tạo bản sao của mảng
+    .sort((a, b) => {
+      const dateA = new Date(a.createdAt!);
+      const dateB = new Date(b.createdAt!);
+      return dateB.getTime() - dateA.getTime();
+    })
+    .slice(0, 8);
+
   return (
     <>
       <Banner />
-      <div className="top-products">
-        <h2>Top Products</h2>
+      <div className="new-products">
+        <h2>Sản phẩm mới </h2>
         <Row gutter={16}>
-          {data.map((product) => {
+          {latestProducts.map((product) => {
             return (
               <Col className="card-products">
                 <img

@@ -45,8 +45,8 @@ const ModelDetail: React.FC<ModalProps> = ({
               <Rate allowHalf disabled defaultValue={5} />
             </p>
             <h1>{formatNumber(product.price)}</h1>
-            <p>Thể loại: {product.category}</p>
-            <p>{product.description}</p>
+            <p style={{ fontWeight: "500" }}>Thể loại: {product.category}</p>
+            <p>Nội dung: {product.description}</p>
 
             <Button
               onClick={() => handleAddToCart(product)}

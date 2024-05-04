@@ -1,12 +1,14 @@
-.top-products {
-  margin: 30px 0;
+.new-products {
+  margin: 40px 0;
 }
 
-.top-products h2 {
+.new-products h2 {
   text-align: center;
+  margin: 30px 0;
+  font-weight: 600;
 }
 
-.top-products .card-products {
+.new-products .card-products {
   width: 20%;
 }
 
