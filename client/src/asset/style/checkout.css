@@ -38,3 +38,17 @@
   font-size: 15px;
   margin-top: 15px;
 }
+
+.btn-submit-checkout {
+  background-color: #c92127;
+  color: #fff;
+  font-size: 23px;
+  height: auto;
+  width: 280px;
+  font-weight: 500;
+}
+
+.btn-submit-checkout:hover {
+  background-color: #c92127 !important;
+  color: #fff !important;
+}

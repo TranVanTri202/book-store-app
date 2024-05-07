@@ -6,6 +6,7 @@ import Contact from "../user/pages/Contact";
 import Home from "../user/pages/Home";
 import Product from "../user/pages/Product";
 import Checkout from "./../user/pages/Checkout";
+import DetailProduct from "./../user/pages/DetailProduct";
 
 export const RouteUser = [
   {
@@ -32,6 +33,10 @@ export const RouteUser = [
   {
     path: "/checkout",
     component: Checkout,
+  },
+  {
+    path: "/detailProduct/:productId",
+    component: DetailProduct,
   },
 ];
 

@@ -33,6 +33,7 @@ const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
   const [quantities, setQuantities] = useState(products.map(() => 1));
 
   const handleRemoveProduct = (productId: string) => {
+    //xóa sản phẩm khỏi giỏ hàng
     dispatch(removeFromCart(productId));
   };
 
@@ -71,7 +72,6 @@ const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
             <Col span={4}>Thành tiền</Col>
             <Col span={1}></Col>
           </Row>
-          {/* </div> */}
           <div className="body-card-item">
             {products.map((item, index) => (
               <div className="item-cart">
@@ -127,6 +127,7 @@ const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
   );
 };
 
+// khi không có giỏ gì trong giỏ hàng
 const emptyCart = () => {
   return (
     <>

@@ -1,15 +1,12 @@
-.new-products {
+.new-products,
+.suggest {
   margin: 40px 0;
 }
 
-.new-products h2 {
+.home h2 {
   text-align: center;
   margin: 30px 0;
   font-weight: 600;
-}
-
-.new-products .card-products {
-  width: 20%;
 }
 
 .img-banner-sale img {

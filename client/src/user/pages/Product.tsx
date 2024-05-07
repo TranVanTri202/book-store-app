@@ -9,17 +9,14 @@ import { ProductType, fetchDataProducts } from "../../Redux/Slice/ProductSlice";
 import { addToCart } from "../../Redux/Slice/CartSlice";
 import { showMessage } from "../utils/message";
 import Directional from "../components/Directional/Directional";
-import ModelDetail from "../components/Modal/ModalDetail";
 import { formatNumber } from "../utils/formatNumber";
 import listMenu from "../config/listMenuConfig";
+import { useNavigate } from "react-router-dom";
 
 const Product = () => {
+  const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const data = useSelector((state: RootState) => state.products.dataProduct);
-
-  const [selectedProduct, setSelectedProduct] = useState<ProductType | null>(
-    null
-  );
 
   const [selectedFilters, setSelectedFilters] = useState<any>({
     sachthieunhi: false,
@@ -30,11 +27,6 @@ const Product = () => {
     "50to100": false,
     "100to200": false,
   });
-
-  const [openModal, setOpenModal] = useState<boolean>(false);
-  const handleCancelModal = () => {
-    setOpenModal(false);
-  };
 
   const handleAddToCart = (product: ProductType) => {
     dispatch(addToCart(product));
@@ -62,7 +54,6 @@ const Product = () => {
         return value && product.category === listMenu.category[key];
       }
     );
-
     return isProductCategorySelected;
   });
 
@@ -103,19 +94,24 @@ const Product = () => {
             <Row gutter={16}>
               {filterProducts.map((product, index) => {
                 return (
-                  <Col className="card-products" span={6} key={index}>
+                  <Col
+                    className="card-products"
+                    style={{ width: "calc(100% / 5)" }}
+                    key={index}
+                  >
                     <img
                       style={{ width: "100%" }}
                       src={product.image}
                       alt="img-product"
                     />
-                    <div className="information-book">
+                    <div
+                      className="information-book"
+                      onClick={() => navigate(`/detailProduct/${product._id}`)}
+                    >
                       <span className="rate-product">
                         <Rate allowHalf disabled defaultValue={5} />
                       </span>
-
                       <div className="name-book">
-                        {" "}
                         <span>Tên sách: </span>
                         {product.name}
                       </div>
@@ -134,8 +130,7 @@ const Product = () => {
                       </Button>
                       <Button
                         onClick={() => {
-                          setSelectedProduct(product);
-                          setOpenModal(true);
+                          navigate(`/detailProduct/${product._id}`);
                         }}
                       >
                         <EyeOutlined />
@@ -145,13 +140,6 @@ const Product = () => {
                 );
               })}
             </Row>
-            {selectedProduct && (
-              <ModelDetail
-                isModalOpen={openModal}
-                handleCancel={handleCancelModal}
-                product={selectedProduct}
-              />
-            )}
           </Col>
         </Row>
       </div>

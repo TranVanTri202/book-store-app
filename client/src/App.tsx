@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { RouteUser, RouteAdmin } from "./Routes/Route";
-import LayoutUser from "./Routes/LayoutUser";
-import LayoutAdmin from "./Routes/LayoutAdmin";
+import LayoutUser from "./Layouts/LayoutUser";
+import LayoutAdmin from "./Layouts/LayoutAdmin";
 import ScrollToTop from "react-scroll-to-top";
 
 function App() {

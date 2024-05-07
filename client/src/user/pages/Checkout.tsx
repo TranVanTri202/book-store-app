@@ -1,4 +1,4 @@
-import { Input } from "antd";
+import { Button, Input, Row } from "antd";
 import Directional from "../components/Directional/Directional";
 import "../../asset/style/checkout.css";
 import { useSelector } from "react-redux";
@@ -65,6 +65,15 @@ const Checkout = () => {
           </div>
         ))}
       </div>
+      <Row
+        style={{
+          backgroundColor: "#FFF",
+          padding: "15px 0",
+          marginTop: "15px",
+        }}
+      >
+        <Button className="btn-submit-checkout">Xác nhận thanh toán</Button>
+      </Row>
     </>
   );
 };
