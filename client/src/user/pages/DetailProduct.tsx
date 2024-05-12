@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
@@ -15,6 +15,7 @@ import { formatNumber } from "../utils/formatNumber";
 import { showMessage } from "../utils/message";
 
 const DetailProduct = () => {
+  const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const data = useSelector((state: RootState) => state.products.dataProduct);
   const { productId } = useParams();
@@ -72,7 +73,12 @@ const DetailProduct = () => {
             </span>
             {productDetail && <h2>{formatNumber(productDetail.price)}</h2>}
           </div>
-          <Button className="btn-add-product-detail">Thêm vào giỏ hàng</Button>
+          <Button
+            onClick={() => handleAddToCart(productDetail!)}
+            className="btn-add-product-detail"
+          >
+            Thêm vào giỏ hàng
+          </Button>
         </Col>
       </Row>
       <div className="suggest suggest-detail">
@@ -89,6 +95,9 @@ const DetailProduct = () => {
                         style={{ width: "100%" }}
                         src={product.image}
                         alt="img-product"
+                        onClick={() =>
+                          navigate(`/detailProduct/${product._id}`)
+                        }
                       />
                       <div className="information-book">
                         <span className="rate-product">
@@ -111,7 +120,11 @@ const DetailProduct = () => {
                         <Button onClick={() => handleAddToCart(product)}>
                           <ShoppingOutlined />
                         </Button>
-                        <Button>
+                        <Button
+                          onClick={() =>
+                            navigate(`/detailProduct/${product._id}`)
+                          }
+                        >
                           <EyeOutlined />
                         </Button>
                       </div>

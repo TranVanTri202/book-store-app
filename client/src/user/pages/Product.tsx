@@ -14,6 +14,8 @@ import listMenu from "../config/listMenuConfig";
 import { useNavigate } from "react-router-dom";
 
 const Product = () => {
+  console.log("product");
+
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const data = useSelector((state: RootState) => state.products.dataProduct);

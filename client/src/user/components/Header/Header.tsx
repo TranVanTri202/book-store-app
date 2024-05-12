@@ -1,6 +1,8 @@
-import { PhoneOutlined } from "@ant-design/icons";
+import { useEffect } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
+
+import { PhoneOutlined } from "@ant-design/icons";
 import {
   HeartOutlined,
   UserOutlined,
@@ -10,9 +12,42 @@ import {
 import logo from "../../../asset/img/logo.png.png";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Redux/store";
+import ModalLogin from "../Modals/ModalLogin";
+import { useState } from "react";
+import ModalRegister from "../Modals/ModalRegister";
+import { jwtDecode } from "jwt-decode";
+import { showMessage } from "../../utils/message";
 const HeaderTop: React.FC = () => {
-  const products = useSelector((state: RootState) => state.cart.dataProduct);
+  const token = localStorage.getItem("token");
+  const [userName, setUserName] = useState("");
+  const [isUserNameSet, setIsUserNameSet] = useState(false); // Thêm biến boolean để kiểm tra
 
+  if (token && !isUserNameSet) {
+    // Kiểm tra nếu userName chưa được set
+    const decodedToken = jwtDecode(token) as { username: string };
+    setUserName(decodedToken.username);
+    setIsUserNameSet(true); // Đánh dấu là userName đã được set
+  }
+
+  const products = useSelector((state: RootState) => state.cart.dataProduct);
+  const [openModalLogin, setOpenModalLogin] = useState<boolean>(false);
+  const [openModalRegister, setOpenModalRegister] = useState<boolean>(false);
+
+  const handleOpenModalLogin = () => {
+    setOpenModalLogin(!openModalLogin);
+  };
+  const handleOpenModalRegister = () => {
+    setOpenModalRegister(!openModalRegister);
+  };
+
+  const handleLogout = () => {
+    showMessage("success", "Đăng xuất thành công");
+    localStorage.removeItem("token");
+    setUserName(""); // Cập nhật userName thành giá trị rỗng
+    setIsUserNameSet(false); // Cập nhật isUserNameSet thành false
+  };
+
+  useEffect(() => {});
   return (
     <>
       <div className="header-top">
@@ -23,13 +58,31 @@ const HeaderTop: React.FC = () => {
           <span>Call: 0387653312</span>
         </div>
         <div className="logout-login">
-          <Link to="/login">
-            <span>Đăng nhập</span>
-          </Link>
-          <span>/</span>
-          <Link to="/login">
-            <span>Đăng ký</span>
-          </Link>
+          {token ? (
+            <>
+              <span
+                style={{
+                  fontSize: "14px",
+                  color: "var(--color-main)",
+                  fontWeight: "500",
+                }}
+              >
+                {userName}
+              </span>
+
+              <span>/</span>
+
+              <span onClick={handleLogout}>Đăng xuất</span>
+            </>
+          ) : (
+            <>
+              <span onClick={handleOpenModalLogin}>Đăng nhập</span>
+
+              <span>/</span>
+
+              <span onClick={handleOpenModalRegister}>Đăng ký</span>
+            </>
+          )}
         </div>
       </div>
       <div className="header-middle">
@@ -53,16 +106,21 @@ const HeaderTop: React.FC = () => {
             <HeartOutlined />
             <p>Yêu thích</p>
           </div>
-          <div className="icon-cart icon">
-            <Link to="/cart">
+          <Link to="/cart">
+            <div className="icon-cart icon">
               {" "}
               <ShoppingOutlined shape="square" />
               <p className="count-shopping">{products.length}</p>
               <p>Giỏ hàng</p>
-            </Link>
-          </div>
+            </div>
+          </Link>
         </div>
       </div>
+      <ModalLogin open={openModalLogin} onClose={handleOpenModalLogin} />
+      <ModalRegister
+        open={openModalRegister}
+        onClose={handleOpenModalRegister}
+      />
     </>
   );
 };

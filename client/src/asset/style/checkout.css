@@ -52,3 +52,14 @@
   background-color: #c92127 !important;
   color: #fff !important;
 }
+
+.footer-checkout {
+  padding: 15px;
+  margin-top: 15px;
+  background-color: #fff;
+}
+
+.footer-checkout.total h3 span {
+  font-size: 25px;
+  color: #c92127;
+}

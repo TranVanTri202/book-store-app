@@ -11,6 +11,7 @@ export interface ProductType {
   category: string;
   image: string;
   createdAt?: Date | undefined;
+  quantity?: number;
 }
 
 export const fetchDataProducts = createAsyncThunk<ProductType[]>(

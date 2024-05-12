@@ -13,8 +13,10 @@ import Banner from "../components/Banner/Banner";
 import Blog from "../components/Blog/Blog";
 import "../../asset/style/home.css";
 import { showMessage } from "../utils/message";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const data = useSelector((state: RootState) => state.products.dataProduct);
 
@@ -56,6 +58,7 @@ const Home = () => {
                 style={{ width: "100%" }}
                 src={product.image}
                 alt="img-product"
+                onClick={() => navigate(`/detailProduct/${product._id}`)}
               />
               <div className="information-book">
                 <span className="rate-product">
@@ -76,7 +79,9 @@ const Home = () => {
                 <Button onClick={() => handleAddToCart(product)}>
                   <ShoppingOutlined />
                 </Button>
-                <Button>
+                <Button
+                  onClick={() => navigate(`/detailProduct/${product._id}`)}
+                >
                   <EyeOutlined />
                 </Button>
               </div>
@@ -96,6 +101,7 @@ const Home = () => {
                     style={{ width: "100%" }}
                     src={product.image}
                     alt="img-product"
+                    onClick={() => navigate(`/detailProduct/${product._id}`)}
                   />
                   <div className="information-book">
                     <span className="rate-product">
@@ -118,7 +124,9 @@ const Home = () => {
                     <Button onClick={() => handleAddToCart(product)}>
                       <ShoppingOutlined />
                     </Button>
-                    <Button>
+                    <Button
+                      onClick={() => navigate(`/detailProduct/${product._id}`)}
+                    >
                       <EyeOutlined />
                     </Button>
                   </div>

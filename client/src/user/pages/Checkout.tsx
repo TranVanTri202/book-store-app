@@ -4,9 +4,42 @@ import "../../asset/style/checkout.css";
 import { useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
 import { formatNumber } from "../utils/formatNumber";
+import { ProductType } from "../../Redux/Slice/ProductSlice";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useMemo } from "react";
 
 const Checkout = () => {
   const data = useSelector((state: RootState) => state.cart.dataProduct);
+
+  // Tính số lượng sản phẩm duy nhất trong giỏ hàng
+  const calculateQuantities = (products: ProductType[]) => {
+    const productQuantities: { [key: string]: number } = {};
+    products.forEach((product) => {
+      productQuantities[product._id] =
+        (productQuantities[product._id] || 0) + 1;
+    });
+    return productQuantities;
+  };
+
+  const [productQuantities, setProductQuantities] = useState<{
+    [key: string]: number;
+  }>(() => calculateQuantities(data));
+
+  useEffect(() => {
+    setProductQuantities(calculateQuantities(data));
+  }, [data]);
+
+  const totalPrice = useMemo(() => {
+    return Object.keys(productQuantities).reduce((acc, productId) => {
+      const quantity = productQuantities[productId];
+      const product = data.find((p) => p._id === productId);
+      if (product) {
+        return acc + product.price * quantity;
+      }
+      return acc;
+    }, 0);
+  }, [data, productQuantities]);
 
   return (
     <>
@@ -48,30 +81,34 @@ const Checkout = () => {
 
       <div className="oder">
         <h3>Kiểm tra lại đơn hàng</h3>
-        {data.map((item) => (
-          <div className="item-cart">
-            <div className="product-body-cart">
-              <div className="img-cart">
-                <img src={item.image} alt="" />
+        {Object.keys(productQuantities).map((productId, index) => {
+          const quantity = productQuantities[productId];
+          const product = data.find((p) => p._id === productId);
+          if (!product) return null;
+          return (
+            <div key={index} className="item-cart">
+              <div className="product-body-cart">
+                <div className="img-cart">
+                  <img src={product.image} alt="" />
+                </div>
+                <div>
+                  <p>{product.name}</p>
+                </div>
               </div>
-              <div>
-                <p>{item.name}</p>
+              <div>{quantity}</div>
+              <div style={{ color: "#c92127", border: "none" }}>
+                <p>{formatNumber(product.price * quantity)}</p>
               </div>
             </div>
-            <div>1</div>
-            <div style={{ color: "#c92127", border: "none" }}>
-              <p>{formatNumber(item.price)}</p>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
-      <Row
-        style={{
-          backgroundColor: "#FFF",
-          padding: "15px 0",
-          marginTop: "15px",
-        }}
-      >
+      <Row className="footer-checkout total">
+        <h3>
+          Tổng tiền : <span>{formatNumber(totalPrice)}</span>
+        </h3>
+      </Row>
+      <Row className="footer-checkout">
         <Button className="btn-submit-checkout">Xác nhận thanh toán</Button>
       </Row>
     </>

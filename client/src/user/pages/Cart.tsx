@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../Redux/store";
 import { Button, Col, Row } from "antd";
 import { DeleteOutlined } from "@ant-design/icons";
 import { Link, useNavigate } from "react-router-dom";
 import { ProductType } from "../../Redux/Slice/ProductSlice";
-import { removeFromCart } from "../../Redux/Slice/CartSlice";
+import {
+  addToCart,
+  decreaseQuantity,
+  removeFromCart,
+} from "../../Redux/Slice/CartSlice";
 import "../../asset/style/cart.css";
 import Directional from "../components/Directional/Directional";
 import { formatNumber } from "../utils/formatNumber";
@@ -26,39 +30,55 @@ const Cart = () => {
 };
 
 const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
-  const dispatch = useDispatch();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  const [totalPrice, setTotalPrice] = useState<number>(0);
-  const [quantities, setQuantities] = useState(products.map(() => 1));
+  // Tính số lượng sản phẩm duy nhất trong giỏ hàng
+  const calculateQuantities = (products: ProductType[]) => {
+    const productQuantities: { [key: string]: number } = {};
+    products.forEach((product) => {
+      productQuantities[product._id] =
+        (productQuantities[product._id] || 0) + 1;
+    });
+    return productQuantities;
+  };
+
+  const [productQuantities, setProductQuantities] = useState<{
+    [key: string]: number;
+  }>(() => calculateQuantities(products));
+
+  useEffect(() => {
+    setProductQuantities(calculateQuantities(products));
+  }, [products]);
 
   const handleRemoveProduct = (productId: string) => {
-    //xóa sản phẩm khỏi giỏ hàng
     dispatch(removeFromCart(productId));
   };
 
-  const handleIncrease = (index: number) => {
-    const newQuantities = [...quantities];
-    newQuantities[index] += 1;
-    setQuantities(newQuantities);
+  const handleIncrease = (productId: string) => {
+    dispatch(addToCart(products.find((product) => product._id === productId)!));
   };
 
-  const handleDecrease = (index: number) => {
-    const newQuantities = [...quantities];
-    // Kiểm tra nếu quantity > 1 thì mới giảm
-    if (newQuantities[index] > 1) {
-      newQuantities[index] -= 1;
-      setQuantities(newQuantities);
+  const handleDecrease = (productId: string) => {
+    const quantity = productQuantities[productId];
+    if (quantity > 1) {
+      dispatch(decreaseQuantity(productId)); // Gọi hàm dispatch để gửi action decreaseQuantity đến Redux store
+      const newQuantities = { ...productQuantities };
+      newQuantities[productId] -= 1;
+      setProductQuantities(newQuantities);
     }
   };
 
-  useEffect(() => {
-    // Tính tổng giá trị của tất cả các sản phẩm trong giỏ hàng
-    const newTotalPrice = products.reduce((acc, item, index) => {
-      return acc + item.price * quantities[index];
+  const totalPrice = useMemo(() => {
+    return Object.keys(productQuantities).reduce((acc, productId) => {
+      const quantity = productQuantities[productId];
+      const product = products.find((p) => p._id === productId);
+      if (product) {
+        return acc + product.price * quantity;
+      }
+      return acc;
     }, 0);
-    setTotalPrice(newTotalPrice);
-  }, [products, quantities]);
+  }, [products, productQuantities]);
 
   return (
     <>
@@ -73,33 +93,42 @@ const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
             <Col span={1}></Col>
           </Row>
           <div className="body-card-item">
-            {products.map((item, index) => (
-              <div className="item-cart">
-                <div className="product-body-cart">
-                  <div className="img-cart">
-                    <img src={item.image} alt="" />
+            {Object.keys(productQuantities).map((productId) => {
+              const quantity = productQuantities[productId];
+              const product = products.find((p) => p._id === productId);
+              if (!product) return null;
+              return (
+                <div className="item-cart" key={product._id}>
+                  <div className="product-body-cart">
+                    <div className="img-cart">
+                      <img src={product.image} alt="" />
+                    </div>
+                    <div>
+                      <p>{product.name}</p>
+                    </div>
                   </div>
                   <div>
-                    <p>{item.name}</p>
+                    <p>{formatNumber(product.price)}</p>
+                  </div>
+                  <div>
+                    <button onClick={() => handleDecrease(product._id)}>
+                      -
+                    </button>
+                    {quantity}
+                    <button onClick={() => handleIncrease(product._id)}>
+                      +
+                    </button>{" "}
+                  </div>
+                  <div>{formatNumber(product.price * quantity)}</div>
+                  <div>
+                    <DeleteOutlined
+                      onClick={() => handleRemoveProduct(product._id)}
+                      className="btn-delete-item-cart"
+                    />
                   </div>
                 </div>
-                <div>
-                  <p>{formatNumber(item.price)}</p>
-                </div>
-                <div>
-                  <button onClick={() => handleDecrease(index)}>-</button>
-                  {quantities[index]}
-                  <button onClick={() => handleIncrease(index)}>+</button>{" "}
-                </div>
-                <div>{formatNumber(item.price * quantities[index])}</div>
-                <div>
-                  <DeleteOutlined
-                    onClick={() => handleRemoveProduct(item._id)}
-                    className="btn-delete-item-cart"
-                  />
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </Col>
         <Col span={8}>

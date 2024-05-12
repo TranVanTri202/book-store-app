@@ -18,9 +18,9 @@ const Blog = () => {
         </h2>
       </div>
       <div className="blog-home">
-        {data.map((blog) => {
+        {data.map((blog, index) => {
           return (
-            <div className="blogs">
+            <div key={index} className="blogs">
               <img src={blog.image} alt="" />
               <div className="information-blog">
                 <div className="date">Ngày 1 tháng 1 năm 2024</div>
