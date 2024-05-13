@@ -1,8 +1,8 @@
 import { Button, Input, Row } from "antd";
 import Directional from "../components/Directional/Directional";
 import "../../asset/style/checkout.css";
-import { useSelector } from "react-redux";
-import { RootState } from "../../Redux/store";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "../../Redux/store";
 import { formatNumber } from "../utils/formatNumber";
 import { ProductType } from "../../Redux/Slice/ProductSlice";
 import { useState } from "react";
@@ -11,8 +11,11 @@ import { jwtDecode } from "jwt-decode";
 import { showMessage } from "../utils/message";
 import axios from "axios";
 import ModalConfirm from "../components/Modals/ModalConfirm";
+import { clearCart } from "../../Redux/Slice/CartSlice";
+import { apiConfig } from "../config/apiConfig";
 
 const Checkout = () => {
+  const dispatch: AppDispatch = useDispatch();
   // Lấy token từ local storage
   const token = localStorage.getItem("token");
 
@@ -75,6 +78,10 @@ const Checkout = () => {
     if (!token) {
       setOpenConfirm(!openConfirm);
     }
+    if (deliveryInfo.fullName === "" || deliveryInfo.address === "") {
+      showMessage("warning", "Hãy điền thông tin giao hàng");
+      return null;
+    }
     // Tạo dữ liệu đơn hàng từ thông tin người dùng và sản phẩm trong giỏ hàng
     const orderData = {
       userId,
@@ -82,19 +89,17 @@ const Checkout = () => {
         productId: product._id,
         quantity: productQuantities[product._id],
       })),
-      ...deliveryInfo, // Thêm thông tin địa chỉ giao hàng vào đây
+      total: totalPrice,
+      ...deliveryInfo,
     };
-
-    // Gửi yêu cầu tạo đơn hàng đến server
     axios
-      .post("http://localhost:5000/orders/", orderData)
+      .post(apiConfig.Oder.addOrders, orderData)
       .then((response) => {
-        console.log("Order created successfully:", response.data);
         showMessage("success", "Đặt hàng thành công");
+        dispatch(clearCart());
       })
       .catch((error) => {
         console.error("Error creating order:", error);
-        showMessage("error", "Đặt hàng thất bại");
       });
   };
 
@@ -114,6 +119,7 @@ const Checkout = () => {
               onChange={(e) =>
                 setDeliveryInfo({ ...deliveryInfo, fullName: e.target.value })
               }
+              required
             />
           </div>
           <div className=" infor-checkout">
@@ -134,6 +140,7 @@ const Checkout = () => {
               onChange={(e) =>
                 setDeliveryInfo({ ...deliveryInfo, phone: e.target.value })
               }
+              required
             />
           </div>
           <div className=" infor-checkout">
@@ -164,6 +171,7 @@ const Checkout = () => {
               onChange={(e) =>
                 setDeliveryInfo({ ...deliveryInfo, address: e.target.value })
               }
+              required
             />
           </div>
         </div>
@@ -185,11 +193,14 @@ const Checkout = () => {
                 <div className="img-cart">
                   <img src={product.image} alt="" />
                 </div>
-                <div>
-                  <p>{product.name}</p>
-                </div>
+                <p>
+                  {product.name}
+                  <p className="price-cart-body">
+                    {formatNumber(product.price)}
+                  </p>
+                </p>
               </div>
-              <div>{quantity}</div>
+              <div style={{ border: "none" }}>{quantity}</div>
               <div style={{ color: "#c92127", border: "none" }}>
                 <p>{formatNumber(product.price * quantity)}</p>
               </div>

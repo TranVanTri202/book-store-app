@@ -44,16 +44,41 @@ const Product = () => {
     const isAnyCategorySelected = Object.values(selectedFilters).some(
       (filter) => filter
     );
-    // Nếu không có loại sách nào được chọn, trả về true cho tất cả các sản phẩm
-    if (!isAnyCategorySelected) {
-      return true;
-    }
-    // Lọc theo loại sách
+
     const isProductCategorySelected = Object.entries(selectedFilters).some(
       ([key, value]) => {
         return value && product.category === listMenu.category[key];
       }
     );
+
+    // Lọc theo giá nếu checkbox giá được chọn
+    if (
+      selectedFilters["20to50"] &&
+      product.price < 20000 &&
+      product.price > 50000
+    ) {
+      return false;
+    }
+    if (
+      selectedFilters["50to100"] &&
+      product.price < 50000 &&
+      product.price > 100000
+    ) {
+      return false;
+    }
+    if (
+      selectedFilters["100to200"] &&
+      product.price < 100000 &&
+      product.price > 200000
+    ) {
+      return false;
+    }
+
+    // Nếu không có loại sách nào được chọn, trả về true cho tất cả các sản phẩm
+    if (!isAnyCategorySelected) {
+      return true;
+    }
+
     return isProductCategorySelected;
   });
 
@@ -66,19 +91,28 @@ const Product = () => {
 
       <div className="content-product">
         <Row gutter={20}>
-          <Col span={5}>
+          <Col md={{ span: 5 }} xs={{ span: 24 }}>
             <div className="list-menu">
               <h3>Loại Sách</h3>
-              {Object.entries(listMenu.category).map(([key, value], index) => (
-                <div className="checkbox-container" key={index}>
-                  <Checkbox
-                    className="abc"
-                    id={key}
-                    onChange={() => handleCheckboxChange(key)}
-                  />
-                  <label htmlFor={key}>{value} </label>
-                </div>
-              ))}
+              <Row>
+                {Object.entries(listMenu.category).map(
+                  ([key, value], index) => (
+                    <Col
+                      md={{ span: 24 }}
+                      xs={{ span: 12 }}
+                      className="checkbox-container"
+                      key={index}
+                    >
+                      <Checkbox
+                        className="abc"
+                        id={key}
+                        onChange={() => handleCheckboxChange(key)}
+                      />
+                      <label htmlFor={key}>{value} </label>
+                    </Col>
+                  )
+                )}
+              </Row>
               <h3>Giá Tiền</h3>
               {Object.entries(listMenu.price).map(([key, value], index) => (
                 <div className="checkbox-container" key={index}>
@@ -90,29 +124,28 @@ const Product = () => {
           </Col>
 
           {/* list product */}
-          <Col span={19}>
+          <Col md={{ span: 19 }} xs={{ span: 24 }}>
             <Row gutter={16}>
               {filterProducts.map((product, index) => {
                 return (
-                  <Col
-                    className="card-products"
-                    style={{ width: "calc(100% / 5)" }}
-                    key={index}
-                  >
+                  <Col className="card-products page-product" key={index}>
                     <img
                       style={{ width: "100%" }}
                       src={product.image}
                       alt="img-product"
                     />
-                    <div
-                      className="information-book"
-                      onClick={() => navigate(`/detailProduct/${product._id}`)}
-                    >
+                    <div className="information-book">
                       <span className="rate-product">
                         <Rate allowHalf disabled defaultValue={5} />
                       </span>
                       <div className="name-book">
-                        <span>Tên sách: </span>
+                        <span
+                          onClick={() =>
+                            navigate(`/detailProduct/${product._id}`)
+                          }
+                        >
+                          Tên sách:{" "}
+                        </span>
                         {product.name}
                       </div>
                       <div className="price">

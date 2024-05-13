@@ -5,7 +5,7 @@ import { Button, Col, Rate, Row } from "antd";
 import { EyeOutlined, ShoppingOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch, RootState } from "../../Redux/store";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { ProductType, fetchDataProducts } from "../../Redux/Slice/ProductSlice";
 import { addToCart } from "../../Redux/Slice/CartSlice";
 import { formatNumber } from "../utils/formatNumber";
@@ -19,6 +19,11 @@ const Home = () => {
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
   const data = useSelector((state: RootState) => state.products.dataProduct);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const handleWindowSizeChange = () => {
+    setWindowWidth(window.innerWidth);
+  };
 
   const handleAddToCart = (product: ProductType) => {
     dispatch(addToCart(product));
@@ -27,6 +32,10 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchDataProducts());
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
   }, [dispatch]);
 
   const latestProducts = data // lấy 8 sản phẩm được thêm gần nhất đưa vào danh sách sản phẩm mới
@@ -42,8 +51,8 @@ const Home = () => {
     dots: true,
     infinite: true,
     speed: 1000,
-    slidesToShow: 6,
-    slidesToScroll: 6,
+    slidesToShow: windowWidth < 600 ? 3 : 6,
+    slidesToScroll: windowWidth < 600 ? 3 : 6,
   };
   return (
     <>
@@ -63,14 +72,17 @@ const Home = () => {
                 style={{ width: "100%" }}
                 src={product.image}
                 alt="img-product"
-                onClick={() => navigate(`/detailProduct/${product._id}`)}
               />
               <div className="information-book">
                 <span className="rate-product">
                   <Rate allowHalf disabled defaultValue={5} />
                 </span>
                 <div className="name-book">
-                  <span>Tên sách: </span>
+                  <span
+                    onClick={() => navigate(`/detailProduct/${product._id}`)}
+                  >
+                    Tên sách:{" "}
+                  </span>
                   {product.name}
                 </div>
                 <div className="price">
@@ -106,14 +118,19 @@ const Home = () => {
                     style={{ width: "100%" }}
                     src={product.image}
                     alt="img-product"
-                    onClick={() => navigate(`/detailProduct/${product._id}`)}
                   />
                   <div className="information-book">
                     <span className="rate-product">
                       <Rate allowHalf disabled defaultValue={5} />
                     </span>
                     <div className="name-book">
-                      <span>Tên sách: </span>
+                      <span
+                        onClick={() =>
+                          navigate(`/detailProduct/${product._id}`)
+                        }
+                      >
+                        Tên sách:{" "}
+                      </span>
                       {product.name}
                     </div>
                     <div className="price">

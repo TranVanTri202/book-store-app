@@ -19,7 +19,7 @@ export const fetchDataProducts = createAsyncThunk<ProductType[]>(
   async () => {
     try {
       // Gọi API để lấy dữ liệu sản phẩm
-      const response = await fetch(apiConfig.product.api);
+      const response = await fetch(apiConfig.product.getApi);
       if (!response.ok) {
         throw new Error("Failed to fetch products");
       }
@@ -37,10 +37,7 @@ export const addDataProduct = createAsyncThunk(
   "Product/addProduct",
   async (product: ProductType) => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/product",
-        product
-      );
+      const response = await axios.post(apiConfig.product.getApi, product);
       return response.data;
     } catch (err) {
       console.log(err);
@@ -53,7 +50,7 @@ export const deleteDataProduct = createAsyncThunk(
   async (productId: string) => {
     try {
       const response = await axios.delete(
-        `http://localhost:5000/product/${productId}`
+        `${apiConfig.product.addApi}${productId}`
       );
       return response.data;
     } catch (err) {
@@ -67,7 +64,7 @@ export const updateDataProduct = createAsyncThunk(
   async (product: ProductType) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/product/${product._id}`,
+        `${apiConfig.product.addApi}${product._id}`,
         product
       );
       return response.data;

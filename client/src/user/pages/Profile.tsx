@@ -5,6 +5,10 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { jwtDecode } from "jwt-decode";
 import { formatNumber } from "../utils/formatNumber";
+import { formatDate } from "../utils/formatDay";
+import ChangePassword from "./ChangePassword";
+import { emptyCart } from "./Cart";
+import { apiConfig } from "../config/apiConfig";
 
 const Profile = () => {
   const token = localStorage.getItem("token");
@@ -26,7 +30,7 @@ const Profile = () => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/auth/getUser/${userId}`
+          `${apiConfig.User.getUserID}${userId}`
         );
         setUser(response.data);
       } catch (error) {
@@ -40,7 +44,7 @@ const Profile = () => {
     <>
       <Directional directional="Hồ sơ cá nhân" />
       <Row>
-        <Col span={5}>
+        <Col md={{ span: 5 }} xs={{ span: 24 }}>
           <div className="profile-choose">
             <img
               src="https://pasrc.princeton.edu/sites/g/files/toruqf431/files/styles/freeform_750w/public/2021-03/blank-profile-picture-973460_1280.jpg?itok=QzRqRVu8"
@@ -58,10 +62,10 @@ const Profile = () => {
             </h3>
           </div>
         </Col>
-        <Col span={19}>
+        <Col md={{ span: 19 }} xs={{ span: 24 }}>
           {chooseProfile === "profile-information" && <MyProfile />}
           {chooseProfile === "profile-orders" && <MyOrders user={user} />}
-          {chooseProfile === "profile-changePassword" && <MyPassword />}
+          {chooseProfile === "profile-changePassword" && <ChangePassword />}
         </Col>
       </Row>
     </>
@@ -74,55 +78,55 @@ const MyProfile = () => {
       <div className="profile-right">
         <h3>Cập nhật hồ sơ cá nhân</h3>
         <Row align="middle" style={{ margin: "10px 0" }}>
-          <Col span={3}>
+          <Col md={{ span: 3 }} xs={{ span: 6 }}>
             <label>Email:</label>
           </Col>
-          <Col span={15}>
+          <Col md={{ span: 15 }} xs={{ span: 18 }}>
             {" "}
             <Input />
           </Col>
         </Row>
         <Row align="middle" style={{ margin: "10px 0" }}>
-          <Col span={3}>
+          <Col md={{ span: 3 }} xs={{ span: 6 }}>
             <label>Password:</label>
           </Col>
-          <Col span={15}>
+          <Col md={{ span: 15 }} xs={{ span: 18 }}>
             {" "}
             <Input />
           </Col>
         </Row>
         <Row align="middle" style={{ margin: "10px 0" }}>
-          <Col span={3}>
+          <Col md={{ span: 3 }} xs={{ span: 6 }}>
             <label>Họ và tên:</label>
           </Col>
-          <Col span={15}>
+          <Col md={{ span: 15 }} xs={{ span: 18 }}>
             {" "}
             <Input />
           </Col>
         </Row>
         <Row align="middle" style={{ margin: "10px 0" }}>
-          <Col span={3}>
+          <Col md={{ span: 3 }} xs={{ span: 6 }}>
             <label>Địa chỉ:</label>
           </Col>
-          <Col span={15}>
+          <Col md={{ span: 15 }} xs={{ span: 18 }}>
             {" "}
             <Input />
           </Col>
         </Row>
         <Row align="middle" style={{ margin: "10px 0" }}>
-          <Col span={3}>
+          <Col md={{ span: 3 }} xs={{ span: 6 }}>
             <label>Số điện thoại:</label>
           </Col>
-          <Col span={15}>
+          <Col md={{ span: 15 }} xs={{ span: 18 }}>
             {" "}
             <Input />
           </Col>
         </Row>
         <Row align="middle" style={{ margin: "10px 0 20px 0" }}>
-          <Col span={3}>
+          <Col md={{ span: 3 }} xs={{ span: 6 }}>
             <label>Ngày sinh:</label>
           </Col>
-          <Col span={15}>
+          <Col md={{ span: 15 }} xs={{ span: 18 }}>
             {" "}
             <Input type="date" />
           </Col>
@@ -136,10 +140,6 @@ const MyProfile = () => {
 };
 
 const MyOrders: React.FC<{ user: any }> = ({ user }) => {
-  // if (!user || !user.orders) {
-  //   return null; // or display an error or loading indicator
-  // }
-
   const [ordersWithProducts, setOrdersWithProducts] = useState<any[]>([]);
 
   useEffect(() => {
@@ -150,7 +150,7 @@ const MyOrders: React.FC<{ user: any }> = ({ user }) => {
         const ordersWithProductsPromises = orders.map(
           async (orderId: string) => {
             const response = await axios.get(
-              `http://localhost:5000/orders/${orderId}`
+              `${apiConfig.Oder.detailApi}${orderId}`
             );
             return response.data;
           }
@@ -170,36 +170,55 @@ const MyOrders: React.FC<{ user: any }> = ({ user }) => {
 
   return (
     <>
-      <Row className="my-order-header">
-        <Col span={8} style={{ borderRight: "1px solid grey" }}>
-          Tất cả
-        </Col>
-        <Col span={8} style={{ borderRight: "1px solid grey" }}>
-          Đang chờ
-        </Col>
-        <Col span={8} style={{ borderRight: "1px solid grey" }}>
-          Đã nhận
-        </Col>
-      </Row>
-
-      {ordersWithProducts.map((order: any) => (
-        <div className="my-order-detail">
-          <h5>
-            Mã đơn hàng: {order._id}
-            <h4>Ngày đặt hàng: </h4>
-          </h5>
-
-          <Row style={{ marginBottom: "15px" }}>
-            <Col span={16}>Sản phẩm</Col>
-            <Col span={4}>Số lượng</Col>
-            <Col span={4}>Giá tiền</Col>
+      {ordersWithProducts.length === 0 ? (
+        emptyCart()
+      ) : (
+        <>
+          <Row className="my-order-header">
+            <Col span={8} style={{ borderRight: "1px solid grey" }}>
+              Tất cả
+            </Col>
+            <Col span={8} style={{ borderRight: "1px solid grey" }}>
+              Đang chờ
+            </Col>
+            <Col span={8} style={{ borderRight: "1px solid grey" }}>
+              Đã nhận
+            </Col>
           </Row>
-          {order.products &&
-            order.products.map((product: any) => (
-              <ProductInfo productId={product.productId} />
-            ))}
-        </div>
-      ))}
+
+          {ordersWithProducts.map((order: any) => (
+            <div className="my-order-detail">
+              <p>Ngày đặt hàng: {formatDate(order.createdAt)} </p>
+              <h5>Mã đơn hàng: {order._id}</h5>
+
+              <Row style={{ marginBottom: "15px" }}>
+                <Col span={16}>Sản phẩm</Col>
+                <Col span={4}>Số lượng</Col>
+                <Col span={4}>Giá tiền</Col>
+              </Row>
+              {order.products &&
+                order.products.map((product: any) => (
+                  <ProductInfo productId={product.productId} />
+                ))}
+              <Col span={24}>
+                {" "}
+                <h4 style={{ textAlign: "right" }}>
+                  Tổng tiền:
+                  <span
+                    style={{
+                      color: "#C92127",
+                      fontSize: "16px",
+                      marginLeft: "12px",
+                    }}
+                  >
+                    {formatNumber(order.total)}
+                  </span>{" "}
+                </h4>
+              </Col>
+            </div>
+          ))}
+        </>
+      )}
     </>
   );
 };
@@ -211,7 +230,7 @@ const ProductInfo: React.FC<{ productId: string }> = ({ productId }) => {
     const fetchProductInfo = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/product/${productId}`
+          `${apiConfig.product.detailApi}${productId}`
         );
         setProductInfo(response.data);
       } catch (error) {
@@ -241,47 +260,6 @@ const ProductInfo: React.FC<{ productId: string }> = ({ productId }) => {
         <h4 style={{ color: "#C92127" }}> {formatNumber(productInfo.price)}</h4>
       </Col>
     </Row>
-  );
-};
-
-const MyPassword = () => {
-  return (
-    <>
-      <div className="profile-right">
-        <h3>Thay đổi mật khẩu</h3>
-
-        <Row align="middle" style={{ margin: "10px 0" }}>
-          <Col span={4}>
-            <label>Mật khẩu hiện tại:</label>
-          </Col>
-          <Col span={15}>
-            {" "}
-            <Input type="password" />
-          </Col>
-        </Row>
-        <Row align="middle" style={{ margin: "10px 0 20px 0" }}>
-          <Col span={4}>
-            <label>Mật khẩu mới:</label>
-          </Col>
-          <Col span={15}>
-            {" "}
-            <Input type="password" />
-          </Col>
-        </Row>
-        <Row align="middle" style={{ margin: "10px 0 20px 0" }}>
-          <Col span={4}>
-            <label>Xác nhận mật khẩu mới:</label>
-          </Col>
-          <Col span={15}>
-            {" "}
-            <Input type="password" />
-          </Col>
-        </Row>
-        <Row>
-          <Button className="btn-update-profile">Cập nhật</Button>
-        </Row>
-      </div>
-    </>
   );
 };
 

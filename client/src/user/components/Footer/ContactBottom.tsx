@@ -14,7 +14,7 @@ const ContactBottom = () => {
   return (
     <>
       <div className="footer">
-        <Row justify="space-between" className="footer-info">
+        <Row justify="space-between" className="footer-info" gutter={16}>
           <Col span={8}>
             <Row align="middle">
               <Col span={2} className="icon-footer">
@@ -27,18 +27,7 @@ const ContactBottom = () => {
               </Col>
             </Row>
           </Col>
-          <Col span={8}>
-            <Row align="middle">
-              <Col span={2} className="icon-footer">
-                {" "}
-                <WhatsAppOutlined />
-              </Col>
-              <Col>
-                <h2>Địa chỉ</h2>
-                <p>20 Đường Bầu Trâm xã Trung An H.Củ Chi</p>
-              </Col>
-            </Row>
-          </Col>
+
           <Col span={8}>
             <Row align="middle">
               <Col span={2} className="icon-footer">
@@ -46,8 +35,20 @@ const ContactBottom = () => {
                 <MailOutlined />
               </Col>
               <Col>
-                <h2>Địa chỉ</h2>
-                <p>20 Đường Bầu Trâm xã Trung An H.Củ Chi</p>
+                <h2>Email</h2>
+                <p>tranvantri@gmail.com</p>
+              </Col>
+            </Row>
+          </Col>
+          <Col span={8}>
+            <Row align="middle">
+              <Col span={2} className="icon-footer">
+                {" "}
+                <WhatsAppOutlined />
+              </Col>
+              <Col>
+                <h2>Số điện thoại</h2>
+                <p>hotline:038765312</p>
               </Col>
             </Row>
           </Col>

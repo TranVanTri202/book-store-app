@@ -1,3 +1,4 @@
+import { Col, Row } from "antd";
 import "../Banner/Banner.css";
 import {
   CarOutlined,
@@ -60,8 +61,12 @@ const Banner = () => {
           />
         </div>
       </div>
-      <div className="utilities">
-        <div className="payment box-utilities">
+      <Row className="utilities" justify="space-between" gutter={16}>
+        <Col
+          xs={{ span: 12 }}
+          md={{ span: 6 }}
+          className="payment box-utilities"
+        >
           <div className="icon-payment icon">
             <CarOutlined />
           </div>
@@ -69,35 +74,41 @@ const Banner = () => {
             <h4>Thanh toán và giao hàng</h4>
             <p>Miễn phí ship cho đơn hàng hơn 500.000VND</p>
           </div>
-        </div>
-        <div className="return box-utilities">
-          <div className="icon-return icon">
-            <ReloadOutlined />
+        </Col>
+        <Col xs={{ span: 12 }} md={{ span: 6 }}>
+          <div className="return box-utilities">
+            <div className="icon-return icon">
+              <ReloadOutlined />
+            </div>
+            <div className="content-return">
+              <h4>Trả đổi hàng</h4>
+              <p>Đảm bảo được hoàn toàn miễn phí</p>
+            </div>
           </div>
-          <div className="content-return">
-            <h4>Trả đổi hàng</h4>
-            <p>Đảm bảo được hoàn toàn miễn phí</p>
+        </Col>
+        <Col xs={{ span: 12 }} md={{ span: 6 }}>
+          <div className="support box-utilities">
+            <div className="icon-support icon">
+              <CustomerServiceOutlined />
+            </div>
+            <div className="content-suppor">
+              <h4>Hổ trợ chất lượng</h4>
+              <p>Luôn có đội ngủ hỗ trợ trực tuyến 24/7</p>
+            </div>
           </div>
-        </div>
-        <div className="support box-utilities">
-          <div className="icon-support icon">
-            <CustomerServiceOutlined />
+        </Col>
+        <Col xs={{ span: 12 }} md={{ span: 6 }}>
+          <div className="payment box-utilities">
+            <div className="icon-payment icon">
+              <UserAddOutlined />
+            </div>
+            <div className="content-payment">
+              <h4>Đăng kí thành viên</h4>
+              <p>Giảm 10% cho các thành viên lâu năm</p>
+            </div>
           </div>
-          <div className="content-suppor">
-            <h4>Hổ trợ chất lượng</h4>
-            <p>Luôn có đội ngủ hỗ trợ trực tuyến 24/7</p>
-          </div>
-        </div>
-        <div className="payment box-utilities">
-          <div className="icon-payment icon">
-            <UserAddOutlined />
-          </div>
-          <div className="content-payment">
-            <h4>Đăng kí thành viên</h4>
-            <p>Giảm 10% cho các thành viên lâu năm</p>
-          </div>
-        </div>
-      </div>
+        </Col>
+      </Row>
     </>
   );
 };

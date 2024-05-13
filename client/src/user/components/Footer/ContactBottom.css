@@ -91,3 +91,18 @@
 .footer ul li span:hover {
   color: var(--color-main);
 }
+
+@media screen and (max-width: 600px) {
+  .footer {
+    padding: 0 10px;
+  }
+  .footer-info {
+    text-align: center;
+  }
+  .icon-footer {
+    margin-left: 50px;
+  }
+  .footer h2 {
+    font-size: 14px;
+  }
+}

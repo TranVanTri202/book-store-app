@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { KeyOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Input, Modal } from "antd";
+import { Button, Input, Modal } from "antd";
 import "../Modals/Modal.css";
 import axios from "axios";
 import { showMessage } from "../../utils/message";
+import { apiConfig } from "../../config/apiConfig";
 
 interface ModalProps {
   open: boolean;
@@ -14,7 +15,6 @@ const ModalRegister: React.FC<ModalProps> = ({ open, onClose }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
   };
@@ -30,14 +30,19 @@ const ModalRegister: React.FC<ModalProps> = ({ open, onClose }) => {
   };
 
   const handleRegister = () => {
+    if (password !== confirmPassword) {
+      showMessage("warning", "Mật khẩu chưa trùng khớp");
+      return null;
+    }
     axios
-      .post("http://localhost:5000/auth/register", {
+      .post(apiConfig.User.register, {
         username,
         password,
       })
       .then((response) => {
         // Xử lý phản hồi từ server khi đăng ký thành công
         showMessage("success", `${response.data.message}`);
+        onClose();
       })
       .catch((error) => {
         // Xử lý lỗi khi đăng ký thất bại
@@ -51,12 +56,13 @@ const ModalRegister: React.FC<ModalProps> = ({ open, onClose }) => {
         <div className="form-auth">
           <h2>Đăng ký</h2>
           <Input
-            placeholder="Tên đăng nhập"
+            placeholder="Email đăng nhập"
             prefix={<UserOutlined />}
             size="large"
             className="input-form-auth"
             value={username}
             onChange={handleUsernameChange}
+            type="email"
           />
           <Input
             placeholder="Mật khẩu"

@@ -84,12 +84,11 @@ const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
     <>
       <Directional directional="Giỏ hàng" />
       <Row gutter={2} justify="space-between">
-        <Col span={14}>
+        <Col md={{ span: 14 }} xs={{ span: 24 }}>
           <Row className="header-card-item">
-            <Col span={11}>Sản phẩm</Col>
-            <Col span={4}>Giá tiền</Col>
-            <Col span={4}>Số lượng</Col>
-            <Col span={4}>Thành tiền</Col>
+            <Col span={13}>Sản phẩm</Col>
+            <Col span={5}>Số lượng</Col>
+            <Col span={5}>Thành tiền</Col>
             <Col span={1}></Col>
           </Row>
           <div className="body-card-item">
@@ -103,13 +102,14 @@ const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
                     <div className="img-cart">
                       <img src={product.image} alt="" />
                     </div>
-                    <div>
-                      <p>{product.name}</p>
-                    </div>
+                    <p>
+                      {product.name}{" "}
+                      <p className="price-cart-body">
+                        {formatNumber(product.price)}
+                      </p>
+                    </p>
                   </div>
-                  <div>
-                    <p>{formatNumber(product.price)}</p>
-                  </div>
+
                   <div>
                     <button onClick={() => handleDecrease(product._id)}>
                       -
@@ -131,7 +131,7 @@ const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
             })}
           </div>
         </Col>
-        <Col span={8}>
+        <Col md={{ span: 8 }} xs={{ span: 24 }} style={{ marginTop: "20px" }}>
           <div className="cart-total-right">
             <div>
               <span>Thành tiền</span>
@@ -157,7 +157,7 @@ const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
 };
 
 // khi không có giỏ gì trong giỏ hàng
-const emptyCart = () => {
+export const emptyCart = () => {
   return (
     <>
       <div className="emptyCart">

@@ -85,3 +85,25 @@ export const getUserById = async (req, res) => {
     res.status(500).json({ message: "Internal server error" });
   }
 };
+
+export const changePassword = async (req, res) => {
+  const { currentPassword, newPassword } = req.body;
+  const userId = req.params.userId;
+  try {
+    // Tìm người dùng trong cơ sở dữ liệu
+    const user = await User.findById(userId);
+
+    // Kiểm tra mật khẩu hiện tại của người dùng
+    if (user.password !== currentPassword) {
+      return res.status(400).json({ message: "Mật khẩu hiện tại không đúng" });
+    }
+
+    // Cập nhật mật khẩu mới
+    user.password = newPassword;
+    await user.save();
+
+    res.status(200).json({ message: "Cập nhật mật khẩu thành công" });
+  } catch (error) {
+    res.status(500).json({ message: "Something went wrong" });
+  }
+};

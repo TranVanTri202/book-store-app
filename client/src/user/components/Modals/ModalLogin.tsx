@@ -5,6 +5,7 @@ import "../Modals/Modal.css";
 import axios from "axios";
 import { showMessage } from "../../utils/message";
 import ModalRegister from "./ModalRegister";
+import { apiConfig } from "../../config/apiConfig";
 
 interface ModalProps {
   open: boolean;
@@ -29,7 +30,7 @@ const ModalLogin: React.FC<ModalProps> = ({ open, onClose }) => {
 
   const handleLogin = () => {
     axios
-      .post("http://localhost:5000/auth/login", {
+      .post(apiConfig.User.login, {
         username,
         password,
       })
@@ -53,7 +54,7 @@ const ModalLogin: React.FC<ModalProps> = ({ open, onClose }) => {
         <div className="form-auth">
           <h2>Đăng nhập</h2>
           <Input
-            placeholder="Tên đăng nhập"
+            placeholder="Email đăng nhập"
             prefix={<UserOutlined />}
             size="large"
             className="input-form-auth"

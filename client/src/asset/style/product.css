@@ -38,6 +38,9 @@
   background-color: #fff;
   position: relative;
 }
+.card-products.page-product {
+  width: 20%;
+}
 
 .name-book span {
   font-size: 17px;
@@ -81,4 +84,74 @@
   font-size: 12px !important;
   margin: 0;
   padding: 0;
+}
+
+@media screen and (max-width: 600px) {
+  .card-products:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    z-index: 100;
+  }
+
+  .card-products:hover .choose-btn-product {
+    visibility: visible;
+  }
+
+  .card-products img {
+    transition: 0.3s linear;
+  }
+  .card-products {
+    border: 1px solid rgb(245, 240, 240);
+    font-weight: 400;
+    background-color: #fff;
+    position: relative;
+    min-height: 260px;
+  }
+
+  .card-products.page-product {
+    width: calc(100% / 3);
+  }
+  .name-book span {
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  .card-products .information-book {
+    padding: 0px 10px 10px 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 110px;
+  }
+
+  .card-products .price {
+    color: #c92127;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .card-products .old-price {
+    color: rgb(130, 127, 127);
+    text-decoration: line-through;
+    font-size: 15px;
+    margin-left: 0px;
+    display: block;
+  }
+
+  .choose-btn-product {
+    position: absolute;
+    top: 30%;
+    left: 30%;
+    visibility: hidden;
+  }
+
+  .choose-btn-product button:hover {
+    background-color: var(--color-main) !important;
+    color: white !important;
+  }
+
+  .card-products .information-book .rate-product ul li {
+    font-size: 12px !important;
+    margin: 0;
+    padding: 0;
+  }
 }

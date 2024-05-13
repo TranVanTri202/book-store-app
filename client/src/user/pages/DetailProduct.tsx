@@ -13,6 +13,7 @@ import { EyeOutlined, ShoppingOutlined } from "@ant-design/icons";
 import { addToCart } from "../../Redux/Slice/CartSlice";
 import { formatNumber } from "../utils/formatNumber";
 import { showMessage } from "../utils/message";
+import { apiConfig } from "../config/apiConfig";
 
 const DetailProduct = () => {
   const navigate = useNavigate();
@@ -25,11 +26,25 @@ const DetailProduct = () => {
     dispatch(addToCart(product));
     showMessage("success", "Thêm vào giỏ hàng thành công");
   };
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  const handleWindowSizeChange = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
   useEffect(() => {
     const fetchProduct = async () => {
       try {
         const response = await axios.get(
-          `http://localhost:5000/product/${productId}`
+          `${apiConfig.product.detailApi}${productId}`
         );
         setProductDetail(response.data);
       } catch (error) {
@@ -38,15 +53,18 @@ const DetailProduct = () => {
     };
 
     fetchProduct();
+  }, [productId]);
+
+  useEffect(() => {
     dispatch(fetchDataProducts());
-  }, [productId, dispatch]);
+  }, [dispatch]);
 
   const settings = {
     dots: true,
     infinite: true,
     speed: 1000,
-    slidesToShow: 6,
-    slidesToScroll: 6,
+    slidesToShow: windowWidth < 600 ? 3 : 6,
+    slidesToScroll: windowWidth < 600 ? 3 : 6,
   };
   return (
     <>
@@ -54,10 +72,14 @@ const DetailProduct = () => {
         directional={`Chi tiết sản phẩm > Sách ${productDetail?.name}`}
       />
       <Row className="detail-product">
-        <Col span={9}>
+        <Col md={{ span: 9 }} xs={{ span: 24 }}>
           <img className="img-detail" src={productDetail?.image} alt="" />
         </Col>
-        <Col className="information-detail-product" span={14}>
+        <Col
+          className="information-detail-product"
+          md={{ span: 15 }}
+          xs={{ span: 24 }}
+        >
           <div>
             <h3>{productDetail?.name} </h3>
             <p>

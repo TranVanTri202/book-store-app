@@ -63,3 +63,29 @@
   font-size: 25px;
   color: #c92127;
 }
+
+@media screen and (max-width: 600px) {
+  .product-body-cart .img-cart img {
+    width: 70px;
+    height: 70px;
+  }
+  .item-cart .product-body-cart p {
+    font-weight: 500;
+    margin-top: 0px;
+    font-size: 15px;
+  }
+  .item-cart div:nth-child(2) {
+    padding: 4px 0;
+  }
+  .item-cart div:nth-child(2) button {
+    background-color: transparent;
+    outline: none;
+    border: none;
+    font-size: 18px;
+    margin: 0 10px;
+    cursor: pointer;
+  }
+  .item-cart div:nth-child(3) {
+    font-size: 18px;
+  }
+}

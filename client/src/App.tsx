@@ -3,6 +3,7 @@ import { RouteUser, RouteAdmin } from "./Routes/Route";
 import LayoutUser from "./Layouts/LayoutUser";
 import LayoutAdmin from "./Layouts/LayoutAdmin";
 import ScrollToTop from "react-scroll-to-top";
+import Page404 from "./user/pages/Page404";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             element={<LayoutAdmin>{<item.component />}</LayoutAdmin>}
           />
         ))}
+        <Route path="*" element={<Page404 />} />
       </Routes>
     </Router>
   );

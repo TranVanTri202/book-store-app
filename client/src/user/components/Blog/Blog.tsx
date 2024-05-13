@@ -3,6 +3,7 @@ import { AppDispatch, RootState } from "../../../Redux/store";
 import "../../components/Blog/Blog.css";
 import { useEffect } from "react";
 import { fetchDataBlog } from "../../../Redux/Slice/BlogSlice";
+import { Col, Row } from "antd";
 const Blog = () => {
   const dispatch: AppDispatch = useDispatch();
   const data = useSelector((state: RootState) => state.blogs.dataBlog);
@@ -18,19 +19,21 @@ const Blog = () => {
         </h2>
       </div>
       <div className="blog-home">
-        {data.map((blog, index) => {
-          return (
-            <div key={index} className="blogs">
-              <img src={blog.image} alt="" />
-              <div className="information-blog">
-                <div className="date">Ngày 1 tháng 1 năm 2024</div>
-                <div className="heading-blog">{blog.title}</div>
-                <div className="text-blog">{blog.description}</div>
-                <span className="continue">Tiếp tục</span>
-              </div>
-            </div>
-          );
-        })}
+        <Row className="blogs" gutter={5}>
+          {data.map((blog, index) => {
+            return (
+              <Col key={index} xs={{ span: 12 }} md={{ span: 6 }}>
+                <img src={blog.image} alt="" />
+                <div className="information-blog">
+                  <div className="date">Ngày 1 tháng 1 năm 2024</div>
+                  <div className="heading-blog">{blog.title}</div>
+                  <div className="text-blog">{blog.description}</div>
+                  <span className="continue">Tiếp tục</span>
+                </div>
+              </Col>
+            );
+          })}
+        </Row>
       </div>
     </>
   );

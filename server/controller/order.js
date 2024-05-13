@@ -6,6 +6,7 @@ export const createOrder = async (req, res) => {
     const {
       userId,
       products,
+      total,
       fullName,
       email,
       phone,
@@ -18,6 +19,7 @@ export const createOrder = async (req, res) => {
     const newOrder = new OrderModel({
       userId,
       products,
+      total,
       fullName,
       email,
       phone,

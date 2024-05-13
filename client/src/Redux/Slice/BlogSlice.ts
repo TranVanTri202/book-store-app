@@ -14,7 +14,7 @@ export const fetchDataBlog = createAsyncThunk<BlogType[]>(
   "products/fetchDataBlog",
   async () => {
     try {
-      const response = await fetch(apiConfig.blog.api);
+      const response = await fetch(apiConfig.blog.getApi);
       if (!response.ok) {
         throw new Error("Failed to fetch blog");
       }
@@ -31,7 +31,7 @@ export const addDataBlog = createAsyncThunk(
   "Blog/addBlog",
   async (blog: BlogType) => {
     try {
-      const response = await axios.post("http://localhost:5000/blog", blog);
+      const response = await axios.post(apiConfig.blog.getApi, blog);
       return response.data;
     } catch (err) {
       console.log(err);
@@ -43,9 +43,7 @@ export const deleteDataBlog = createAsyncThunk(
   "Blog/deleteBlog",
   async (blogId: string) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:5000/blog/${blogId}`
-      );
+      const response = await axios.delete(`${apiConfig.blog.getApi}${blogId}`);
       return response.data;
     } catch (err) {
       console.log(err);
@@ -58,7 +56,7 @@ export const updateDataBlog = createAsyncThunk(
   async (blog: BlogType) => {
     try {
       const response = await axios.put(
-        `http://localhost:5000/blog/${blog._id}`,
+        `${apiConfig.blog.getApi}${blog._id}`,
         blog
       );
       return response.data;

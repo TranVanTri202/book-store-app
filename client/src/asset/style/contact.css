@@ -55,3 +55,19 @@ textarea:focus {
 .contact-form button:hover {
   filter: brightness(110%);
 }
+
+@media screen and (max-width: 600px) {
+  .contact-left-img h1 {
+    display: none;
+  }
+  .contact-left-img p {
+    margin-left: 0;
+  }
+  .contact-form input {
+    font-size: 18px;
+    width: 500px;
+    height: 50px;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+  }
+}

@@ -4,6 +4,7 @@ import { ProductType } from "./ProductSlice";
 export const addToCart = createAction<ProductType>("cart/addToCart");
 export const removeFromCart = createAction<string>("cart/removeFromCart");
 export const decreaseQuantity = createAction<string>("cart/decreaseQuantity");
+export const clearCart = createAction("cart/clearCart");
 
 const cartSlice = createSlice({
   name: "cart",
@@ -34,6 +35,9 @@ const cartSlice = createSlice({
             }
           }
         }
+      })
+      .addCase(clearCart, (state) => {
+        state.dataProduct = []; // Xóa toàn bộ sản phẩm trong giỏ hàng
       });
   },
 });

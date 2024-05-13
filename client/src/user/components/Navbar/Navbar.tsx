@@ -52,8 +52,6 @@ const Navbar = () => {
             <NavLink onClick={scrollToTop} to="/blog" className="nav-link">
               <li>Blog</li>
             </NavLink>
-
-            <li onClick={scrollToTop}>Page</li>
           </ul>
         </div>
         <div className="notify">

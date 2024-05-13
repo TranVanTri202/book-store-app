@@ -20,6 +20,9 @@ const orderSchema = new mongoose.Schema(
         },
       },
     ],
+    total: {
+      type: Number,
+    },
     fullName: {
       type: String,
     },

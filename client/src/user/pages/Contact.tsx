@@ -19,7 +19,7 @@ const Contact = () => {
         />
       </Row>
       <Row gutter={12}>
-        <Col span={12} className="contact-left-img">
+        <Col md={{ span: 12 }} xs={{ span: 24 }} className="contact-left-img">
           <h1>
             Hãy gửi cho chúng tôi mọi
             <br /> thắc mắc của bạn!
@@ -33,7 +33,7 @@ const Contact = () => {
             height={350}
           />
         </Col>
-        <Col span={12}>
+        <Col md={{ span: 12 }} xs={{ span: 24 }}>
           <div className="contact-form">
             <Row>
               <input placeholder="Nhập tên của bạn" type="text" />
