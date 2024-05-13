@@ -30,11 +30,26 @@ a {
 .content-app {
   min-height: 80vh;
   padding-bottom: 30px;
+  width: 100%;
+  overflow-x: visible;
 }
 /* background-admin */
 .content-admin {
   background-color: #e8e8e8;
   height: 100vh;
+}
+
+@media screen and (max-width: 600px) {
+  .App {
+    padding: 5px 6px;
+    margin: 0;
+    min-width: 100%;
+    overflow-x: hidden;
+    overflow-y: visible;
+  }
+  .content-app {
+    min-width: 100%;
+  }
 }
 
 /* cart */

@@ -1,0 +1,42 @@
+.profile-choose img {
+  width: 150px;
+}
+
+.profile-choose h3 {
+  margin: 10px 0;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.profile-right {
+  background-color: #fff;
+  padding: 10px 15px;
+}
+.my-order-header {
+  background-color: #fff;
+  padding: 10px 0;
+  text-align: center;
+  font-weight: 500;
+}
+
+.btn-update-profile {
+  background-color: #1892e3;
+  color: #fff;
+}
+
+.btn-update-profile:hover {
+  background-color: #1892e3 !important;
+  color: #fff !important;
+}
+
+.my-order-detail {
+  background-color: #fff;
+
+  margin: 10px;
+  padding: 10px;
+}
+
+.my-order-detail h5 {
+  font-size: 13px;
+  margin-bottom: 20px;
+}

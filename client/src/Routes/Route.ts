@@ -5,6 +5,7 @@ import Cart from "../user/pages/Cart";
 import Contact from "../user/pages/Contact";
 import Home from "../user/pages/Home";
 import Product from "../user/pages/Product";
+import Profile from "../user/pages/Profile";
 import Checkout from "./../user/pages/Checkout";
 import DetailProduct from "./../user/pages/DetailProduct";
 
@@ -37,6 +38,10 @@ export const RouteUser = [
   {
     path: "/detailProduct/:productId",
     component: DetailProduct,
+  },
+  {
+    path: "/profile",
+    component: Profile,
   },
 ];
 

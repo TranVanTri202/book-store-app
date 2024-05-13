@@ -98,7 +98,7 @@ const ContactBottom = () => {
               Đừng bỏ lỡ việc đăng ký các nguồn cấp dữ liệu mới của chúng tôi,
               vui lòng điền vào biểu mẫu bên dưới.
             </p>
-            <input type="email" placeholder="Email address" />
+            {/* <input type="email" placeholder="Email address" /> */}
             <button>
               <SendOutlined />
             </button>

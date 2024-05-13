@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import "./Header.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { PhoneOutlined } from "@ant-design/icons";
 import {
@@ -17,8 +17,14 @@ import { useState } from "react";
 import ModalRegister from "../Modals/ModalRegister";
 import { jwtDecode } from "jwt-decode";
 import { showMessage } from "../../utils/message";
+import ModalConfirm from "../Modals/ModalConfirm";
 const HeaderTop: React.FC = () => {
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
+  const [openConfirm, setOpenConfirm] = useState(false);
+  const handleCloseconfirm = () => {
+    setOpenConfirm(!openConfirm);
+  };
   const [userName, setUserName] = useState("");
   const [isUserNameSet, setIsUserNameSet] = useState(false); // Thêm biến boolean để kiểm tra
 
@@ -44,7 +50,16 @@ const HeaderTop: React.FC = () => {
     showMessage("success", "Đăng xuất thành công");
     localStorage.removeItem("token");
     setUserName(""); // Cập nhật userName thành giá trị rỗng
-    setIsUserNameSet(false); // Cập nhật isUserNameSet thành false
+    setIsUserNameSet(false);
+    navigate("/"); // Cập nhật isUserNameSet thành false
+  };
+
+  const hanleProfile = () => {
+    if (token) {
+      navigate("/profile");
+    } else {
+      setOpenConfirm(!openConfirm);
+    }
   };
 
   useEffect(() => {});
@@ -98,7 +113,7 @@ const HeaderTop: React.FC = () => {
           </div>
         </div>
         <div className="icon-group">
-          <div className="icon-person icon">
+          <div className="icon-person icon" onClick={hanleProfile}>
             <UserOutlined />
             <p>Tài khoản</p>
           </div>
@@ -121,6 +136,7 @@ const HeaderTop: React.FC = () => {
         open={openModalRegister}
         onClose={handleOpenModalRegister}
       />
+      <ModalConfirm open={openConfirm} onClose={handleCloseconfirm} />
     </>
   );
 };

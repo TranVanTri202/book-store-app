@@ -4,6 +4,7 @@ import { Button, Checkbox, Input, Modal } from "antd";
 import "../Modals/Modal.css";
 import axios from "axios";
 import { showMessage } from "../../utils/message";
+import ModalRegister from "./ModalRegister";
 
 interface ModalProps {
   open: boolean;
@@ -11,6 +12,10 @@ interface ModalProps {
 }
 
 const ModalLogin: React.FC<ModalProps> = ({ open, onClose }) => {
+  const [openModalRegister, setOpenModalRegister] = useState(false);
+  const handleCloseRegister = () => {
+    setOpenModalRegister(!openModalRegister);
+  };
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -71,10 +76,12 @@ const ModalLogin: React.FC<ModalProps> = ({ open, onClose }) => {
             Đăng nhập
           </Button>
           <div className="footer-modal">
-            Bạn chưa có tài khoản ? <span>Đăng ký ngay</span>
+            Bạn chưa có tài khoản ?{" "}
+            <span onClick={() => setOpenModalRegister(true)}>Đăng ký ngay</span>
           </div>
         </div>
       </Modal>
+      <ModalRegister open={openModalRegister} onClose={handleCloseRegister} />
     </>
   );
 };

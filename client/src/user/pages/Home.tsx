@@ -53,7 +53,12 @@ const Home = () => {
 
         <Row>
           {latestProducts.map((product, index) => (
-            <Col key={index} className="card-products" span={4}>
+            <Col
+              key={index}
+              className="card-products"
+              xs={{ span: 8 }}
+              md={{ span: 4 }}
+            >
               <img
                 style={{ width: "100%" }}
                 src={product.image}
