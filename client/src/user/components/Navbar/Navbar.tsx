@@ -38,7 +38,7 @@ const Navbar = () => {
         </div>
         <div className="choose">
           <ul>
-            <NavLink onClick={scrollToTop} to="/" className="nav-link">
+            <NavLink onClick={scrollToTop} to="/home" className="nav-link">
               <li>Trang chủ</li>
             </NavLink>
 

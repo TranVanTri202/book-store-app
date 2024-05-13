@@ -43,14 +43,6 @@ const NavbarLeft = () => {
                 Quản lí đơn hàng
               </li>
             </NavLink>
-            <NavLink to="/admin/d" className="nav-link-sidebar">
-              <li>
-                <span>
-                  <BankOutlined />
-                </span>
-                Quản lí Blog
-              </li>
-            </NavLink>
           </ul>
         </div>
       </div>

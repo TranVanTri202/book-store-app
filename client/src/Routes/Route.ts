@@ -11,7 +11,7 @@ import DetailProduct from "./../user/pages/DetailProduct";
 
 export const RouteUser = [
   {
-    path: "/",
+    path: "/home",
     component: Home,
     role: "user",
   },

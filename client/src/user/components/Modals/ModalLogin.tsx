@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { jwtDecode } from "jwt-decode";
+
 import { KeyOutlined, UserOutlined } from "@ant-design/icons";
 import { Button, Checkbox, Input, Modal } from "antd";
 import "../Modals/Modal.css";
@@ -6,6 +8,7 @@ import axios from "axios";
 import { showMessage } from "../../utils/message";
 import ModalRegister from "./ModalRegister";
 import { apiConfig } from "../../config/apiConfig";
+import { useNavigate } from "react-router-dom";
 
 interface ModalProps {
   open: boolean;
@@ -13,6 +16,7 @@ interface ModalProps {
 }
 
 const ModalLogin: React.FC<ModalProps> = ({ open, onClose }) => {
+  const navigate = useNavigate();
   const [openModalRegister, setOpenModalRegister] = useState(false);
   const handleCloseRegister = () => {
     setOpenModalRegister(!openModalRegister);
@@ -36,9 +40,13 @@ const ModalLogin: React.FC<ModalProps> = ({ open, onClose }) => {
       })
       .then((response) => {
         // Xử lý phản hồi từ server khi đăng nhập thành công
+
         showMessage("success", "Đăng nhập thành công");
-        console.log(response.data.token);
         localStorage.setItem("token", response.data.token);
+        const decodedToken = jwtDecode(response.data.token) as { role: string };
+        if (decodedToken.role === "admin") {
+          window.location.href = "/admin/dashboard";
+        }
         onClose();
       })
       .catch((error) => {
