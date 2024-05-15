@@ -87,24 +87,28 @@ const Banner = () => {
           </div>
         </Col>
         <Col xs={{ span: 12 }} md={{ span: 6 }}>
-          <div className="support box-utilities">
-            <div className="icon-support icon">
-              <CustomerServiceOutlined />
-            </div>
-            <div className="content-suppor">
-              <h4>Hổ trợ chất lượng</h4>
-              <p>Luôn có đội ngủ hỗ trợ trực tuyến 24/7</p>
+          <div className="utilities-phone">
+            <div className="support box-utilities">
+              <div className="icon-support icon">
+                <CustomerServiceOutlined />
+              </div>
+              <div className="content-suppor">
+                <h4>Hổ trợ chất lượng</h4>
+                <p>Luôn có đội ngủ hỗ trợ trực tuyến 24/7</p>
+              </div>
             </div>
           </div>
         </Col>
         <Col xs={{ span: 12 }} md={{ span: 6 }}>
-          <div className="payment box-utilities">
-            <div className="icon-payment icon">
-              <UserAddOutlined />
-            </div>
-            <div className="content-payment">
-              <h4>Đăng kí thành viên</h4>
-              <p>Giảm 10% cho các thành viên lâu năm</p>
+          <div className="utilities-phone">
+            <div className="payment box-utilities">
+              <div className="icon-payment icon">
+                <UserAddOutlined />
+              </div>
+              <div className="content-payment">
+                <h4>Đăng kí thành viên</h4>
+                <p>Giảm 10% cho các thành viên lâu năm</p>
+              </div>
             </div>
           </div>
         </Col>

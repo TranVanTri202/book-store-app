@@ -77,6 +77,7 @@ const Checkout = () => {
   const handleCheckout = () => {
     if (!token) {
       setOpenConfirm(!openConfirm);
+      return null;
     }
     if (deliveryInfo.fullName === "" || deliveryInfo.address === "") {
       showMessage("warning", "Hãy điền thông tin giao hàng");
