@@ -94,7 +94,7 @@
   height: 22px;
   width: 22px;
   top: 0;
-  right: 5%;
+  left: 12%;
   border-radius: 50%;
   z-index: 0;
 }
@@ -102,7 +102,7 @@
 .icon-cart .count-shopping {
   position: absolute;
   top: 0;
-  right: 13%;
+  left: 20%;
   color: white;
   z-index: 1;
 }
@@ -213,7 +213,7 @@
     height: 15px;
     width: 14px;
     top: 0;
-    right: 3%;
+    left: 15%;
     border-radius: 50%;
     z-index: 0;
   }
@@ -221,7 +221,7 @@
   .icon-cart .count-shopping {
     position: absolute;
     top: 0;
-    right: 13%;
+    left: 22%;
     color: white;
     z-index: 1;
   }

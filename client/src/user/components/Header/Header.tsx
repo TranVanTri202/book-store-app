@@ -22,10 +22,13 @@ const HeaderTop: React.FC = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
   const [openConfirm, setOpenConfirm] = useState(false);
+
   const handleCloseconfirm = () => {
     setOpenConfirm(!openConfirm);
   };
   const [userName, setUserName] = useState("");
+  const userNameVisible = userName.split("@")[0];
+
   const [isUserNameSet, setIsUserNameSet] = useState(false); // Thêm biến boolean để kiểm tra
 
   if (token && !isUserNameSet) {
@@ -61,7 +64,6 @@ const HeaderTop: React.FC = () => {
       setOpenConfirm(!openConfirm);
     }
   };
-
   useEffect(() => {});
   return (
     <>
@@ -83,7 +85,7 @@ const HeaderTop: React.FC = () => {
                   textDecoration: "underline",
                 }}
               >
-                {userName}
+                {userNameVisible}
               </span>
 
               <span>/</span>
