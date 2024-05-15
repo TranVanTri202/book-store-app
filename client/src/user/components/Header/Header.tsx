@@ -80,6 +80,7 @@ const HeaderTop: React.FC = () => {
                   fontSize: "14px",
                   color: "var(--color-main)",
                   fontWeight: "500",
+                  textDecoration: "underline",
                 }}
               >
                 {userName}

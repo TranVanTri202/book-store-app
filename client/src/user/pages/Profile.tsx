@@ -248,7 +248,7 @@ const ProductInfo: React.FC<{ productId: string }> = ({ productId }) => {
   }
 
   return (
-    <Row style={{ borderBottom: "1px solid #e6e2e2" }}>
+    <Row style={{ borderBottom: "1px solid #e6e2e2", alignItems: "center" }}>
       <Col span={4}>
         <img src={productInfo.image} width={50} alt="" />
       </Col>
