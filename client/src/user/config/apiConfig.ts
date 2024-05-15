@@ -1,22 +1,23 @@
+const URL = "https://book-voyage.onrender.com";
 export const apiConfig = {
   product: {
-    getApi: "http://localhost:5000/product",
-    detailApi: "http://localhost:5000/product/",
-    addApi: "http://localhost:5000/product/",
+    getApi: `${URL}/product`,
+    detailApi: `${URL}/product/`,
+    addApi: `${URL}/product/`,
   },
   blog: {
-    getApi: "http://localhost:5000/blog",
+    getApi: `${URL}/blog`,
   },
   User: {
-    getApi: "http://localhost:5000/auth/userData",
-    getUserID: "http://localhost:5000/auth/getUser/",
-    register: "http://localhost:5000/auth/register",
-    login: "http://localhost:5000/auth/login",
-    changePassword: "http://localhost:5000/auth/change-password/",
-    updateAPI: "http://localhost:5000/auth/update/",
+    getApi: `${URL}/auth/userData`,
+    getUserID: `${URL}/auth/getUser/`,
+    register: `${URL}/auth/register`,
+    login: `${URL}/auth/login`,
+    changePassword: `${URL}/auth/change-password/`,
+    updateAPI: `${URL}/auth/update/`,
   },
   Oder: {
-    addOrders: "http://localhost:5000/orders/",
-    detailApi: "http://localhost:5000/orders/",
+    addOrders: `${URL}/orders/`,
+    detailApi: `${URL}/orders/`,
   },
 };
