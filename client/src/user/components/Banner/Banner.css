@@ -3,6 +3,7 @@
 }
 .banner .banner1 img {
   width: 100%;
+  height: 550px;
   /* height: 600px; */
 }
 /* .utilities */
@@ -161,5 +162,8 @@
   .banner .banner1 img {
     /* height: 600px; */
     height: 200px;
+  }
+  .utilities {
+    margin-top: 15px;
   }
 }

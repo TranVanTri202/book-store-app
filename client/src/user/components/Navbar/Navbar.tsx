@@ -4,6 +4,11 @@ import {
   ShoppingOutlined,
   UserOutlined,
   HeartOutlined,
+  HomeOutlined,
+  ProductOutlined,
+  ContactsOutlined,
+  ShopOutlined,
+  BookOutlined,
 } from "@ant-design/icons";
 import "../Navbar/Navbar.css";
 import logo from "../../../asset/img/logo.png.png";
@@ -67,7 +72,7 @@ const Navbar = () => {
     <>
       <div className={`navbar ${isSticky ? "fixed" : ""}`}>
         <div className="browser">
-          <img src={logo} alt="" width={150} />
+          <img src={logo} alt="" />
         </div>
         <div className="choose">
           <ul>
@@ -84,9 +89,6 @@ const Navbar = () => {
             </NavLink>
             <NavLink onClick={scrollToTop} to="/Tintuc" className="nav-link">
               <li>Tin tức</li>
-            </NavLink>
-            <NavLink onClick={scrollToTop} to="/blog" className="nav-link">
-              <li>Page</li>
             </NavLink>
           </ul>
         </div>
@@ -110,20 +112,37 @@ const Navbar = () => {
         <div className="choose-bottom">
           <ul>
             <NavLink onClick={scrollToTop} to="/home" className="nav-link">
-              <li>Trang chủ</li>
+              <li>
+                <p>
+                  <HomeOutlined />
+                </p>
+                Trang chủ
+              </li>
             </NavLink>
 
             <NavLink onClick={scrollToTop} to="/products" className="nav-link">
-              <li>Sản Phẩm</li>
+              <li>
+                <p>
+                  <ShopOutlined />
+                </p>
+                Sản Phẩm
+              </li>
             </NavLink>
             <NavLink onClick={scrollToTop} to="/contact" className="nav-link">
-              <li>Liên Hệ</li>
+              <li>
+                <p>
+                  <ContactsOutlined />
+                </p>
+                Liên Hệ
+              </li>
             </NavLink>
             <NavLink onClick={scrollToTop} to="/blog" className="nav-link">
-              <li>Tin tức</li>
-            </NavLink>
-            <NavLink onClick={scrollToTop} to="/blog" className="nav-link">
-              <li>Page</li>
+              <li>
+                <p>
+                  <BookOutlined />
+                </p>
+                Tin tức
+              </li>
             </NavLink>
           </ul>
         </div>

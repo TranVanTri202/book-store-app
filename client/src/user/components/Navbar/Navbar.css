@@ -59,6 +59,9 @@
 .browser span {
   margin-left: 10px;
 }
+.browser img {
+  width: 150px;
+}
 
 .notify {
   height: 100%;
@@ -120,7 +123,7 @@
 
 @media screen and (max-width: 600px) {
   .navbar {
-    height: 60px;
+    height: 40px;
   }
 
   .navbar .choose {
@@ -132,7 +135,7 @@
     bottom: 0;
     width: 100%;
     background-color: #fff;
-    height: 40px;
+    height: 55px;
     justify-content: space-between;
   }
   .choose-bottom ul {
@@ -144,5 +147,16 @@
   .choose-bottom ul li {
     list-style-type: none;
     font-size: 10px;
+  }
+  .choose-bottom p {
+    text-align: center;
+    font-size: 20px;
+  }
+  .browser img {
+    width: 100px;
+  }
+  .cart-quantity .number-cart {
+    top: -60%;
+    right: -40%;
   }
 }

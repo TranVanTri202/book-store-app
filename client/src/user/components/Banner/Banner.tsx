@@ -1,49 +1,29 @@
-import { Col, Row } from "antd";
+import { Carousel, Col, Row } from "antd";
 import "../Banner/Banner.css";
-import {
-  CarOutlined,
-  ReloadOutlined,
-  CustomerServiceOutlined,
-  UserAddOutlined,
-} from "@ant-design/icons";
 const Banner = () => {
   return (
     <>
       <div className="banner">
-        <div className="banner1">
-          <img
-            src="https://picnie.com/v1/data/new_8922_230201091403.jpg"
-            alt=""
-          />
-          {/* <div className="typing-effect">
-            <span>C</span>
-            <span>h</span>
-            <span>à</span>
-            <span>o</span>
-            <span>m</span>
-            <span>ừ</span>
-            <span>n</span>
-            <span>g </span>
-            <br />
-            <span>b</span>
-            <span>ạ</span>
-            <span>n</span>
-            <span></span>
-            <span>đ</span>
-            <span>ế</span>
-            <span>n </span>
-            <span></span>
-            <span>v</span>
-            <span>ớ</span>
-            <span>i </span>
-            <br />
-            <span>TVT </span>
-            <span>S</span>
-            <span>h</span>
-            <span>o</span>
-            <span>p</span>
-          </div> */}
-        </div>
+        <Carousel autoplay>
+          <div className="banner1">
+            <img
+              src="https://picnie.com/v1/data/new_8922_230201091403.jpg"
+              alt=""
+            />
+          </div>
+          <div className="banner1">
+            <img
+              src="https://thaihabooks.com/wp-content/uploads/2022/06/Banner-Thang-6-UP-WEB.jpg"
+              alt=""
+            />
+          </div>
+          <div className="banner1">
+            <img
+              src="https://thaihabooks.com/wp-content/uploads/2018/06/banner-sach-ma_i-thang-6-2018-02-scaled.jpg.webp"
+              alt=""
+            />
+          </div>
+        </Carousel>
       </div>
       <Row className="utilities" justify="space-between" gutter={16}>
         <Col

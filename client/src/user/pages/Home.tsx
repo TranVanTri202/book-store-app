@@ -64,6 +64,13 @@ const Home = () => {
     slidesToShow: windowWidth < 600 ? 3 : 6,
     slidesToScroll: windowWidth < 600 ? 3 : 6,
   };
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
   return (
     <>
       <Banner />
@@ -228,7 +235,10 @@ const Home = () => {
                       <ShoppingOutlined />
                     </Button>
                     <Button
-                      onClick={() => navigate(`/detailProduct/${product._id}`)}
+                      onClick={() => {
+                        navigate(`/detailProduct/${product._id}`);
+                        scrollToTop();
+                      }}
                     >
                       <EyeOutlined />
                     </Button>

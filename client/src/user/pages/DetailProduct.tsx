@@ -66,6 +66,13 @@ const DetailProduct = () => {
     slidesToShow: windowWidth < 600 ? 3 : 6,
     slidesToScroll: windowWidth < 600 ? 3 : 6,
   };
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
   const formatDescription = (description: any) => {
     return description.split(".").map((sentence: any, index: any) => (
       <span key={index}>
@@ -199,9 +206,10 @@ const DetailProduct = () => {
                           <ShoppingOutlined />
                         </Button>
                         <Button
-                          onClick={() =>
-                            navigate(`/detailProduct/${product._id}`)
-                          }
+                          onClick={() => {
+                            navigate(`/detailProduct/${product._id}`);
+                            scrollToTop();
+                          }}
                         >
                           <EyeOutlined />
                         </Button>
