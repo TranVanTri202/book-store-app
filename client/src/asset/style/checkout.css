@@ -3,7 +3,8 @@
 .oder {
   background-color: #fff;
   padding: 10px 15px 25px 15px;
-  margin-top: 20px;
+  margin-top: 30px;
+  padding: 0 30px;
 }
 
 .address h3,
@@ -87,5 +88,12 @@
   }
   .item-cart div:nth-child(3) {
     font-size: 18px;
+  }
+  .infor-checkout {
+    display: block;
+  }
+  .infor-checkout .input-infor-checkout {
+    margin-left: 0px;
+    width: 100% !important;
   }
 }

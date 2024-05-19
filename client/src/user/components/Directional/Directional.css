@@ -1,0 +1,21 @@
+.directional {
+  padding: 30px 0;
+  text-align: center;
+  background-color: #f6f6f6;
+}
+
+.directional h5 {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  color: #000;
+}
+
+@media screen and (max-width: 600px) {
+  .directional h5 {
+    font-size: 13px;
+  }
+  .directional {
+    padding: 20px 0;
+  }
+}

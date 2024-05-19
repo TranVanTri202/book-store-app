@@ -1,3 +1,6 @@
+.cart-product {
+  padding: 0 30px;
+}
 .emptyCart {
   text-align: center;
   background-color: #fff;
@@ -39,7 +42,6 @@
   background-color: #fff;
   padding: 15px 20px;
   border-radius: 5px;
-  font-size: 15px;
   font-weight: 500;
 }
 
@@ -175,5 +177,8 @@
   }
   .item-cart div:nth-child(3) {
     font-size: 18px;
+  }
+  .cart-product {
+    padding: 0 5px;
   }
 }

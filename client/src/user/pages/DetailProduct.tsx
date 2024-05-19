@@ -66,6 +66,19 @@ const DetailProduct = () => {
     slidesToShow: windowWidth < 600 ? 3 : 6,
     slidesToScroll: windowWidth < 600 ? 3 : 6,
   };
+  const formatDescription = (description: any) => {
+    return description.split(".").map((sentence: any, index: any) => (
+      <span key={index}>
+        {sentence.trim() && (
+          <>
+            {sentence.trim()}.
+            <br />
+            <br />
+          </>
+        )}
+      </span>
+    ));
+  };
   return (
     <>
       <Directional
@@ -81,19 +94,35 @@ const DetailProduct = () => {
           xs={{ span: 24 }}
         >
           <div>
-            <h3>{productDetail?.name} </h3>
-            <p>
-              Thể loại: <span>{productDetail?.category}</span>{" "}
-            </p>
-            <p>
-              Tên tác giả: <span>{productDetail?.author}</span>
-            </p>
-            <p>Chính sách đổi trả: Đổi trả sản phẩm trong 30 ngày</p>
-            <p>Nội dung: {productDetail?.description}</p>
+            <h3>Sách - {productDetail?.name} </h3>
             <span className="rate-product">
+              <span>5.0</span>
               <Rate allowHalf disabled defaultValue={5} />
             </span>
+            <p>Tác giả: {productDetail?.author}</p>
+            <p>Thể loại: {productDetail?.category}</p>
+
             {productDetail && <h2>{formatNumber(productDetail.price)}</h2>}
+            <span className="old-price">
+              {productDetail && (
+                <span>
+                  {formatNumber(
+                    productDetail.price + productDetail.price * (20 / 100)
+                  )}
+                </span>
+              )}
+            </span>
+            <p>Chính sách đổi trả: Đổi trả sản phẩm trong 30 ngày</p>
+            <p>Vận chuyển: Miễn phí vận chuyển</p>
+            <p>
+              Deal sốc : <span className="deal-detail">Mua kèm Deal sốc</span>
+            </p>
+            <p>
+              Số lượng :{" "}
+              <span className="quantity-detail">
+                <button>-</button>1 <button>+</button>
+              </span>
+            </p>
           </div>
           <Button
             onClick={() => handleAddToCart(productDetail!)}
@@ -102,6 +131,33 @@ const DetailProduct = () => {
             Thêm vào giỏ hàng
           </Button>
         </Col>
+      </Row>
+      <Row className="description-detail-book">
+        <Col
+          md={{ span: 5 }}
+          xs={{ span: 24 }}
+          style={{ borderTop: "1px solid grey", borderRight: "1px solid grey" }}
+        >
+          <h5>Tác giả</h5>
+
+          <h5>Thể loại</h5>
+          <h5>Nội dung</h5>
+          <h4>Mô tả sản phẩm</h4>
+        </Col>
+        <Col
+          md={{ span: 15 }}
+          xs={{ span: 24 }}
+          style={{ borderTop: "1px solid grey", padding: "0 30px" }}
+        >
+          <p>{productDetail?.author}</p>
+
+          <p>{productDetail?.category}</p>
+          <p>
+            {productDetail?.description &&
+              formatDescription(productDetail.description)}
+          </p>
+        </Col>
+        <Col md={{ span: 4 }} xs={{ span: 24 }}></Col>
       </Row>
       <div className="suggest suggest-detail">
         <h2>CÓ THỂ BẠN ĐANG TÌM</h2>

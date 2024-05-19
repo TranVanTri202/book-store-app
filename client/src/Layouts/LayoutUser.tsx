@@ -8,12 +8,14 @@ type children = {
 
 const LayoutUser: React.FC<children> = ({ children }) => {
   return (
-    <div className="App">
+    <>
       <Header />
       <Navbar />
-      <div className="content-app">{children}</div>
-      <ContactBottom />
-    </div>
+      <div className="App">
+        <div className="content-app">{children}</div>
+        <ContactBottom />
+      </div>
+    </>
   );
 };
 

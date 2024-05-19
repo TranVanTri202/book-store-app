@@ -1,12 +1,16 @@
 .blog-home {
   display: flex;
   justify-content: space-between;
-  gap: 20px;
+  padding: 0 30px;
+  margin-top: 30px;
 }
 
 .blogs {
   /* width: 25%; */
+  border: 1px solid #eee;
+  padding: 8px;
   overflow: hidden;
+  transition: 0.5s linear;
 }
 
 .blogs img {
@@ -14,18 +18,26 @@
   object-fit: contain;
 }
 
+.blogs:hover {
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
 .information-blog {
-  padding: 5px 12px;
+  /* padding: 5px 12px; */
+  border-top: 1px solid #eee;
 }
 
 .information-blog .date {
-  color: #ccc;
+  color: #919090;
+  margin-bottom: 15px;
   font-size: 15px;
 }
 
-.information-blog .heading-blog {
-  font-weight: 600;
+.heading-blog {
+  font-weight: 500;
   margin: 5px 0;
+  font-size: 19px;
+  color: #333;
+  margin-bottom: 15px;
 }
 
 .information-blog .continue {
@@ -71,8 +83,8 @@
 }
 
 .information-blog .text-blog {
-  font-size: 14px;
-  color: #777;
+  font-size: 15px;
+  color: #333;
   margin-bottom: 12px;
   display: -webkit-box;
   -webkit-line-clamp: 6; /* Số hàng tối đa */
@@ -85,6 +97,9 @@
     padding: 0;
   }
   .information-blog {
+    padding: 0;
+  }
+  .blog-home {
     padding: 0;
   }
 }

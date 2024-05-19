@@ -1,20 +1,12 @@
-import { Col, Row } from "antd";
-
+import "../Directional/Directional.css";
 interface DirectionalProps {
   directional: string;
 }
 const Directional: React.FC<DirectionalProps> = ({ directional }) => {
   return (
     <>
-      <div style={{ margin: "15px 0" }} className="directional">
-        <Row>
-          <Col>
-            <span>Trang Chủ</span> &#62;{" "}
-            <b style={{ fontWeight: "600", color: "var(--color-main)" }}>
-              {directional}
-            </b>
-          </Col>
-        </Row>
+      <div className="directional">
+        <h5>Trang Chủ / {directional}</h5>
       </div>
     </>
   );

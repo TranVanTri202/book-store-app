@@ -6,9 +6,62 @@
 .home h2 {
   text-align: center;
   margin: 30px 0;
-  font-weight: 600;
+  font-weight: 500;
+  color: #333333;
+  font-size: 40px;
 }
 
 .img-banner-sale img {
   text-align: center;
+}
+
+.banner-new-products {
+  background-color: #f4e6e5;
+  height: 100%;
+  width: 100%;
+}
+
+.text-banner-new-product {
+  margin-left: 60px;
+  text-align: start !important;
+  text-transform: uppercase;
+}
+
+.banner-new-products .text-banner-new-product h3 {
+  margin: 15px 0;
+  font-weight: 400;
+  font-size: 30px;
+}
+
+.text-banner-new-product h1 {
+  font-size: 40px;
+  color: #f75454 !important;
+  font-weight: 550;
+}
+
+.banner-new-products .text-banner-new-product h3:nth-child(3) {
+  margin: 15px 0;
+  font-size: 30px;
+  color: #9f9696 !important ;
+}
+
+@media screen and (max-width: 600px) {
+  .home h2 {
+    font-size: 25px;
+  }
+  .banner-new-products img {
+    width: 300px;
+    margin-left: 120px;
+  }
+  .banner-new-products .text-banner-new-product h3 {
+    font-size: 20px;
+  }
+
+  .text-banner-new-product h1 {
+    font-size: 30px;
+  }
+
+  .banner-new-products .text-banner-new-product h3:nth-child(3) {
+    font-size: 20px;
+  }
 }

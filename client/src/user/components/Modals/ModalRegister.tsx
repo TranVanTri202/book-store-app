@@ -87,7 +87,7 @@ const ModalRegister: React.FC<ModalProps> = ({ open, onClose }) => {
             Đăng ký
           </Button>
           <div className="footer-modal">
-            Bạn đã có tài khoản ? <span>Đăng nhập</span>
+            Bạn đã có tài khoản ? <span onClick={onClose}>Đăng nhập</span>
           </div>
         </div>
       </Modal>

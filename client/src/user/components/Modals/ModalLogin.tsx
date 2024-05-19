@@ -16,7 +16,6 @@ interface ModalProps {
 }
 
 const ModalLogin: React.FC<ModalProps> = ({ open, onClose }) => {
-  const navigate = useNavigate();
   const [openModalRegister, setOpenModalRegister] = useState(false);
   const handleCloseRegister = () => {
     setOpenModalRegister(!openModalRegister);

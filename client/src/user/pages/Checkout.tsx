@@ -13,6 +13,7 @@ import axios from "axios";
 import ModalConfirm from "../components/Modals/ModalConfirm";
 import { clearCart } from "../../Redux/Slice/CartSlice";
 import { apiConfig } from "../config/apiConfig";
+import TextArea from "antd/es/input/TextArea";
 
 const Checkout = () => {
   const dispatch: AppDispatch = useDispatch();
@@ -166,7 +167,7 @@ const Checkout = () => {
           </div>
           <div className=" infor-checkout">
             <label htmlFor="">Địa chỉ nhận hàng</label>
-            <Input
+            <TextArea
               className="input-infor-checkout"
               value={deliveryInfo.address}
               onChange={(e) =>

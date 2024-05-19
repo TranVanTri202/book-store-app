@@ -1,6 +1,7 @@
 import BlogManagement from "../admin/Page/BlogManagements";
 import Dashboard from "../admin/Page/Dashboard";
 import ProductManagement from "../admin/Page/ProductManagement";
+import Blog from "../user/components/Blog/Blog";
 import Cart from "../user/pages/Cart";
 import Contact from "../user/pages/Contact";
 import Home from "../user/pages/Home";
@@ -42,6 +43,10 @@ export const RouteUser = [
   {
     path: "/profile",
     component: Profile,
+  },
+  {
+    path: "/Tintuc",
+    component: Blog,
   },
 ];
 

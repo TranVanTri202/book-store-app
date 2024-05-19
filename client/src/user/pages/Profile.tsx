@@ -9,8 +9,11 @@ import { formatDate } from "../utils/formatDay";
 import ChangePassword from "./ChangePassword";
 import { emptyCart } from "./Cart";
 import { apiConfig } from "../config/apiConfig";
+import { showMessage } from "../utils/message";
+import { useNavigate } from "react-router-dom";
 
 const Profile = () => {
+  const navigate = useNavigate();
   const token = localStorage.getItem("token");
   // State để lưu userId và kiểm tra xem đã được set hay chưa
   const [userId, setUserId] = useState("");
@@ -22,7 +25,11 @@ const Profile = () => {
     setIsUserIdSet(true);
   }
   const [user, setUser] = useState(null);
-
+  const handleLogout = () => {
+    showMessage("success", "Đăng xuất thành công");
+    localStorage.removeItem("token");
+    navigate("/"); // Cập nhật isUserNameSet thành false
+  };
   const [chooseProfile, setChooseProfile] = useState<string>(
     "profile-information"
   );
@@ -43,7 +50,7 @@ const Profile = () => {
   return (
     <>
       <Directional directional="Hồ sơ cá nhân" />
-      <Row>
+      <Row className="detail-profile">
         <Col md={{ span: 5 }} xs={{ span: 24 }}>
           <div className="profile-choose">
             <img
@@ -60,6 +67,7 @@ const Profile = () => {
               {" "}
               Thay đổi mật khẩu
             </h3>
+            <h3 onClick={handleLogout}> Đăng xuất</h3>
           </div>
         </Col>
         <Col md={{ span: 19 }} xs={{ span: 24 }}>
@@ -248,7 +256,12 @@ const ProductInfo: React.FC<{ productId: string }> = ({ productId }) => {
   }
 
   return (
-    <Row style={{ borderBottom: "1px solid #e6e2e2", alignItems: "center" }}>
+    <Row
+      style={{
+        borderBottom: "1px solid #e6e2e2",
+        alignItems: "center",
+      }}
+    >
       <Col span={4}>
         <img src={productInfo.image} width={50} alt="" />
       </Col>

@@ -83,7 +83,7 @@ const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
   return (
     <>
       <Directional directional="Giỏ hàng" />
-      <Row gutter={2} justify="space-between">
+      <Row gutter={2} justify="space-between" className="cart-product">
         <Col md={{ span: 14 }} xs={{ span: 24 }}>
           <Row className="header-card-item">
             <Col span={13}>Sản phẩm</Col>
@@ -160,6 +160,8 @@ const CartProduct: React.FC<{ products: ProductType[] }> = ({ products }) => {
 export const emptyCart = () => {
   return (
     <>
+      <Directional directional="Giỏ hàng" />
+
       <div className="emptyCart">
         <div className="">
           <img

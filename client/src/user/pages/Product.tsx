@@ -1,6 +1,6 @@
 import "../../asset/style/product.css";
 
-import { Row, Col, Button, Rate, Checkbox } from "antd";
+import { Row, Col, Button, Rate, Checkbox, Select } from "antd";
 import { EyeOutlined, ShoppingOutlined } from "@ant-design/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -10,7 +10,6 @@ import { addToCart } from "../../Redux/Slice/CartSlice";
 import { showMessage } from "../utils/message";
 import Directional from "../components/Directional/Directional";
 import { formatNumber } from "../utils/formatNumber";
-import listMenu from "../config/listMenuConfig";
 import { useNavigate } from "react-router-dom";
 
 const Product = () => {
@@ -18,73 +17,64 @@ const Product = () => {
   const dispatch: AppDispatch = useDispatch();
   const data = useSelector((state: RootState) => state.products.dataProduct);
 
-  const [selectedFilters, setSelectedFilters] = useState<any>({
-    sachthieunhi: false,
-    sachtamlitinhcam: false,
-    sachvientuong: false,
-    sachcamhung: false,
-    "20to50": false,
-    "50to100": false,
-    "100to200": false,
-  });
+  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
+  const [selectedPriceRange, setSelectedPriceRange] = useState<string[]>([]);
+  const [sortOrder, setSortOrder] = useState<string>("Mặc định");
 
   const handleAddToCart = (product: ProductType) => {
     dispatch(addToCart(product));
     showMessage("success", "Thêm vào giỏ hàng thành công");
   };
 
-  const handleCheckboxChange = (id: string) => {
-    setSelectedFilters({
-      ...selectedFilters,
-      [id]: !selectedFilters[id],
-    });
-  };
-
-  const filterProducts = data.filter((product) => {
-    const isAnyCategorySelected = Object.values(selectedFilters).some(
-      (filter) => filter
-    );
-
-    const isProductCategorySelected = Object.entries(selectedFilters).some(
-      ([key, value]) => {
-        return value && product.category === listMenu.category[key];
-      }
-    );
-
-    // Lọc theo giá nếu checkbox giá được chọn
-    if (
-      selectedFilters["20to50"] &&
-      product.price < 20000 &&
-      product.price > 50000
-    ) {
-      return false;
-    }
-    if (
-      selectedFilters["50to100"] &&
-      product.price < 50000 &&
-      product.price > 100000
-    ) {
-      return false;
-    }
-    if (
-      selectedFilters["100to200"] &&
-      product.price < 100000 &&
-      product.price > 200000
-    ) {
-      return false;
-    }
-
-    // Nếu không có loại sách nào được chọn, trả về true cho tất cả các sản phẩm
-    if (!isAnyCategorySelected) {
-      return true;
-    }
-
-    return isProductCategorySelected;
-  });
-
   useEffect(() => {
     dispatch(fetchDataProducts());
   }, [dispatch]);
+
+  const handleCategoryChange = (e: any) => {
+    const { id, checked } = e.target;
+    setSelectedCategories((prev) =>
+      checked ? [...prev, id] : prev.filter((category) => category !== id)
+    );
+  };
+
+  const handlePriceRangeChange = (e: any) => {
+    const { id, checked } = e.target;
+    setSelectedPriceRange((prev) =>
+      checked ? [...prev, id] : prev.filter((range) => range !== id)
+    );
+  };
+
+  const getFilteredProducts = () => {
+    let filteredProducts = [...data];
+
+    if (selectedCategories.length > 0) {
+      filteredProducts = filteredProducts.filter((product) =>
+        selectedCategories.includes(product.category)
+      );
+    }
+
+    if (selectedPriceRange.length > 0) {
+      filteredProducts = filteredProducts.filter((product) => {
+        const price = product.price;
+        return selectedPriceRange.some((range) => {
+          if (range === "10-50") return price >= 10000 && price <= 50000;
+          if (range === "50-100") return price >= 50000 && price <= 100000;
+          if (range === "100-150") return price >= 100000 && price <= 150000;
+          if (range === ">150") return price > 150000;
+          return false;
+        });
+      });
+    }
+
+    if (sortOrder === "Giá tăng dần") {
+      filteredProducts.sort((a, b) => a.price - b.price);
+    } else if (sortOrder === "Giá giảm dần") {
+      filteredProducts.sort((a, b) => b.price - a.price);
+    }
+
+    return filteredProducts;
+  };
+
   return (
     <>
       <Directional directional="Sản phẩm" />
@@ -95,40 +85,104 @@ const Product = () => {
             <div className="list-menu">
               <h3>Loại Sách</h3>
               <Row>
-                {Object.entries(listMenu.category).map(
-                  ([key, value], index) => (
-                    <Col
-                      md={{ span: 24 }}
-                      xs={{ span: 12 }}
-                      className="checkbox-container"
-                      key={index}
-                    >
-                      <Checkbox
-                        className="abc"
-                        id={key}
-                        onChange={() => handleCheckboxChange(key)}
-                      />
-                      <label htmlFor={key}>{value} </label>
-                    </Col>
-                  )
-                )}
+                <Col
+                  md={{ span: 24 }}
+                  xs={{ span: 12 }}
+                  className="checkbox-container"
+                >
+                  <Checkbox
+                    className="abc"
+                    id="Sách Khoa Học Viễn Tưởng"
+                    onChange={handleCategoryChange}
+                  />
+                  <label htmlFor="Sách Khoa Học Viễn Tưởng">
+                    Khoa học viễn tưởng{" "}
+                  </label>
+                </Col>
+                <Col
+                  md={{ span: 24 }}
+                  xs={{ span: 12 }}
+                  className="checkbox-container"
+                >
+                  <Checkbox
+                    className="abc"
+                    id="Sách Tâm Lí, Tình Cảm"
+                    onChange={handleCategoryChange}
+                  />
+                  <label htmlFor="Sách Tâm Lí, Tình Cảm">
+                    Tâm Lí, Tình Cảm
+                  </label>
+                </Col>
+                <Col
+                  md={{ span: 24 }}
+                  xs={{ span: 12 }}
+                  className="checkbox-container"
+                >
+                  <Checkbox
+                    className="abc"
+                    id="Sách Truyền Cảm Hứng"
+                    onChange={handleCategoryChange}
+                  />
+                  <label htmlFor="Sách Truyền Cảm Hứng">Truyền Cảm Hứng</label>
+                </Col>
+                <Col
+                  md={{ span: 24 }}
+                  xs={{ span: 12 }}
+                  className="checkbox-container"
+                >
+                  <Checkbox
+                    className="abc"
+                    id="Sách Thiếu Nhi"
+                    onChange={handleCategoryChange}
+                  />
+                  <label htmlFor="Sách Thiếu Nhi">Thiếu Nhi</label>
+                </Col>
               </Row>
               <h3>Giá Tiền</h3>
-              {Object.entries(listMenu.price).map(([key, value], index) => (
-                <div className="checkbox-container" key={index}>
-                  <Checkbox id={key} />
-                  <label htmlFor={key}>{value}</label>
-                </div>
-              ))}
+
+              <div className="checkbox-container">
+                <Checkbox id="10-50" onChange={handlePriceRangeChange} />
+                <label htmlFor="10-50">10.000 - 50.000</label>
+              </div>
+              <div className="checkbox-container">
+                <Checkbox id="50-100" onChange={handlePriceRangeChange} />
+                <label htmlFor="50-100">50.000 - 100.000</label>
+              </div>
+              <div className="checkbox-container">
+                <Checkbox id="100-150" onChange={handlePriceRangeChange} />
+                <label htmlFor="100-150">100.000 - 150.000</label>
+              </div>
+              <div className="checkbox-container">
+                <Checkbox id=">150" onChange={handlePriceRangeChange} />
+                <label htmlFor=">150">Hơn 150.000</label>
+              </div>
             </div>
           </Col>
 
           {/* list product */}
           <Col md={{ span: 19 }} xs={{ span: 24 }}>
+            <Row style={{ margin: "15px 0" }} align="middle">
+              <span>Sắp xếp theo :</span>
+              <Select
+                className="select-option-price"
+                defaultValue="Mặc định"
+                options={[
+                  { value: "Mặc định", label: "Mặc định" },
+                  { value: "Giá tăng dần", label: "Giá tăng dần" },
+                  { value: "Giá giảm dần", label: "Giá giảm dần" },
+                ]}
+                onChange={(value) => setSortOrder(value)}
+              />
+            </Row>
             <Row gutter={16}>
-              {filterProducts.map((product, index) => {
+              {getFilteredProducts().map((product, index) => {
                 return (
-                  <Col className="card-products page-product" key={index}>
+                  <Col
+                    className="card-products"
+                    key={index}
+                    md={{ span: 6 }}
+                    xs={{ span: 12 }}
+                  >
                     <img
                       style={{ width: "100%" }}
                       src={product.image}
@@ -144,7 +198,7 @@ const Product = () => {
                             navigate(`/detailProduct/${product._id}`)
                           }
                         >
-                          Tên sách:{" "}
+                          {/* Tên sách:{" "} */}
                         </span>
                         {product.name}
                       </div>

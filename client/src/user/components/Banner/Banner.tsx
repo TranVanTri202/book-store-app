@@ -12,10 +12,10 @@ const Banner = () => {
       <div className="banner">
         <div className="banner1">
           <img
-            src="https://prestashop17.joommasters.com/molla/themes/jms_molla/assets/images/demos/demo-20/banners/banner-1.jpg"
+            src="https://picnie.com/v1/data/new_8922_230201091403.jpg"
             alt=""
           />
-          <div className="typing-effect">
+          {/* <div className="typing-effect">
             <span>C</span>
             <span>h</span>
             <span>à</span>
@@ -42,75 +42,40 @@ const Banner = () => {
             <span>h</span>
             <span>o</span>
             <span>p</span>
-          </div>
-        </div>
-        <div className="banner2">
-          <img
-            src="https://wordsrated.com/wp-content/uploads/2022/02/Number-of-Books-Published-Per-Year.jpg"
-            alt=""
-          />
-        </div>
-        <div className="banner3">
-          <img
-            src="https://content.api.news/v3/images/bin/8791f511b22d3b0abb8b52c575bff083?width=2048"
-            alt=""
-          />
-          <img
-            src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrvP0KyAJwW21kOUB1xEb816xw1QbLhv6kNA&usqp=CAU"
-            alt=""
-          />
+          </div> */}
         </div>
       </div>
       <Row className="utilities" justify="space-between" gutter={16}>
         <Col
-          xs={{ span: 12 }}
-          md={{ span: 6 }}
+          xs={{ span: 24 }}
+          md={{ span: 8 }}
           className="payment box-utilities"
         >
-          <div className="icon-payment icon">
-            <CarOutlined />
-          </div>
-          <div className="content-payment">
-            <h4>Thanh toán và giao hàng</h4>
-            <p>Miễn phí ship cho đơn hàng hơn 500.000VND</p>
-          </div>
+          <img
+            src="https://nokshi-2.myshopify.com/cdn/shop/files/banner-1.png?v=1614763780"
+            alt=""
+          />
         </Col>
-        <Col xs={{ span: 12 }} md={{ span: 6 }}>
-          <div className="return box-utilities">
-            <div className="icon-return icon">
-              <ReloadOutlined />
-            </div>
-            <div className="content-return">
-              <h4>Trả đổi hàng</h4>
-              <p>Đảm bảo được hoàn toàn miễn phí</p>
-            </div>
-          </div>
+
+        <Col
+          xs={{ span: 24 }}
+          md={{ span: 8 }}
+          className="payment box-utilities"
+        >
+          <img
+            src="https://nokshi-2.myshopify.com/cdn/shop/files/banner-2.png?v=1614763805"
+            alt=""
+          />
         </Col>
-        <Col xs={{ span: 12 }} md={{ span: 6 }}>
-          <div className="utilities-phone">
-            <div className="support box-utilities">
-              <div className="icon-support icon">
-                <CustomerServiceOutlined />
-              </div>
-              <div className="content-suppor">
-                <h4>Hổ trợ chất lượng</h4>
-                <p>Luôn có đội ngủ hỗ trợ trực tuyến 24/7</p>
-              </div>
-            </div>
-          </div>
-        </Col>
-        <Col xs={{ span: 12 }} md={{ span: 6 }}>
-          <div className="utilities-phone">
-            <div className="payment box-utilities">
-              <div className="icon-payment icon">
-                <UserAddOutlined />
-              </div>
-              <div className="content-payment">
-                <h4>Đăng kí thành viên</h4>
-                <p>Giảm 10% cho các thành viên lâu năm</p>
-              </div>
-            </div>
-          </div>
+        <Col
+          xs={{ span: 24 }}
+          md={{ span: 8 }}
+          className="payment box-utilities"
+        >
+          <img
+            src="https://nokshi-2.myshopify.com/cdn/shop/files/banner-3.png?v=1614763824"
+            alt=""
+          />
         </Col>
       </Row>
     </>

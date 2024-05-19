@@ -1,11 +1,12 @@
 .navbar {
-  margin-top: 15px;
+  /* margin-top: 15px; */
   display: flex;
   width: 100%;
   font-size: 15px;
-  height: 50px;
+  height: 100px;
   transition: top 0.8s ease; /* Thêm transition cho thuộc tính top */
   top: -50px; /* Thêm giá trị ban đầu cho thuộc tính top */
+  background-color: #fff;
 }
 
 .navbar.fixed {
@@ -18,17 +19,18 @@
 }
 .choose ul {
   display: flex;
-  justify-content: space-evenly;
   width: 100%;
+  /* justify-content: start; */
 }
 
 .choose ul li {
   text-decoration: none;
   list-style-type: none;
-  color: white;
-  text-transform: uppercase;
+  color: #5b5b5b;
+  font-size: 18px;
   transition: 0.2s linear;
   cursor: pointer;
+  margin: 0 50px;
 }
 
 .choose ul li:hover {
@@ -36,7 +38,7 @@
 }
 
 .choose {
-  background-color: #2c2c2c;
+  /* background-color: #2c2c2c; */
   width: calc(100% - 500px);
   height: 100%;
   display: flex;
@@ -44,13 +46,13 @@
 }
 
 .browser {
-  background-color: var(--color-main);
+  /* background-color: var(--color-main); */
   height: 100%;
   align-items: center;
   display: flex;
   width: 250px;
   justify-content: center;
-  color: white;
+  /* color: white; */
   text-transform: uppercase;
 }
 
@@ -60,27 +62,20 @@
 
 .notify {
   height: 100%;
-  background-color: #2c2c2c;
+  /* background-color: #2c2c2c; */
   width: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
+  /* color: white; */
   position: relative;
 }
 
-.notify::before {
-  position: absolute;
-  content: "";
-  width: 1px;
-  color: white;
-  background-color: white;
-  left: 0;
-  height: 20px;
-}
-
 .notify span {
-  margin-left: 10px;
+  margin-left: 20px;
+  font-size: 19px !important;
+  color: #5b5b5b;
+  cursor: pointer;
 }
 
 .nav-link {
@@ -88,7 +83,7 @@
 }
 
 .nav-link.active li {
-  color: var(--color-main);
+  /* color: var(--color-main); */
   position: relative;
 }
 
@@ -99,115 +94,55 @@
   bottom: 0;
   left: 0;
   height: 1px;
-  background-color: var(--color-main);
+  /* background-color: var(--color-main); */
+}
+.navbar-bottom {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  z-index: 999;
+  margin: 0;
+  padding: 0 60px;
+}
+.cart-quantity {
+  position: relative;
+}
+.cart-quantity .number-cart {
+  position: absolute;
+  top: -90%;
+  right: -40%;
+  background-color: red;
+  padding: 5px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 11px !important;
 }
 
 @media screen and (max-width: 600px) {
   .navbar {
-    margin-top: 15px;
-    display: flex;
-    width: 100%;
-    font-size: 15px;
-    height: 35px;
-    transition: top 0.8s ease; /* Thêm transition cho thuộc tính top */
-    top: -50px; /* Thêm giá trị ban đầu cho thuộc tính top */
+    height: 60px;
   }
 
-  .navbar.fixed {
+  .navbar .choose {
+    display: none;
+  }
+  .navbar-bottom {
+    display: block !important;
     position: fixed;
-    top: 0;
-    left: 1;
-    right: 0;
-    z-index: 999;
-    margin: 0;
-    padding: 0px;
-  }
-  .choose ul {
-    display: flex;
-    justify-content: space-evenly;
-    width: 100%;
-  }
-
-  .choose ul li {
-    text-decoration: none;
-    list-style-type: none;
-    color: white;
-    text-transform: uppercase;
-    transition: 0.2s linear;
-    cursor: pointer;
-    font-size: 8px;
-  }
-
-  .choose ul li:hover {
-    color: var(--color-main);
-  }
-
-  .choose {
-    background-color: #2c2c2c;
-    width: calc(100% - 120px);
-    height: 100%;
-    display: flex;
-    align-items: center;
-  }
-
-  .browser {
-    background-color: var(--color-main);
-    height: 100%;
-    align-items: center;
-    display: flex;
-    width: 120px;
-    justify-content: center;
-    color: white;
-    text-transform: uppercase;
-  }
-
-  .browser span {
-    margin-left: 5px;
-    font-size: 7px;
-  }
-
-  .notify {
-    height: 100%;
-    background-color: #2c2c2c;
-    width: 140px;
-    display: flex;
-    align-items: center;
-    /* justify-content: center; */
-    color: white;
-    position: relative;
-  }
-
-  .notify::before {
-    position: absolute;
-    content: "";
-    width: 1px;
-    color: white;
-    background-color: white;
-    left: 0;
-    height: 20px;
-  }
-
-  .notify span {
-    margin-left: 5px;
-    font-size: 10px;
-  }
-
-  .nav-link {
-    text-decoration: none;
-  }
-
-  .nav-link.active li {
-    color: var(--color-main);
-    position: relative;
-  }
-
-  .nav-link.active li::after {
-    content: "";
-    position: absolute;
-    width: 100%;
     bottom: 0;
-    left: 0;
-    height: 1px;
-    background-color: var(--color-main);
+    width: 100%;
+    background-color: #fff;
+    height: 40px;
+    justify-content: space-between;
+  }
+  .choose-bottom ul {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+  }
+
+  .choose-bottom ul li {
+    list-style-type: none;
+    font-size: 10px;
   }
 }

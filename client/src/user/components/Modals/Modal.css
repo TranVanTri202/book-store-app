@@ -2,6 +2,7 @@
   text-align: center;
   color: var(--color-main);
   margin-bottom: 20px;
+  font-weight: 500;
 }
 
 .form-auth .input-form-auth {
