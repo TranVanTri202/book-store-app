@@ -4,7 +4,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  scrollbar-color: #1cc0a0 #e0e0e0;
+  scrollbar-color: #f5c661 #e0e0e0;
   scroll-behavior: smooth;
   font-family: "Work Sans", sans-serif !important;
 }
@@ -17,7 +17,7 @@
 }
 
 :root {
-  --color-main: #1cc0a0;
+  --color-main: #ffb30e;
 }
 
 ::selection {
@@ -40,7 +40,19 @@ a {
   background-color: #e8e8e8;
   height: 100vh;
 }
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: var(--color-main);
+  border-color: var(--color-main);
+}
 
+.ant-checkbox-wrapper:hover .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: var(--color-main) !important;
+  border-color: var(--color-main) !important;
+}
+.ant-checkbox-checked:hover .ant-checkbox-checked .ant-checkbox-inner {
+  background-color: var(--color-main) !important;
+  border-color: var(--color-main) !important;
+}
 @media screen and (max-width: 600px) {
   .App {
     padding: 5px 6px;

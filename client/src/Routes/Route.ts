@@ -12,23 +12,23 @@ import DetailProduct from "./../user/pages/DetailProduct";
 
 export const RouteUser = [
   {
-    path: "/home",
+    path: "/Home",
     component: Home,
     role: "user",
   },
   {
-    path: "/products",
+    path: "/Products",
     component: Product,
     role: "user",
   },
   {
-    path: "/contact",
+    path: "/Contact",
     component: Contact,
     role: "user",
   },
 
   {
-    path: "/cart",
+    path: "/Cart",
     component: Cart,
     role: "user",
   },
@@ -45,7 +45,7 @@ export const RouteUser = [
     component: Profile,
   },
   {
-    path: "/Tintuc",
+    path: "/Blogs",
     component: Blog,
   },
 ];

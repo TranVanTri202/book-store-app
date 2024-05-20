@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import { jwtDecode } from "jwt-decode";
 
 import { KeyOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Checkbox, Input, Modal } from "antd";
+import { Button, Checkbox, Input, Modal, Row } from "antd";
 import "../Modals/Modal.css";
 import axios from "axios";
 import { showMessage } from "../../utils/message";
 import ModalRegister from "./ModalRegister";
 import { apiConfig } from "../../config/apiConfig";
-import { useNavigate } from "react-router-dom";
 
 interface ModalProps {
   open: boolean;
@@ -29,6 +28,12 @@ const ModalLogin: React.FC<ModalProps> = ({ open, onClose }) => {
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
+  };
+
+  const handleKeyEnter = (e: React.KeyboardEvent) => {
+    if (e.key === "Enter") {
+      handleLogin();
+    }
   };
 
   const handleLogin = () => {
@@ -59,7 +64,8 @@ const ModalLogin: React.FC<ModalProps> = ({ open, onClose }) => {
     <>
       <Modal open={open} onCancel={onClose} footer={null}>
         <div className="form-auth">
-          <h2>Đăng nhập</h2>
+          <h3>Đăng nhập</h3>
+          <h2>Chào Mừng Bạn</h2>
           <Input
             placeholder="Email đăng nhập"
             prefix={<UserOutlined />}
@@ -76,13 +82,16 @@ const ModalLogin: React.FC<ModalProps> = ({ open, onClose }) => {
             className="input-form-auth"
             value={password}
             onChange={handlePasswordChange}
+            onKeyDown={handleKeyEnter}
           />
           <p>
             <Checkbox /> Nhớ mật khẩu
           </p>
-          <Button className="btn-login" onClick={handleLogin}>
-            Đăng nhập
-          </Button>
+          <Row justify="center">
+            <Button className="btn-login" onClick={handleLogin}>
+              Đăng nhập
+            </Button>
+          </Row>
           <div className="footer-modal">
             Bạn chưa có tài khoản ?{" "}
             <span onClick={() => setOpenModalRegister(true)}>Đăng ký ngay</span>

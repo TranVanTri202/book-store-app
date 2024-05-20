@@ -9,7 +9,7 @@ import {
 } from "@ant-design/icons";
 import "./ContactBottom.css";
 import { Row, Col } from "antd";
-import logo from "../../../asset/img/logo.png.png";
+import logo from "../../../asset/img/Logo2.png";
 const ContactBottom = () => {
   return (
     <>

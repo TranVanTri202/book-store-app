@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { KeyOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Input, Modal } from "antd";
+import { Button, Input, Modal, Row } from "antd";
 import "../Modals/Modal.css";
 import axios from "axios";
 import { showMessage } from "../../utils/message";
@@ -54,7 +54,8 @@ const ModalRegister: React.FC<ModalProps> = ({ open, onClose }) => {
     <>
       <Modal open={open} onCancel={onClose} footer={null}>
         <div className="form-auth">
-          <h2>Đăng ký</h2>
+          <h3>Đăng Ký</h3>
+          <h2>Vui lòng nhập thông tin đăng ký</h2>
           <Input
             placeholder="Email đăng nhập"
             prefix={<UserOutlined />}
@@ -82,10 +83,11 @@ const ModalRegister: React.FC<ModalProps> = ({ open, onClose }) => {
             value={confirmPassword}
             onChange={handleConfirmPasswordChange}
           />
-
-          <Button className="btn-login" onClick={handleRegister}>
-            Đăng ký
-          </Button>
+          <Row justify="center">
+            <Button className="btn-login" onClick={handleRegister}>
+              Đăng ký
+            </Button>
+          </Row>
           <div className="footer-modal">
             Bạn đã có tài khoản ? <span onClick={onClose}>Đăng nhập</span>
           </div>

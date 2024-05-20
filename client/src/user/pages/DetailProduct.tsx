@@ -14,6 +14,7 @@ import { addToCart } from "../../Redux/Slice/CartSlice";
 import { formatNumber } from "../utils/formatNumber";
 import { showMessage } from "../utils/message";
 import { apiConfig } from "../config/apiConfig";
+import { scrollToTop } from "../utils/scrollToTop";
 
 const DetailProduct = () => {
   const navigate = useNavigate();
@@ -65,12 +66,6 @@ const DetailProduct = () => {
     speed: 1000,
     slidesToShow: windowWidth < 600 ? 3 : 6,
     slidesToScroll: windowWidth < 600 ? 3 : 6,
-  };
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
   };
 
   const formatDescription = (description: any) => {

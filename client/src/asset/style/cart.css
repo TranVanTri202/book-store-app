@@ -30,6 +30,7 @@
   background-color: var(--color-main);
   color: #fff !important;
   height: auto;
+  margin-top: 20px;
 }
 
 .btn-back-product:hover {
@@ -146,9 +147,10 @@
   padding: 10px 0;
   border-radius: 5px;
   border: none;
-  background-color: #c92127;
+  background-color: var(--color-main);
   color: #fff;
   cursor: pointer;
+  font-weight: 700;
 }
 
 .btn-buy-total-right:hover {

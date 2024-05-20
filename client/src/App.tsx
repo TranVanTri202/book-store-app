@@ -35,7 +35,7 @@ function App() {
             userRole === "admin" ? (
               <Navigate to="/admin/dashboard" />
             ) : (
-              <Navigate to="/home" />
+              <Navigate to="/Home" />
             )
           }
         />

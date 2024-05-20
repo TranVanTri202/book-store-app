@@ -11,6 +11,7 @@ import { showMessage } from "../utils/message";
 import Directional from "../components/Directional/Directional";
 import { formatNumber } from "../utils/formatNumber";
 import { useNavigate } from "react-router-dom";
+import { scrollToTop } from "../utils/scrollToTop";
 
 const Product = () => {
   const navigate = useNavigate();
@@ -218,6 +219,7 @@ const Product = () => {
                       <Button
                         onClick={() => {
                           navigate(`/detailProduct/${product._id}`);
+                          scrollToTop();
                         }}
                       >
                         <EyeOutlined />

@@ -3,7 +3,7 @@
   display: flex;
   width: 100%;
   font-size: 15px;
-  height: 100px;
+  height: 80px;
   transition: top 0.8s ease; /* Thêm transition cho thuộc tính top */
   top: -50px; /* Thêm giá trị ban đầu cho thuộc tính top */
   background-color: #fff;
@@ -15,7 +15,7 @@
   left: 0;
   z-index: 999;
   margin: 0;
-  padding: 0 60px;
+  padding: 0;
 }
 .choose ul {
   display: flex;
@@ -112,13 +112,20 @@
 }
 .cart-quantity .number-cart {
   position: absolute;
-  top: -90%;
+  top: -60%;
   right: -40%;
   background-color: red;
   padding: 5px;
   border-radius: 50%;
   color: #fff;
   font-size: 11px !important;
+}
+.userLogin {
+  background-color: #fdfcfc;
+  padding: 5px 18px 5px 0;
+  color: var(--color-main);
+  font-weight: 600;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 600px) {
@@ -156,7 +163,7 @@
     width: 100px;
   }
   .cart-quantity .number-cart {
-    top: -60%;
+    top: -45%;
     right: -40%;
   }
 }

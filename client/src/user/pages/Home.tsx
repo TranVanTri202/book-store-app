@@ -14,6 +14,7 @@ import "../../asset/style/home.css";
 import { showMessage } from "../utils/message";
 import { useNavigate } from "react-router-dom";
 import bannerNewbook from "../../asset/img/banner-new-book.png";
+import { scrollToTop } from "../utils/scrollToTop";
 const Home = () => {
   const navigate = useNavigate();
   const dispatch: AppDispatch = useDispatch();
@@ -65,12 +66,6 @@ const Home = () => {
     slidesToScroll: windowWidth < 600 ? 3 : 6,
   };
 
-  const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  };
   return (
     <>
       <Banner />
@@ -114,7 +109,10 @@ const Home = () => {
                   <ShoppingOutlined />
                 </Button>
                 <Button
-                  onClick={() => navigate(`/detailProduct/${product._id}`)}
+                  onClick={() => {
+                    navigate(`/detailProduct/${product._id}`);
+                    scrollToTop();
+                  }}
                 >
                   <EyeOutlined />
                 </Button>
@@ -179,7 +177,10 @@ const Home = () => {
                       <ShoppingOutlined />
                     </Button>
                     <Button
-                      onClick={() => navigate(`/detailProduct/${product._id}`)}
+                      onClick={() => {
+                        navigate(`/detailProduct/${product._id}`);
+                        scrollToTop();
+                      }}
                     >
                       <EyeOutlined />
                     </Button>

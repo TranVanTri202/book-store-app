@@ -170,7 +170,7 @@ export const emptyCart = () => {
           />
         </div>
         <span>Chưa có sản phẩm trong giỏ hàng của bạn.</span> <br />
-        <Link to="/products">
+        <Link to="/Products">
           <Button className="btn-back-product">Mua sắm ngay</Button>
         </Link>
       </div>

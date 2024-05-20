@@ -5,13 +5,12 @@ import {
   UserOutlined,
   HeartOutlined,
   HomeOutlined,
-  ProductOutlined,
   ContactsOutlined,
   ShopOutlined,
   BookOutlined,
 } from "@ant-design/icons";
 import "../Navbar/Navbar.css";
-import logo from "../../../asset/img/logo.png.png";
+import logo2 from "../../../asset/img/Logo2.png";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../Redux/store";
 import ModalLogin from "../Modals/ModalLogin";
@@ -72,38 +71,38 @@ const Navbar = () => {
     <>
       <div className={`navbar ${isSticky ? "fixed" : ""}`}>
         <div className="browser">
-          <img src={logo} alt="" />
+          <img src={logo2} alt="" />
         </div>
         <div className="choose">
           <ul>
-            <NavLink onClick={scrollToTop} to="/home" className="nav-link">
-              <li>Trang chủ</li>
+            <NavLink onClick={scrollToTop} to="/Home" className="nav-link">
+              <li>Trang Chủ</li>
             </NavLink>
 
-            <NavLink onClick={scrollToTop} to="/products" className="nav-link">
+            <NavLink onClick={scrollToTop} to="/Products" className="nav-link">
               <li>Sản Phẩm</li>
             </NavLink>
 
-            <NavLink onClick={scrollToTop} to="/contact" className="nav-link">
+            <NavLink onClick={scrollToTop} to="/Contact" className="nav-link">
               <li>Liên Hệ</li>
             </NavLink>
-            <NavLink onClick={scrollToTop} to="/Tintuc" className="nav-link">
-              <li>Tin tức</li>
+            <NavLink onClick={scrollToTop} to="/Blogs" className="nav-link">
+              <li>Tin Tức</li>
             </NavLink>
           </ul>
         </div>
         <div className="notify">
-          <Link to="/cart">
+          <Link to="/Cart">
             <p className="cart-quantity">
               <span className="number-cart">{products.length}</span>
               <ShoppingOutlined shape="square" />
             </p>
           </Link>
           <HeartOutlined />
-          <UserOutlined onClick={handleProfile} />
-          <span style={{ fontSize: "0px !important" }}>
-            {userName.split("@")[0]}
-          </span>
+          <p className="userLogin" onClick={handleProfile}>
+            <UserOutlined style={{ color: "var(--color-main)" }} />
+            {userName === "" ? "Đăng nhập" : userName.split("@")[0]}
+          </p>
         </div>
       </div>
       <ModalLogin open={openModalLogin} onClose={handleCloseModal} />
@@ -111,16 +110,16 @@ const Navbar = () => {
       <div className="navbar-bottom">
         <div className="choose-bottom">
           <ul>
-            <NavLink onClick={scrollToTop} to="/home" className="nav-link">
+            <NavLink onClick={scrollToTop} to="/Home" className="nav-link">
               <li>
                 <p>
                   <HomeOutlined />
                 </p>
-                Trang chủ
+                Trang Chủ
               </li>
             </NavLink>
 
-            <NavLink onClick={scrollToTop} to="/products" className="nav-link">
+            <NavLink onClick={scrollToTop} to="/Products" className="nav-link">
               <li>
                 <p>
                   <ShopOutlined />
@@ -128,7 +127,7 @@ const Navbar = () => {
                 Sản Phẩm
               </li>
             </NavLink>
-            <NavLink onClick={scrollToTop} to="/contact" className="nav-link">
+            <NavLink onClick={scrollToTop} to="/Contact" className="nav-link">
               <li>
                 <p>
                   <ContactsOutlined />
@@ -136,12 +135,12 @@ const Navbar = () => {
                 Liên Hệ
               </li>
             </NavLink>
-            <NavLink onClick={scrollToTop} to="/blog" className="nav-link">
+            <NavLink onClick={scrollToTop} to="/Blogs" className="nav-link">
               <li>
                 <p>
                   <BookOutlined />
                 </p>
-                Tin tức
+                Tin Tức
               </li>
             </NavLink>
           </ul>
