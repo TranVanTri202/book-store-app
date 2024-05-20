@@ -92,15 +92,18 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="notify">
-          <Link to="/Cart">
+          <Link to="/Cart" onClick={scrollToTop}>
             <p className="cart-quantity">
               <span className="number-cart">{products.length}</span>
-              <ShoppingOutlined shape="square" />
+              <ShoppingOutlined shape="square" className="icon-navbar" />
             </p>
           </Link>
-          <HeartOutlined />
+          <HeartOutlined className="icon-navbar" />
           <p className="userLogin" onClick={handleProfile}>
-            <UserOutlined style={{ color: "var(--color-main)" }} />
+            <UserOutlined
+              style={{ color: "var(--color-main)" }}
+              className="icon-navbar"
+            />
             {userName === "" ? "Đăng nhập" : userName.split("@")[0]}
           </p>
         </div>
