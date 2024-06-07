@@ -45,3 +45,7 @@
   cursor: pointer;
   font-size: 15px;
 }
+
+.ant-btn-primary {
+  background-color: var(--color-main) !important;
+}
