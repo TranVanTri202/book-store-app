@@ -11,6 +11,13 @@
   z-index: 9999; /* Đảm bảo nó nằm trên tất cả các thành phần khác */
 }
 
+.Loading h3 {
+  margin-right: 30px;
+  color: #1c9fff;
+  position: absolute;
+  top: 40%;
+  left: 42%;
+}
 .loading-container {
   width: 250px; /* Kích thước của container */
   display: flex;

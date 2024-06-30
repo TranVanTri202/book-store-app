@@ -77,6 +77,7 @@ const Home = () => {
       <Banner />
       {loading ? ( // Kiểm tra trạng thái loading
         <div className="Loading">
+          <h3>Xin vui lòng đợi trong giây lát</h3>
           <div className="loading-container">
             <div className="loading-box"></div>
             <div className="loading-box"></div>
